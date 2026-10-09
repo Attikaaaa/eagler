@@ -12,7 +12,7 @@
   "cloudflare": "wss://realm-yes-commander-centuries.trycloudflare.com"
  },
  "players": 0,
- "updated": 1791536138778,
+ "updated": 1791536157979,
  "playerNames": [],
  "startedAt": 1791536137279,
  "settings": {
@@ -33,19 +33,23 @@
   "ramGb": 8
  },
  "metrics": {
-  "cpu": 15,
-  "memUsedMb": 2079,
+  "cpu": 23,
+  "memUsedMb": 3366,
   "memTotalMb": 15990,
-  "jvmMb": 910,
-  "diskUsedGb": 58.4,
+  "jvmMb": 2323,
+  "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.54,
+  "load1": 0.7,
   "hist": [
    {
     "cpu": 15,
     "mem": 2079
+   },
+   {
+    "cpu": 23,
+    "mem": 3366
    }
   ],
-  "ts": 1791536124156
+  "ts": 1791536157787
  }
 }
