@@ -133,12 +133,25 @@
   const gunz = (buf) => new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream("gzip"))).text();
   const hashOf = async (d) => { const { at, ...rest } = d; const h = await crypto.subtle.digest("SHA-1", new TextEncoder().encode(JSON.stringify(rest))); return Array.from(new Uint8Array(h), (b) => b.toString(16).padStart(2, "0")).join(""); };
   async function remoteSha(path = CF) { const r = await ghx(`contents/${path}?ref=data`); if (r.status === 404) return null; if (!r.ok) throw new Error("cloud " + r.status); return (await r.json()).sha; }
-  async function putFile(path, bytes, sha) {
-    for (let i = 0; i < 4; i++) {
-      const r = await ghx(`contents/${path}`, { method: "PUT", body: JSON.stringify({ message: "sync saves", branch: "data", content: b64(bytes), ...(sha ? { sha } : {}) }) });
-      if (r.ok) return (await r.json()).content.sha;
-      if (r.status !== 409 && r.status !== 422) throw new Error("cloud upload " + r.status);
-      await new Promise((ok) => setTimeout(ok, 600 + Math.random() * 900)); sha = await remoteSha(path);
+  // big files: upload the content as a blob (cannot collide with anything), then a short commit that is retried cheaply
+  async function putGit(path, bytes, expect) {
+    const bl = await ghx("git/blobs", { method: "POST", body: JSON.stringify({ content: b64(bytes), encoding: "base64" }) });
+    if (!bl.ok) throw new Error("cloud upload " + bl.status);
+    const blob = (await bl.json()).sha;
+    for (let i = 0; i < 12; i++) {
+      const head = (await (await ghx("git/ref/heads/data")).json()).object.sha;
+      const ls = await ghx(`contents/${path.split("/")[0]}?ref=data`);
+      const cur = ls.ok ? ((await ls.json()).find((f) => f.path === path) || {}).sha || null : null;
+      if (expect !== undefined && cur !== (expect || null)) { const e = new Error("conflict"); e.conflict = true; throw e; }
+      const cm = await (await ghx(`git/commits/${head}`)).json();
+      const tr = await ghx("git/trees", { method: "POST", body: JSON.stringify({ base_tree: cm.tree.sha, tree: [{ path, mode: "100644", type: "blob", sha: blob }] }) });
+      if (!tr.ok) throw new Error("cloud tree " + tr.status);
+      const cr = await ghx("git/commits", { method: "POST", body: JSON.stringify({ message: "sync saves", tree: (await tr.json()).sha, parents: [head] }) });
+      if (!cr.ok) throw new Error("cloud commit " + cr.status);
+      const up = await ghx("git/refs/heads/data", { method: "PATCH", body: JSON.stringify({ sha: (await cr.json()).sha, force: false }) });
+      if (up.ok) return blob;
+      if (up.status !== 422 && up.status !== 409) throw new Error("cloud ref " + up.status);
+      await new Promise((ok) => setTimeout(ok, 150 + Math.random() * 400)); // the branch moved, try again on the new head
     }
     throw new Error("cloud busy");
   }
@@ -157,6 +170,9 @@
     return { ok: true, changed: true, n: size(d) };
   }
   async function cloudPush() {
+    for (let i = 0; ; i++) { try { return await cloudPushOnce(); } catch (e) { if (!e.conflict || i >= 3) throw e; } }
+  }
+  async function cloudPushOnce() {
     if (!(await canWrite())) return { ok: false, reason: "no-token" };
     const d = await dump(), n = size(d), last = (await getMeta("last")) || { n: 0 }, c = (await getMeta("cloud")) || {};
     if (n === 0 || n < last.n * 0.5) return { ok: false, reason: "shrunk", n, prev: last.n };
@@ -170,11 +186,11 @@
       if (!r.ok) throw new Error("cloud download " + r.status);
       const mb = await gz(JSON.stringify(mergeSnap(JSON.parse(await gunz(await r.arrayBuffer())), d)));
       if (mb.length > 70e6) return { ok: false, reason: "too-big" };
-      const ns = await putFile(CF, mb, sha);
+      const ns = await putGit(CF, mb, sha);
       await setMeta("cloud", { sha: ns, hash, at: Date.now(), needPull: true });
       return { ok: true, n, mb: +(mb.length / 1e6).toFixed(1), merged: true };
     }
-    const nsha = await putFile(CF, bytes, sha);
+    const nsha = await putGit(CF, bytes, sha);
     await setMeta("cloud", { sha: nsha, hash, at: Date.now() });
     return { ok: true, n, mb: +(bytes.length / 1e6).toFixed(1) };
   }
@@ -274,6 +290,6 @@
     addEventListener("pagehide", quiet);
   }
 
-  window.Keep = { hasFS, persist, status, chooseFolder, backup, restore, download, upload, auto, cloud: { dump, publish: async (d) => { const bytes = await gz(JSON.stringify(d)); const sha = await remoteSha(); const nsha = await putFile(CF, bytes, sha); await setMeta("cloud", { sha: nsha, hash: await hashOf(await dump()), at: Date.now() }); return { ok: true, mb: +(bytes.length / 1e6).toFixed(1) }; }, pull: cloudPull, push: async () => { const r = await cloudPush(); return r; }, status: cloudStatus } };
+  window.Keep = { hasFS, persist, status, chooseFolder, backup, restore, download, upload, auto, cloud: { dump, publish: async (d) => { const bytes = await gz(JSON.stringify(d)); const sha = await remoteSha(); const nsha = await putGit(CF, bytes, sha); await setMeta("cloud", { sha: nsha, hash: await hashOf(await dump()), at: Date.now() }); return { ok: true, mb: +(bytes.length / 1e6).toFixed(1) }; }, pull: cloudPull, push: async () => { const r = await cloudPush(); return r; }, status: cloudStatus } };
   auto();
 })();

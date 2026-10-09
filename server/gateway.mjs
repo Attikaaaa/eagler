@@ -19,8 +19,12 @@ const ALLOW = [
   ["DELETE", /^contents\/(servers|console|cmd|uploads|sync)\/[\w.-]+$/],
   ["GET", /^releases\/tags\/data$/],
   ["POST", /^actions\/workflows\/server\.yml\/dispatches$/],
+  // git data API: big files are uploaded as blobs first, only the short commit step touches the busy branch
+  ["POST", /^git\/(blobs|trees|commits)$/],
+  ["GET", /^git\/(ref\/heads\/data|commits\/[0-9a-f]{40})$/],
+  ["PATCH", /^git\/refs\/heads\/data$/],
 ];
-const CORS = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "content-type,accept,authorization", "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,OPTIONS", "Access-Control-Max-Age": "600" };
+const CORS = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "content-type,accept,authorization", "Access-Control-Allow-Methods": "GET,PUT,POST,PATCH,DELETE,OPTIONS", "Access-Control-Max-Age": "600" };
 const cache = new Map(); // short GET cache so many open panels do not burn the hourly API budget
 
 const srv = http.createServer(async (req, res) => {
@@ -37,12 +41,12 @@ const srv = http.createServer(async (req, res) => {
     const body = Buffer.concat(chunks);
     if (req.method === "PUT" || req.method === "DELETE") { try { if (JSON.parse(body.toString()).branch !== "data") throw 0; } catch { res.writeHead(403, CORS); return res.end("data branch only"); } }
     const accept = req.headers.accept || "application/vnd.github+json";
-    const key = req.method === "GET" ? `${p}${u.search}|${accept}` : null;
+    const key = req.method === "GET" && !p.startsWith("git/") ? `${p}${u.search}|${accept}` : null;
     const hit = key && cache.get(key);
     if (hit && Date.now() - hit.t < 3000) { res.writeHead(hit.status, { ...CORS, "Content-Type": hit.type }); return res.end(hit.body); }
     const r = await gh(`${p}${u.search}`, { method: req.method, body: req.method === "GET" ? undefined : body, headers: { Accept: accept, "Content-Type": "application/json" } });
     const out = Buffer.from(await r.arrayBuffer()), type = r.headers.get("content-type") || "application/json";
-    if (key) cache.set(key, { t: Date.now(), status: r.status, type, body: out }); else cache.clear();
+    if (key) cache.set(key, { t: Date.now(), status: r.status, type, body: out }); else if (req.method !== "GET") cache.clear();
     if (cache.size > 200) cache.clear();
     res.writeHead(r.status, { ...CORS, "Content-Type": type }); res.end(out);
   } catch (e) { res.writeHead(502, CORS); res.end("gateway error"); }

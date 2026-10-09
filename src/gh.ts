@@ -107,21 +107,38 @@ const readB64 = (f: File) => new Promise<string>((ok, no) => {
   r.onerror = () => no(r.error);
   r.readAsDataURL(f);
 });
-/** PUT with real upload progress (fetch cannot report it). Resolves with the HTTP status. */
-async function putWithProgress(path: string, body: string, onPct: (p: number) => void, signal: { abort?: () => void }) {
+/** POST with real upload progress (fetch cannot report it). Resolves with status and parsed body. */
+async function postWithProgress(path: string, body: string, onPct: (p: number) => void, signal: { abort?: () => void }) {
   const base = await apiBase();
-  return new Promise<number>((ok, no) => {
+  return new Promise<{ status: number; json: { sha?: string } }>((ok, no) => {
     const x = new XMLHttpRequest();
-    x.open("PUT", `${base}/repos/${REPO}/contents/${path}`);
+    x.open("POST", `${base}/repos/${REPO}/${path}`);
     if (token()) x.setRequestHeader("Authorization", `Bearer ${token()}`);
     x.setRequestHeader("Accept", "application/vnd.github+json");
     x.timeout = 10 * 60e3;
     x.upload.onprogress = (e) => e.lengthComputable && onPct(Math.round((e.loaded / e.total) * 100));
-    x.onload = () => ok(x.status); x.onerror = () => no(new Error("Network error during upload")); x.ontimeout = () => no(new Error("Upload timed out"));
+    x.onload = () => { let json = {}; try { json = JSON.parse(x.responseText); } catch { /* ignore */ } ok({ status: x.status, json }); };
+    x.onerror = () => no(new Error("Network error during upload")); x.ontimeout = () => no(new Error("Upload timed out"));
     x.onabort = () => no(new Error("Upload cancelled"));
     signal.abort = () => x.abort();
     x.send(body);
   });
+}
+/** Puts an already uploaded blob into the data branch. Only this short step touches the busy branch, so a collision just retries. */
+async function commitBlob(path: string, blob: string, message: string) {
+  for (let i = 0; i < 12; i++) {
+    const head = ((await (await gh("git/ref/heads/data")).json()) as { object: { sha: string } }).object.sha;
+    const cm = (await (await gh(`git/commits/${head}`)).json()) as { tree: { sha: string } };
+    const tr = await gh("git/trees", { method: "POST", body: JSON.stringify({ base_tree: cm.tree.sha, tree: [{ path, mode: "100644", type: "blob", sha: blob }] }) });
+    if (!tr.ok) throw new Error(`Upload failed (${tr.status})`);
+    const cr = await gh("git/commits", { method: "POST", body: JSON.stringify({ message, tree: ((await tr.json()) as { sha: string }).sha, parents: [head] }) });
+    if (!cr.ok) throw new Error(`Upload failed (${cr.status})`);
+    const up = await gh("git/refs/heads/data", { method: "PATCH", body: JSON.stringify({ sha: ((await cr.json()) as { sha: string }).sha, force: false }) });
+    if (up.ok) return;
+    if (up.status !== 422 && up.status !== 409) throw new Error(`Upload failed (${up.status})`);
+    await new Promise((res) => setTimeout(res, 150 + Math.random() * 400));
+  }
+  throw new Error("The server was busy writing, please try again.");
 }
 export async function uploadWorld(id: string, file: File, onStep: (s: string, pct?: number) => void, signal: { abort?: () => void } = {}) {
   const kind = /\.epk$/i.test(file.name) ? "epk" : /\.zip$/i.test(file.name) ? "zip" : "";
@@ -130,23 +147,16 @@ export async function uploadWorld(id: string, file: File, onStep: (s: string, pc
   onStep(`Reading ${(file.size / 1e6).toFixed(1)} MB...`);
   const content = await readB64(file);
   const path = `uploads/${id}.bin`;
-  for (let attempt = 1; attempt <= 6; attempt++) {
+  let blob = "";
+  for (let attempt = 1; attempt <= 4 && !blob; attempt++) {
     onStep(attempt > 1 ? `Uploading (try ${attempt})...` : "Uploading...", 0);
-    // sha of an already uploaded file, from the directory listing (the single-file read cannot return big files)
-    let sha: string | undefined;
-    const ls = await gh("contents/uploads?ref=data");
-    if (ls.ok) sha = ((await ls.json()) as { name: string; sha: string }[]).find((f) => f.name === `${id}.bin`)?.sha;
-    const body = JSON.stringify({ message: `upload ${id}`, branch: "data", content, ...(sha ? { sha } : {}) });
-    const status = await putWithProgress(path, body, (p) => onStep("Uploading...", p), signal);
-    if (status === 200 || status === 201) {
-      onStep("Saving...", 100);
-      await saveServer({ id, importPending: { name: file.name, kind, size: file.size }, importResult: undefined }, "import");
-      return;
-    }
-    if (status === 401 || status === 403 || status === 404) throw new Error(`GitHub refused the upload (${status}). Check the token permissions.`);
-    if (status === 413 || status === 422 && attempt === 6) throw new Error("GitHub rejected the file (too large).");
-    await new Promise((res) => setTimeout(res, 800 + Math.random() * 1200)); // branch busy, retry
+    const r = await postWithProgress("git/blobs", JSON.stringify({ content, encoding: "base64" }), (p) => onStep("Uploading...", p), signal);
+    if (r.status === 201 && r.json.sha) blob = r.json.sha;
+    else if (r.status === 401 || r.status === 403 || r.status === 404) throw new Error(`The upload was refused (${r.status}).`);
+    else await new Promise((res) => setTimeout(res, 800 * attempt));
   }
-  throw new Error("The server was busy writing, please try again.");
+  if (!blob) throw new Error("The upload failed, please try again.");
+  onStep("Saving...", 100);
+  await commitBlob(path, blob, `upload ${id}`);
+  await saveServer({ id, importPending: { name: file.name, kind, size: file.size }, importResult: undefined }, "import");
 }
-
