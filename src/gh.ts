@@ -8,6 +8,7 @@ export type Srv = {
   address?: string | null; addresses?: Record<string, string>; players?: number; playerNames?: string[];
   note?: string; error?: string; updated?: number; startedAt?: number; settings?: Settings; always?: boolean; host?: { cpus: number; totalGb: number; ramGb: number };
   metrics?: Metrics;
+  liveUrl?: string | null;
   importPending?: { name: string; kind: string; size: number } | null;
   importResult?: { ok: boolean; msg: string; name: string; at: number };
 };

@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import os from "node:os";
+import http from "node:http";
 import { importEpk, importZip } from "./importworld.mjs";
 
 const ID = process.env.SERVER_ID, REPO = process.env.GITHUB_REPOSITORY, TOKEN = process.env.GITHUB_TOKEN;
@@ -179,6 +180,46 @@ function metrics(pid) {
   return { cpu, memUsedMb: Math.round(memUsed), memTotalMb: Math.round(memTotal), jvmMb: Math.round(jvm), diskUsedGb: +du.toFixed(1), diskTotalGb: +dt.toFixed(1), load1: +os.loadavg()[0].toFixed(2), hist, ts: Date.now() };
 }
 
+// ---------- live channel (SSE console/players/metrics, instant commands) reachable through its own tunnel
+const clients = new Set(); const authCache = new Map();
+let liveState = { players: [], metrics: null }, sendCmd = () => {}, getBacklog = () => [];
+async function authed(token) {
+  if (!token) return false;
+  const c = authCache.get(token); if (c && Date.now() - c.t < 5 * 60e3) return c.ok;
+  let ok = false;
+  try { const r = await fetch(`https://api.github.com/repos/${REPO}`, { headers: { Authorization: `Bearer ${token}`, "User-Agent": "eagler-host" } }); ok = r.ok && (await r.json()).permissions?.push === true; } catch {}
+  authCache.set(token, { ok, t: Date.now() }); return ok;
+}
+const emit = (type, data) => { const m = `event: ${type}\ndata: ${JSON.stringify(data)}\n\n`; for (const r of clients) { try { r.write(m); } catch { clients.delete(r); } } };
+const CORS = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization,content-type", "Access-Control-Allow-Methods": "GET,POST,OPTIONS" };
+const live = http.createServer(async (req, res) => {
+  const u = new URL(req.url, "http://x");
+  if (req.method === "OPTIONS") { res.writeHead(204, CORS); return res.end(); }
+  const token = u.searchParams.get("token") || (req.headers.authorization || "").replace(/^Bearer /, "");
+  if (u.pathname === "/ping") { res.writeHead(200, CORS); return res.end("ok"); }
+  if (!(await authed(token))) { res.writeHead(401, CORS); return res.end("unauthorized"); }
+  if (u.pathname === "/live") {
+    res.writeHead(200, { ...CORS, "Content-Type": "text/event-stream", "Cache-Control": "no-cache, no-transform", Connection: "keep-alive", "X-Accel-Buffering": "no" });
+    res.write(`event: hello\ndata: ${JSON.stringify({ lines: getBacklog(), ...liveState })}\n\n`);
+    clients.add(res); const hb = setInterval(() => { try { res.write(": hb\n\n"); } catch {} }, 15000);
+    req.on("close", () => { clients.delete(res); clearInterval(hb); }); return;
+  }
+  if (u.pathname === "/cmd" && req.method === "POST") {
+    let b = ""; for await (const c of req) b += c;
+    try { const { cmd: c } = JSON.parse(b); sendCmd(String(c)); res.writeHead(200, CORS); res.end("ok"); } catch { res.writeHead(400, CORS); res.end("bad"); }
+    return;
+  }
+  res.writeHead(404, CORS); res.end("not found");
+});
+live.listen(8787);
+function liveTunnel(onUrl) {
+  try {
+    const cf = spawn("/tmp/cloudflared", ["tunnel", "--no-autoupdate", "--url", "http://localhost:8787"]);
+    const grab = (d) => { const m = String(d).match(/https:\/\/[a-z0-9-]+\.trycloudflare\.com/); if (m) onUrl(m[0]); };
+    cf.stdout.on("data", grab); cf.stderr.on("data", grab);
+  } catch (e) { log("live tunnel failed", String(e).slice(0, 120)); }
+}
+
 // ---------- main
 const t0 = Date.now();
 const st0 = await getState();
@@ -218,24 +259,39 @@ await patch({ host: { cpus: os.cpus().length, totalGb: Math.round(os.totalmem() 
 const mc = spawn("java", [`-Xms${Math.min(ram, 2)}G`, `-Xmx${ram}G`, "-XX:+UseG1GC", "-XX:+ParallelRefProcEnabled", "-XX:MaxGCPauseMillis=200", "-jar", "paper.jar", "nogui"], { cwd: DIR });
 const players = new Set(); let running = false, lastActive = Date.now(), logTail = [];
 let saveWaiters = [];
-let consoleBuf = [], consoleDirty = false;
+let consoleBuf = [], consoleDirty = false, expectNames = false, listAt = 0, lastBeat = 0;
 const onLine = (l) => {
   process.stdout.write(l + "\n");
-  consoleBuf.push(l.replace(/\u001b\[[0-9;]*[A-Za-z]/g, "")); if (consoleBuf.length > 250) consoleBuf.shift(); consoleDirty = true;
+  const clean = l.replace(/\u001b\[[0-9;]*[A-Za-z]/g, "");
+  if (listAt && Date.now() - listAt < 2500) {
+    if (/There are \d+\/\d+ players online/.test(clean)) { expectNames = true; return; }
+    if (expectNames) {
+      expectNames = false; listAt = 0;
+      const names = clean.replace(/^.*?\]: /, "").split(/,\s*/).map((n) => n.replace(/\u00a7./g, "").trim()).filter((n) => /^\w{1,16}$/.test(n));
+      players.clear(); names.forEach((n) => players.add(n));
+      liveState.players = [...players]; emit("players", liveState.players); lastBeat = 0; return;
+    }
+  }
+  consoleBuf.push(clean); if (consoleBuf.length > 250) consoleBuf.shift(); consoleDirty = true; emit("log", clean);
   logTail.push(l); if (logTail.length > 60) logTail.shift();
   let m;
   if (/Done \(/.test(l)) { running = true; }
-  if ((m = l.match(/\]: (\w+) joined the game/))) { players.add(m[1]); lastActive = Date.now(); }
-  if ((m = l.match(/\]: (\w+) left the game/))) { players.delete(m[1]); lastActive = Date.now(); }
+  const before = players.size;
+  if ((m = l.match(/\]: (\w+) joined the game/)) || (m = l.match(/\]: (\w+)\[\/[^\]]*\] logged in with entity id/))) { players.add(m[1]); lastActive = Date.now(); }
+  if ((m = l.match(/\]: (\w+) left the game/)) || (m = l.match(/\]: (\w+) lost connection/))) { players.delete(m[1]); lastActive = Date.now(); }
+  if (players.size !== before) { lastBeat = 0; liveState.players = [...players]; emit("players", liveState.players); }
   if (/Saved the world|Saved the game/.test(l)) { saveWaiters.forEach((f) => f()); saveWaiters = []; }
 };
 let buf = ""; const feed = (d) => { buf += d; let i; while ((i = buf.indexOf("\n")) >= 0) { onLine(buf.slice(0, i).trimEnd()); buf = buf.slice(i + 1); } };
 mc.stdout.on("data", feed); mc.stderr.on("data", feed);
 const cmd = (c) => mc.stdin.write(c + "\n");
+sendCmd = (c) => { const t = c.replace(/[\r\n]/g, " ").replace(/^\//, ""); if (!exited && t) { cmd(t); emit("log", "> " + t); } };
+getBacklog = () => consoleBuf.slice(-200);
 let exited = false; mc.on("exit", (c) => { exited = true; log("minecraft exited", c); });
 
 let addrs = {};
 tunnels(async (a) => { addrs = a; await patch({ addresses: a, address: a.stable || a.cloudflare || null }); log("address", a); });
+liveTunnel(async (u) => { await patch({ liveUrl: u }); log("live url", u); });
 
 async function flush() {
   if (exited) return;
@@ -250,15 +306,17 @@ async function shutdown(reason, finalStatus = "stopped", extra = {}) {
   if (!exited) { cmd("save-all"); await sleep(2000); cmd("stop"); for (let i = 0; i < 90 && !exited; i++) await sleep(1000); if (!exited) mc.kill("SIGKILL"); }
   await saveWorld();
   await putJson(CON, { lines: consoleBuf.slice(-200), updated: Date.now() });
-  await patch({ status: finalStatus, address: null, addresses: {}, players: 0, runId: null, ...extra });
+  await patch({ status: finalStatus, address: null, addresses: {}, liveUrl: null, players: 0, runId: null, ...extra });
 }
 for (const sig of ["SIGINT", "SIGTERM"]) process.on(sig, async () => { await shutdown("signal " + sig); process.exit(0); });
 
-let lastSave = Date.now(), lastBeat = 0, runningMarked = false, lastCon = 0, lastCmd = 0, cmdN = (await getJson(`cmd/${ID}.json`))?.data?.n || 0, startedAt = null;
+let lastSave = Date.now(), lastList = 0, lastMet = 0, runningMarked = false, lastCon = 0, lastCmd = 0, cmdN = (await getJson(`cmd/${ID}.json`))?.data?.n || 0, startedAt = null;
 const CMD = `cmd/${ID}.json`, CON = `console/${ID}.json`;
 while (true) {
   await sleep(5000);
-  if (exited) { await putJson(CON, { lines: consoleBuf.slice(-200), updated: Date.now() }); await patch({ status: "stopped", address: null, addresses: {}, players: 0, runId: null, error: logTail.slice(-8).join("\n") }); await saveWorld().catch(() => {}); break; }
+  if (exited) { await putJson(CON, { lines: consoleBuf.slice(-200), updated: Date.now() }); await patch({ status: "stopped", address: null, addresses: {}, liveUrl: null, players: 0, runId: null, error: logTail.slice(-8).join("\n") }); await saveWorld().catch(() => {}); break; }
+  if (running && Date.now() - lastList > 15000) { lastList = Date.now(); listAt = Date.now(); cmd("minecraft:list"); }
+  if (running && Date.now() - lastMet > 5000) { lastMet = Date.now(); liveState.metrics = metrics(mc.pid); emit("metrics", liveState.metrics); }
   if (consoleDirty && Date.now() - lastCon > 7000) { lastCon = Date.now(); consoleDirty = false; await putJson(CON, { lines: consoleBuf.slice(-200), updated: Date.now() }); }
   if (running && Date.now() - lastCmd > 4000) {
     lastCmd = Date.now();

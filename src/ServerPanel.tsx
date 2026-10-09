@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { token } from "./gh";
 import { deleteServerFile, dispatch, getConsole, saveServer, sendCommand, uploadWorld, worldBackups, type Settings, type Srv } from "./gh";
 import { LABEL } from "./Servers";
 import { DEFAULT_PLUGINS, PLUGINS } from "./plugins";
@@ -18,14 +19,14 @@ function Bar({ pct, label, sub }: { pct: number; label: string; sub: string }) {
   const p = Math.max(0, Math.min(100, pct));
   return <div className="meter"><div className="mtop"><span>{label}</span><b>{sub}</b></div><div className="mbar"><i style={{ width: p + "%", background: p > 85 ? "#ff5e5e" : p > 65 ? "#f5a623" : "#2ecc71" }} /></div></div>;
 }
-function Resources({ srv }: { srv: Srv }) {
-  const m = srv.metrics, live = srv.status === "running" && m;
-  const stale = m ? Date.now() - m.ts > 3 * 60e3 : false;
+function Resources({ srv, lv }: { srv: Srv; lv: Live }) {
+  const m = lv.metrics ?? srv.metrics, live = srv.status === "running" && m;
+  const stale = m && !lv.on ? Date.now() - m.ts > 3 * 60e3 : false;
   if (!live) return <div className="box"><h3>Resources</h3><p className="small text-muted-foreground">Live CPU, memory and disk appear here while the server is online.</p></div>;
   const gb = (mb: number) => (mb / 1024).toFixed(1);
   return (
     <div className="box">
-      <div className="row" style={{ justifyContent: "space-between" }}><h3>Resources</h3><span className="small text-muted-foreground">{stale ? "no recent update" : "host machine · updates every 30 s"}</span></div>
+      <div className="row" style={{ justifyContent: "space-between" }}><h3>Resources</h3><span className="small text-muted-foreground">{stale ? "no recent update" : (lv.on ? "host machine · live" : "host machine · updates every 30 s")}</span></div>
       <div className="res">
         <div><Bar pct={m.cpu} label="CPU" sub={`${m.cpu}% of ${srv.host?.cpus ?? 4} cores`} /><Spark v={m.hist.map((h) => h.cpu)} max={100} color="#ff8a1f" /></div>
         <div><Bar pct={(m.memUsedMb / m.memTotalMb) * 100} label="Host memory" sub={`${gb(m.memUsedMb)} / ${gb(m.memTotalMb)} GB`} /><Spark v={m.hist.map((h) => h.mem)} max={m.memTotalMb} color="#5865f2" /></div>
@@ -42,71 +43,104 @@ function Copy({ text }: { text: string }) {
   return <button className="link" onClick={() => { navigator.clipboard.writeText(text); setOk(true); setTimeout(() => setOk(false), 1200); }}>{ok ? "Copied" : "Copy"}</button>;
 }
 
-function Console({ srv }: { srv: Srv }) {
+type Live = { on: boolean; lines: string[]; players: string[] | null; metrics: Srv["metrics"] | null; send: (c: string) => Promise<boolean> };
+/** Direct stream from the running server (instant). Falls back to the slower GitHub polling when unavailable. */
+function useLive(srv: Srv): Live {
+  const [on, setOn] = useState(false);
   const [lines, setLines] = useState<string[]>([]);
+  const [players, setPlayers] = useState<string[] | null>(null);
+  const [metrics, setMetrics] = useState<Srv["metrics"] | null>(null);
+  const base = srv.status === "running" ? srv.liveUrl : null;
+  useEffect(() => {
+    setOn(false); if (!base) return;
+    let es: EventSource | null = null, dead = false, retry = 0;
+    const open = () => {
+      es = new EventSource(`${base}/live?token=${encodeURIComponent(token())}`);
+      es.addEventListener("hello", (e) => { const d = JSON.parse((e as MessageEvent).data); setLines(d.lines ?? []); setPlayers(d.players ?? []); setMetrics(d.metrics ?? null); setOn(true); retry = 0; });
+      es.addEventListener("log", (e) => setLines((l) => [...l.slice(-399), JSON.parse((e as MessageEvent).data)]));
+      es.addEventListener("players", (e) => setPlayers(JSON.parse((e as MessageEvent).data)));
+      es.addEventListener("metrics", (e) => setMetrics(JSON.parse((e as MessageEvent).data)));
+      es.onerror = () => { setOn(false); es?.close(); if (!dead && retry++ < 20) setTimeout(open, Math.min(1000 * retry, 5000)); };
+    };
+    open();
+    return () => { dead = true; es?.close(); };
+  }, [base]);
+  const send = async (c: string) => {
+    if (!base || !on) return false;
+    try { const r = await fetch(`${base}/cmd`, { method: "POST", headers: { Authorization: `Bearer ${token()}`, "Content-Type": "application/json" }, body: JSON.stringify({ cmd: c }) }); return r.ok; } catch { return false; }
+  };
+  return { on, lines, players, metrics, send };
+}
+
+function Console({ srv, live }: { srv: Srv; live: Live }) {
+  const [polled, setLines] = useState<string[]>([]);
+  const lines = live.on ? live.lines : polled;
   const [cmd, setCmd] = useState("");
   const hist = useRef<string[]>([]); const hi = useRef(-1);
   const box = useRef<HTMLDivElement>(null); const stick = useRef(true);
-  const live = srv.status === "running";
+  const up = srv.status === "running";
 
   useEffect(() => {
     let dead = false;
+    if (live.on) return;
     const tick = async () => { try { const c = await getConsole(srv.id); if (!dead && c) setLines(c.data.lines); } catch { /* ignore */ } };
     tick(); const i = setInterval(tick, 3000);
     return () => { dead = true; clearInterval(i); };
-  }, [srv.id]);
+  }, [srv.id, live.on]);
   useEffect(() => { if (stick.current && box.current) box.current.scrollTop = box.current.scrollHeight; }, [lines]);
 
   const send = async () => {
     const c = cmd.trim(); if (!c) return;
     hist.current.unshift(c); hi.current = -1; setCmd("");
+    if (await live.send(c)) return; // instant path, the server echoes it
     setLines((l) => [...l, `> ${c}`]);
     try { await sendCommand(srv.id, c); } catch (e) { setLines((l) => [...l, `! ${e}`]); }
   };
   const cls = (l: string) => l.startsWith("> ") ? "cmd" : /\/ERROR\]|\bERROR\]/.test(l) || l.startsWith("!") ? "e" : /WARN\]/.test(l) ? "w" : /joined the game/.test(l) ? "j" : /left the game/.test(l) ? "x" : "";
   return (
     <div className="term">
-      <div className="termbar"><span className="dot running" /> console {live ? "" : "(offline: start the server to send commands)"}<span style={{ flex: 1 }} /><span className="small">updates every few seconds</span></div>
+      <div className="termbar"><span className={"dot " + (live.on ? "running" : "starting")} /> console {srv.status === "running" ? "" : "(offline: start the server to send commands)"}<span style={{ flex: 1 }} /><span className="small">{live.on ? "live" : "connecting... (delayed fallback)"}</span></div>
       <div className="termbody" ref={box} onScroll={(e) => { const t = e.currentTarget; stick.current = t.scrollTop + t.clientHeight >= t.scrollHeight - 30; }}>
         {lines.length === 0 && <div className="tl">No output yet.</div>}
         {lines.map((l, i) => <div key={i} className={"tl " + cls(l)}>{l}</div>)}
       </div>
       <div className="terminput">
         <span>$</span>
-        <input disabled={!live} placeholder={live ? "Type a command, e.g. say hello, op Steve, time set day" : "Server is offline"} value={cmd} onChange={(e) => setCmd(e.target.value)}
+        <input disabled={!up} placeholder={up ? "Type a command, e.g. say hello, op Steve, time set day" : "Server is offline"} value={cmd} onChange={(e) => setCmd(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") send();
             if (e.key === "ArrowUp") { hi.current = Math.min(hi.current + 1, hist.current.length - 1); setCmd(hist.current[hi.current] ?? ""); e.preventDefault(); }
             if (e.key === "ArrowDown") { hi.current = Math.max(hi.current - 1, -1); setCmd(hist.current[hi.current] ?? ""); }
           }} />
-        <button className="btn primary" disabled={!live || !cmd.trim()} onClick={send}>Send</button>
+        <button className="btn primary" disabled={!up || !cmd.trim()} onClick={send}>Send</button>
       </div>
     </div>
   );
 }
 
-function Players({ srv }: { srv: Srv }) {
+function Players({ srv, lv }: { srv: Srv; lv: Live }) {
   const [who, setWho] = useState("");
-  const live = srv.status === "running";
-  const run = (c: string) => sendCommand(srv.id, c);
+  const up = srv.status === "running";
+  const names = lv.players ?? srv.playerNames ?? [];
+  const run = async (c: string) => { if (!(await lv.send(c))) await sendCommand(srv.id, c); };
   return (
     <div className="box">
-      <h3>Online now ({srv.players ?? 0}/{srv.settings?.maxPlayers ?? 30})</h3>
-      {(srv.playerNames ?? []).length === 0 && <p className="text-muted-foreground small">Nobody is online.</p>}
-      {(srv.playerNames ?? []).map((p) => (
+      <h3>Online now ({names.length}/{srv.settings?.maxPlayers ?? 30})</h3>
+      {names.length === 0 && <p className="text-muted-foreground small">Nobody is online.</p>}
+      {names.map((p) => (
         <div className="prow" key={p}>
           <img alt="" src={`https://mc-heads.net/avatar/${p}/32`} width={32} height={32} style={{ imageRendering: "pixelated", borderRadius: 6 }} />
           <b style={{ flex: 1 }}>{p}</b>
-          <button className="btn sm" disabled={!live} onClick={() => run(`op ${p}`)}>Op</button>
-          <button className="btn sm" disabled={!live} onClick={() => run(`deop ${p}`)}>Deop</button>
-          <button className="btn sm" disabled={!live} onClick={() => run(`kick ${p}`)}>Kick</button>
-          <button className="btn sm danger" disabled={!live} onClick={() => confirm(`Ban ${p}?`) && run(`ban ${p}`)}>Ban</button>
+          <button className="btn sm" disabled={!up} onClick={() => run(`op ${p}`)}>Op</button>
+          <button className="btn sm" disabled={!up} onClick={() => run(`deop ${p}`)}>Deop</button>
+          <button className="btn sm" disabled={!up} onClick={() => run(`kick ${p}`)}>Kick</button>
+          <button className="btn sm danger" disabled={!up} onClick={() => confirm(`Ban ${p}?`) && run(`ban ${p}`)}>Ban</button>
         </div>
       ))}
       <h3 style={{ marginTop: "1.25rem" }}>Manage a player by name</h3>
       <div className="row"><input className="field" style={{ margin: 0, flex: 1 }} placeholder="Player name" value={who} onChange={(e) => setWho(e.target.value.trim())} />
         {[["Op", "op"], ["Deop", "deop"], ["Whitelist add", "whitelist add"], ["Whitelist remove", "whitelist remove"], ["Pardon", "pardon"]].map(([l, c]) => (
-          <button key={c} className="btn sm" disabled={!live || !who} onClick={() => run(`${c} ${who}`)}>{l}</button>))}
+          <button key={c} className="btn sm" disabled={!up || !who} onClick={() => run(`${c} ${who}`)}>{l}</button>))}
       </div>
     </div>
   );
@@ -193,6 +227,7 @@ function Backups({ srv }: { srv: Srv }) {
 }
 
 export default function ServerPanel({ srv, reload }: { srv: Srv; reload: () => void }) {
+  const lv = useLive(srv);
   const [tab, setTab] = useState<Tab>("overview");
   const [now, setNow] = useState(Date.now());
   const [busy, setBusy] = useState(false);
@@ -230,12 +265,12 @@ export default function ServerPanel({ srv, reload }: { srv: Srv; reload: () => v
 
       {tab === "overview" && (<>
         <div className="stats">
-          <div className="stat"><span>Players</span><b>{srv.players ?? 0}<small> / {srv.settings?.maxPlayers ?? 30}</small></b></div>
+          <div className="stat"><span>Players</span><b>{lv.players ? lv.players.length : srv.players ?? 0}<small> / {srv.settings?.maxPlayers ?? 30}</small></b></div>
           <div className="stat"><span>Uptime</span><b>{st === "running" && srv.startedAt ? up(now - srv.startedAt) : "-"}</b></div>
           <div className="stat"><span>Server RAM</span><b>{srv.settings?.ramGb ?? 5} GB<small> of {srv.host?.totalGb ?? 16}</small></b></div>
           <div className="stat"><span>Keep-alive</span><b>24/7</b></div>
         </div>
-        <Resources srv={srv} />
+        <Resources srv={srv} lv={lv} />
         <div className="box">
           <h3>Server address</h3>
           {srv.address ? (<>
@@ -253,8 +288,8 @@ export default function ServerPanel({ srv, reload }: { srv: Srv; reload: () => v
         {srv.error && off && <div className="box"><h3>Last output before it stopped</h3><pre className="errlog">{srv.error}</pre></div>}
         <div className="box row" style={{ justifyContent: "space-between" }}><span className="small text-muted-foreground">Deleting removes the server and its saved world for good.</span><button className="btn danger" disabled={busy || !off} onClick={del}>Delete server</button></div>
       </>)}
-      {tab === "console" && <Console srv={srv} />}
-      {tab === "players" && <Players srv={srv} />}
+      {tab === "console" && <Console srv={srv} live={lv} />}
+      {tab === "players" && <Players srv={srv} lv={lv} />}
       {tab === "settings" && <SettingsTab srv={srv} reload={reload} />}
       {tab === "backups" && <><Backups srv={srv} /><ImportWorld srv={srv} /></>}
     </div>
