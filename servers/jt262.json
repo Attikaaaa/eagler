@@ -16,8 +16,8 @@
   "stable": "wss://2054d8d8f8f65084-20-83-38-50.serveousercontent.com",
   "cloudflare": "wss://filling-britannica-optimum-dot.trycloudflare.com"
  },
- "players": 0,
- "updated": 1791549896100,
+ "players": 1,
+ "updated": 1791549912253,
  "host": {
   "cpus": 4,
   "totalGb": 16,
@@ -25,26 +25,14 @@
  },
  "liveUrl": "https://frequent-ground-monte-chapel.trycloudflare.com",
  "metrics": {
-  "cpu": 2,
-  "memUsedMb": 3796,
+  "cpu": 23,
+  "memUsedMb": 3833,
   "memTotalMb": 15990,
-  "jvmMb": 2732,
+  "jvmMb": 2783,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.05,
+  "load1": 0.12,
   "hist": [
-   {
-    "cpu": 2,
-    "mem": 3760
-   },
-   {
-    "cpu": 1,
-    "mem": 3762
-   },
-   {
-    "cpu": 2,
-    "mem": 3763
-   },
    {
     "cpu": 1,
     "mem": 3763
@@ -152,11 +140,25 @@
    {
     "cpu": 2,
     "mem": 3796
+   },
+   {
+    "cpu": 1,
+    "mem": 3797
+   },
+   {
+    "cpu": 6,
+    "mem": 3801
+   },
+   {
+    "cpu": 23,
+    "mem": 3833
    }
   ],
-  "ts": 1791549895955
+  "ts": 1791549912147
  },
- "playerNames": [],
+ "playerNames": [
+  "jabrik"
+ ],
  "startedAt": 1791549622730,
  "note": null
 }
