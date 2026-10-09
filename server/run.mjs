@@ -7,6 +7,7 @@ import crypto from "node:crypto";
 import os from "node:os";
 import http from "node:http";
 import { importEpk, importZip } from "./importworld.mjs";
+import { wispServer } from "./wisp.mjs";
 
 const ID = process.env.SERVER_ID, REPO = process.env.GITHUB_REPOSITORY, TOKEN = process.env.GITHUB_TOKEN;
 const RUN_ID = process.env.GITHUB_RUN_ID, GENERATION = Number(process.env.GENERATION || 1);
@@ -89,7 +90,7 @@ function applySettings(st, fresh) {
   const f = path.join(DIR, "server.properties");
   let txt = fs.existsSync(f) ? fs.readFileSync(f, "utf8") : "";
   const set = (k, v) => { const re = new RegExp(`^${k}=.*$`, "m"); txt = re.test(txt) ? txt.replace(re, `${k}=${v}`) : txt + `${txt.endsWith("\n") || !txt ? "" : "\n"}${k}=${v}\n`; };
-  set("online-mode", "false"); set("server-port", "25565");
+  set("online-mode", "false"); set("server-port", "25565"); if (MOD) set("enforce-secure-profile", "false");
   for (const [k, prop] of Object.entries(PROPS)) { const v = st.settings?.[k]; if (v === undefined || v === "" || (k === "seed" && !fresh)) continue; set(prop, String(v).replace(/[\r\n]/g, " ")); }
   fs.writeFileSync(f, txt);
   const lst = path.join(DIR, "plugins/EaglercraftXServer/listener.yml");
@@ -100,11 +101,16 @@ async function provision(name, st, fresh) {
   fs.mkdirSync(path.join(DIR, "plugins"), { recursive: true });
   const jar = path.join(DIR, "paper.jar");
   if (!fs.existsSync(jar)) {
-    const buf = Buffer.from(await (await fetch(PAPER.url)).arrayBuffer());
-    if (crypto.createHash("sha256").update(buf).digest("hex") !== PAPER.sha) throw new Error("paper checksum mismatch");
+    let paper = PAPER;
+    if (MOD) { // 26.x: latest stable Paper build for 26.2 (played through the Wisp proxy)
+      const b = await (await fetch("https://fill.papermc.io/v3/projects/paper/versions/26.2/builds/latest", { headers: { "User-Agent": "eagler-host/1.0" } })).json();
+      const d = b.downloads["server:default"]; paper = { url: d.url, sha: d.checksums.sha256 };
+    }
+    const buf = Buffer.from(await (await fetch(paper.url)).arrayBuffer());
+    if (crypto.createHash("sha256").update(buf).digest("hex") !== paper.sha) throw new Error("paper checksum mismatch");
     fs.writeFileSync(jar, buf);
   }
-  sh("gh", ["release", "download", "v1.1.1", "-R", "lax1dude/eaglerxserver", "-p", "EaglerXServer.jar", "-D", path.join(DIR, "plugins"), "--clobber"]);
+  if (!MOD) sh("gh", ["release", "download", "v1.1.1", "-R", "lax1dude/eaglerxserver", "-p", "EaglerXServer.jar", "-D", path.join(DIR, "plugins"), "--clobber"]);
   fs.writeFileSync(path.join(DIR, "eula.txt"), "eula=true\n");
   const props = path.join(DIR, "server.properties");
   if (!fs.existsSync(props)) fs.writeFileSync(props, `online-mode=false\nserver-port=25565\nmotd=${name}\nmax-players=30\nview-distance=8\nenable-command-block=true\nspawn-protection=0\n`);
@@ -114,6 +120,7 @@ async function provision(name, st, fresh) {
 }
 
 // ---------- plugins (resolved at start, jars are not stored in the world save)
+const GV = () => (MOD ? "26.2" : "1.12.2");
 const PLUGINS = {
   spark: { url: "https://sparkapi.lucko.me/download/bukkit" },
   vault: { gh: "MilkBowl/Vault", asset: "Vault.jar" },
@@ -128,7 +135,7 @@ async function installPlugins(ids) {
     const src = PLUGINS[id]; if (!src) continue;
     try {
       if (src.modrinth) {
-        const v = await (await fetch(`https://api.modrinth.com/v2/project/${src.modrinth}/version?game_versions=%5B%221.12.2%22%5D&loaders=%5B%22paper%22%2C%22spigot%22%2C%22bukkit%22%5D`, { headers: { "User-Agent": "eagler-host/1.0" } })).json();
+        const v = await (await fetch(`https://api.modrinth.com/v2/project/${src.modrinth}/version?game_versions=%5B%22${GV()}%22%5D&loaders=%5B%22paper%22%2C%22spigot%22%2C%22bukkit%22%5D`, { headers: { "User-Agent": "eagler-host/1.0" } })).json();
         const f = v[0].files.find((x) => x.primary) || v[0].files[0];
         fs.writeFileSync(path.join(dir, f.filename), Buffer.from(await (await fetch(f.url)).arrayBuffer()));
         log("plugin", id, f.filename);
@@ -146,19 +153,19 @@ async function installPlugins(ids) {
 }
 
 // ---------- tunnels (public address)
-function tunnels(onAddr) {
+function tunnels(onAddr, port = 25565) {
   const found = {};
   const emit = () => onAddr({ ...found });
   try {
     sh("curl", ["-sSL", "-o", "/tmp/cloudflared", "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64"]);
     fs.chmodSync("/tmp/cloudflared", 0o755);
-    const cf = spawn("/tmp/cloudflared", ["tunnel", "--no-autoupdate", "--url", "http://localhost:25565"]);
+    const cf = spawn("/tmp/cloudflared", ["tunnel", "--no-autoupdate", "--url", `http://localhost:${port}`]);
     const grab = (d) => { const m = String(d).match(/https:\/\/[a-z0-9-]+\.trycloudflare\.com/); if (m && !found.cloudflare) { found.cloudflare = m[0].replace("https", "wss"); emit(); } };
     cf.stdout.on("data", grab); cf.stderr.on("data", grab);
   } catch (e) { log("cloudflared failed", String(e).slice(0, 150)); }
   // stable name (same address every start) when serveo is reachable
   const sub = `eagler-${ID}`.replace(/[^a-z0-9-]/g, "").slice(0, 40);
-  const sv = spawn("ssh", ["-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null", "-o", "ServerAliveInterval=20", "-o", "ExitOnForwardFailure=yes", "-R", `${sub}:80:localhost:25565`, "serveo.net"]);
+  const sv = spawn("ssh", ["-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null", "-o", "ServerAliveInterval=20", "-o", "ExitOnForwardFailure=yes", "-R", `${sub}:80:localhost:${port}`, "serveo.net"]);
   const grab2 = (d) => { const m = String(d).match(/https:\/\/([a-z0-9-]+\.serveousercontent\.com|[a-z0-9-]+\.serveo\.net)/); if (m && !found.stable) { found.stable = m[0].replace("https", "wss"); emit(); } };
   sv.stdout.on("data", grab2); sv.stderr.on("data", grab2);
 }
@@ -244,6 +251,7 @@ function liveTunnel(onUrl) {
 // ---------- main
 const t0 = Date.now();
 const st0 = await getState();
+const MOD = st0?.version === "26.2";
 const name = st0?.name || ID;
 await patch({ status: "starting", runId: RUN_ID, address: null, addresses: {}, players: 0 });
 const had = await restore();
@@ -277,7 +285,9 @@ const ram = Math.min(12, Math.max(1, Number(st0?.settings?.ramGb) || 5));
 await installPlugins(st0?.settings?.plugins ?? ["spark", "vault", "essentialsx", "luckperms", "worldedit"]);
 log(`host: ${os.cpus().length} cpus, ${(os.totalmem() / 2 ** 30).toFixed(1)} GB RAM; server heap ${ram} GB`);
 await patch({ host: { cpus: os.cpus().length, totalGb: Math.round(os.totalmem() / 2 ** 30), ramGb: ram } });
-const mc = spawn("java", [`-Xms${Math.min(ram, 2)}G`, `-Xmx${ram}G`, "-XX:+UseG1GC", "-XX:+ParallelRefProcEnabled", "-XX:MaxGCPauseMillis=200", "-jar", "paper.jar", "nogui"], { cwd: DIR });
+const JAVA = process.env[`JAVA_HOME_${MOD ? 25 : 17}_X64`] ? path.join(process.env[`JAVA_HOME_${MOD ? 25 : 17}_X64`], "bin/java") : "java";
+if (MOD) wispServer(25570, 25565, log);
+const mc = spawn(JAVA, [`-Xms${Math.min(ram, 2)}G`, `-Xmx${ram}G`, "-XX:+UseG1GC", "-XX:+ParallelRefProcEnabled", "-XX:MaxGCPauseMillis=200", "-jar", "paper.jar", "nogui"], { cwd: DIR });
 const players = new Set(); let running = false, lastActive = Date.now(), logTail = [];
 let saveWaiters = [];
 let consoleBuf = [], consoleDirty = false, expectNames = false, listAt = 0, lastBeat = 0;
@@ -285,6 +295,11 @@ const onLine = (l) => {
   process.stdout.write(l + "\n");
   const clean = l.replace(/\u001b\[[0-9;]*[A-Za-z]/g, "");
   if (listAt && Date.now() - listAt < 2500) {
+    const nm = clean.match(/There are \d+ of a max of \d+ players online:?\s*(.*)$/);
+    if (nm) { // 26.x prints the names on the same line
+      listAt = 0; const names = nm[1].split(/,\s*/).map((n) => n.trim()).filter((n) => /^\w{1,16}$/.test(n));
+      players.clear(); names.forEach((n) => players.add(n)); liveState.players = [...players]; emit("players", liveState.players); lastBeat = 0; return;
+    }
     if (/There are \d+\/\d+ players online/.test(clean)) { expectNames = true; return; }
     if (expectNames) {
       expectNames = false; listAt = 0;
@@ -311,7 +326,7 @@ getBacklog = () => consoleBuf.slice(-200);
 let exited = false; mc.on("exit", (c) => { exited = true; log("minecraft exited", c); });
 
 let addrs = {};
-tunnels(async (a) => { addrs = a; await patch({ addresses: a, address: a.stable || a.cloudflare || null }); log("address", a); });
+tunnels(async (a) => { addrs = a; await patch({ addresses: a, address: a.stable || a.cloudflare || null }); log("address", a); }, MOD ? 25570 : 25565);
 liveTunnel(async (u) => { await patch({ liveUrl: u }); log("live url", u); });
 
 async function flush() {

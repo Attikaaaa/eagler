@@ -266,7 +266,7 @@ export default function ServerPanel({ srv, reload }: { srv: Srv; reload: () => v
         <div className="sicon big"><span className={"dot " + st} /></div>
         <div style={{ flex: 1, minWidth: 0 }}>
           <h1 className="ell">{srv.name}</h1>
-          <div className="small text-muted-foreground">Minecraft {srv.version} · Paper + EaglerXServer · {srv.settings?.ramGb ?? 5} GB RAM</div>
+          <div className="small text-muted-foreground">Minecraft {srv.version} · Paper · {srv.settings?.ramGb ?? 5} GB RAM</div>
         </div>
         <span className={"badge lg " + st}>{LABEL[st] ?? st}</span>
         <div className="row">

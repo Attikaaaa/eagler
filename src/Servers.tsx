@@ -8,6 +8,7 @@ export default function Servers({ sel }: { sel: string | null }) {
   const [tok, setTok] = useState(token());
   const [draft, setDraft] = useState("");
   const [name, setName] = useState("");
+  const [ver, setVer] = useState("1.12.2");
   const [items, setItems] = useState<Srv[] | null>(null);
   const [err, setErr] = useState("");
   const [busy, setBusy] = useState(false);
@@ -31,7 +32,7 @@ export default function Servers({ sel }: { sel: string | null }) {
     try {
       const n = name.trim() || "My server";
       const id = n.toLowerCase().replace(/[^a-z0-9]+/g, "").slice(0, 10) + Math.random().toString(36).slice(2, 6);
-      await saveServer({ id, name: n, version: "1.12.2", want: "run", status: "starting", always: true, created: Date.now() } as never, "create");
+      await saveServer({ id, name: n, version: ver, want: "run", status: "starting", always: true, created: Date.now() } as never, "create");
       await dispatch(id); setName(""); location.hash = `#/servers/${id}`;
     } catch (e) { setErr(String(e)); }
     setBusy(false);
@@ -65,6 +66,7 @@ export default function Servers({ sel }: { sel: string | null }) {
       </div>
       <div className="box row">
         <input className="field" style={{ margin: 0, flex: 1 }} placeholder="Name your new server" value={name} onChange={(e) => setName(e.target.value)} onKeyDown={(e) => e.key === "Enter" && create()} />
+        <select className="field" style={{ margin: 0, width: "auto" }} value={ver} onChange={(e) => setVer(e.target.value)}><option value="1.12.2">Minecraft 1.12.2</option><option value="26.2">Minecraft 26.2</option></select>
         <button className="btn primary" disabled={busy} onClick={create}>Create server</button>
       </div>
       {err && <p className="err">{err}</p>}
