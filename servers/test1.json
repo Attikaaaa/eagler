@@ -12,7 +12,7 @@
   "cloudflare": "wss://sea-annotated-insertion-rolled.trycloudflare.com"
  },
  "players": 0,
- "updated": 1791536880185,
+ "updated": 1791536913606,
  "playerNames": [],
  "startedAt": 1791536860468,
  "settings": {
@@ -33,13 +33,13 @@
   "ramGb": 8
  },
  "metrics": {
-  "cpu": 27,
-  "memUsedMb": 3408,
+  "cpu": 1,
+  "memUsedMb": 3410,
   "memTotalMb": 15989,
   "jvmMb": 2376,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.83,
+  "load1": 0.68,
   "hist": [
    {
     "cpu": 12,
@@ -48,9 +48,13 @@
    {
     "cpu": 27,
     "mem": 3408
+   },
+   {
+    "cpu": 1,
+    "mem": 3410
    }
   ],
-  "ts": 1791536880037
+  "ts": 1791536913488
  },
  "importPending": null,
  "importResult": {
