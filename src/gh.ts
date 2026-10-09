@@ -89,8 +89,14 @@ export async function uploadWorld(id: string, file: File, onStep?: (s: string) =
   const buf = new Uint8Array(await file.arrayBuffer());
   let bin = ""; for (let i = 0; i < buf.length; i += 0x8000) bin += String.fromCharCode(...buf.subarray(i, i + 0x8000));
   onStep?.("Uploading...");
-  const cur = await getJson<unknown>(`uploads/${id}.bin`).catch(() => null);
-  const r = await gh(`contents/uploads/${id}.bin`, { method: "PUT", body: JSON.stringify({ message: `upload ${id}`, branch: "data", content: btoa(bin), ...(cur ? { sha: cur.sha } : {}) }) });
-  if (!r.ok) throw new Error(`Upload failed (${r.status})`);
+  const content = btoa(bin);
+  let ok = false, status = 0;
+  for (let i = 0; i < 10 && !ok; i++) { // the branch is also written by the running server, retry on conflicts
+    const cur = await getJson<unknown>(`uploads/${id}.bin`).catch(() => null);
+    const r = await gh(`contents/uploads/${id}.bin`, { method: "PUT", body: JSON.stringify({ message: `upload ${id}`, branch: "data", content, ...(cur ? { sha: cur.sha } : {}) }) });
+    ok = r.ok; status = r.status;
+    if (!ok) await new Promise((res) => setTimeout(res, 500 + Math.random() * 1000));
+  }
+  if (!ok) throw new Error(`Upload failed (${status}). Try again.`);
   await saveServer({ id, importPending: { name: file.name, kind, size: file.size }, importResult: undefined }, "import");
 }
