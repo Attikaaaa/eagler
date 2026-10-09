@@ -121,7 +121,7 @@ async function putWithProgress(path: string, body: string, onPct: (p: number) =>
 }
 export async function uploadWorld(id: string, file: File, onStep: (s: string, pct?: number) => void, signal: { abort?: () => void } = {}) {
   const kind = /\.epk$/i.test(file.name) ? "epk" : /\.zip$/i.test(file.name) ? "zip" : "";
-  if (!kind) throw new Error("Choose an .epk (Eaglercraft world export) or a .zip (vanilla world folder).");
+  if (!kind) throw new Error("Choose an .epk (singleplayer world export) or a .zip (vanilla world folder).");
   if (file.size > 70e6) throw new Error(`The file is ${(file.size / 1e6).toFixed(0)} MB, the limit is about 70 MB.`);
   onStep(`Reading ${(file.size / 1e6).toFixed(1)} MB...`);
   const content = await readB64(file);
