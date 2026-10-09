@@ -6,7 +6,7 @@
  "status": "starting",
  "always": true,
  "created": 1791538201924,
- "updated": 1791538227012,
+ "updated": 1791538230642,
  "runId": "37911667281",
  "address": "wss://a38671f2be164adc-20-168-127-92.serveousercontent.com",
  "addresses": {
@@ -18,5 +18,22 @@
   "totalGb": 16,
   "ramGb": 5
  },
- "liveUrl": "https://prerequisite-sisters-obj-road.trycloudflare.com"
+ "liveUrl": "https://prerequisite-sisters-obj-road.trycloudflare.com",
+ "metrics": {
+  "cpu": 24,
+  "memUsedMb": 2902,
+  "memTotalMb": 15990,
+  "jvmMb": 1879,
+  "diskUsedGb": 58.4,
+  "diskTotalGb": 144.3,
+  "load1": 1.24,
+  "hist": [
+   {
+    "cpu": 24,
+    "mem": 2902
+   }
+  ],
+  "ts": 1791538230466
+ },
+ "playerNames": []
 }
