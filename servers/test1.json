@@ -1,1 +1,102 @@
-{"id": "test1", "name": "Test world", "version": "1.12.2", "created": 1791534877000, "want": "stop", "status": "running", "runId": "37909196806", "address": "wss://943ae13aa87ba5eb-172-202-117-227.serveousercontent.com", "addresses": {"stable": "wss://943ae13aa87ba5eb-172-202-117-227.serveousercontent.com", "cloudflare": "wss://sea-annotated-insertion-rolled.trycloudflare.com"}, "players": 0, "updated": 1791537177640, "playerNames": [], "startedAt": 1791536860468, "settings": {"ramGb": 8, "motd": "Test world", "plugins": ["spark", "vault", "essentialsx", "luckperms", "worldedit", "placeholderapi"]}, "host": {"cpus": 4, "totalGb": 16, "ramGb": 8}, "metrics": {"cpu": 4, "memUsedMb": 3446, "memTotalMb": 15989, "jvmMb": 2417, "diskUsedGb": 58.5, "diskTotalGb": 144.3, "load1": 0.08, "hist": [{"cpu": 12, "mem": 1950}, {"cpu": 27, "mem": 3408}, {"cpu": 1, "mem": 3410}, {"cpu": 1, "mem": 3412}, {"cpu": 1, "mem": 3414}, {"cpu": 1, "mem": 3417}, {"cpu": 1, "mem": 3417}, {"cpu": 1, "mem": 3416}, {"cpu": 0, "mem": 3418}, {"cpu": 1, "mem": 3424}, {"cpu": 4, "mem": 3446}], "ts": 1791537177544}, "importPending": null, "importResult": {"ok": true, "msg": "Imported 290 chunks from the EPK.", "name": "t.epk", "at": 1791536833603}}
+{
+ "id": "test1",
+ "name": "Test world",
+ "version": "1.12.2",
+ "created": 1791534877000,
+ "want": "stop",
+ "status": "running",
+ "runId": "37909196806",
+ "address": "wss://943ae13aa87ba5eb-172-202-117-227.serveousercontent.com",
+ "addresses": {
+  "stable": "wss://943ae13aa87ba5eb-172-202-117-227.serveousercontent.com",
+  "cloudflare": "wss://sea-annotated-insertion-rolled.trycloudflare.com"
+ },
+ "players": 0,
+ "updated": 1791537211417,
+ "playerNames": [],
+ "startedAt": 1791536860468,
+ "settings": {
+  "ramGb": 8,
+  "motd": "Test world",
+  "plugins": [
+   "spark",
+   "vault",
+   "essentialsx",
+   "luckperms",
+   "worldedit",
+   "placeholderapi"
+  ]
+ },
+ "host": {
+  "cpus": 4,
+  "totalGb": 16,
+  "ramGb": 8
+ },
+ "metrics": {
+  "cpu": 1,
+  "memUsedMb": 3447,
+  "memTotalMb": 15989,
+  "jvmMb": 2417,
+  "diskUsedGb": 58.5,
+  "diskTotalGb": 144.3,
+  "load1": 0.12,
+  "hist": [
+   {
+    "cpu": 12,
+    "mem": 1950
+   },
+   {
+    "cpu": 27,
+    "mem": 3408
+   },
+   {
+    "cpu": 1,
+    "mem": 3410
+   },
+   {
+    "cpu": 1,
+    "mem": 3412
+   },
+   {
+    "cpu": 1,
+    "mem": 3414
+   },
+   {
+    "cpu": 1,
+    "mem": 3417
+   },
+   {
+    "cpu": 1,
+    "mem": 3417
+   },
+   {
+    "cpu": 1,
+    "mem": 3416
+   },
+   {
+    "cpu": 0,
+    "mem": 3418
+   },
+   {
+    "cpu": 1,
+    "mem": 3424
+   },
+   {
+    "cpu": 4,
+    "mem": 3446
+   },
+   {
+    "cpu": 1,
+    "mem": 3447
+   }
+  ],
+  "ts": 1791537211238
+ },
+ "importPending": null,
+ "importResult": {
+  "ok": true,
+  "msg": "Imported 290 chunks from the EPK.",
+  "name": "t.epk",
+  "at": 1791536833603
+ }
+}
