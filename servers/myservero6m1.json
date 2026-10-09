@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1791580465124,
- "runId": "37952710823",
- "address": "wss://cart-revisions-ricky-belle.trycloudflare.com",
- "addresses": {
-  "stable": "wss://1d02251157f5cd4d-52-173-11-65.serveousercontent.com",
-  "cloudflare": "wss://cart-revisions-ricky-belle.trycloudflare.com"
- },
+ "updated": 1791580474463,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://powell-vacancies-recommended-cruises.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 3,
   "memUsedMb": 3527,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1791560084575,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
