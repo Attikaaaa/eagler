@@ -9,7 +9,7 @@
  "address": null,
  "addresses": {},
  "players": 0,
- "updated": 1791536828352,
+ "updated": 1791536833726,
  "playerNames": [],
  "startedAt": 1791536698240,
  "settings": {
@@ -53,9 +53,11 @@
   ],
   "ts": 1791536758478
  },
- "importPending": {
+ "importPending": null,
+ "importResult": {
+  "ok": true,
+  "msg": "Imported 290 chunks from the EPK.",
   "name": "t.epk",
-  "kind": "epk",
-  "size": 1
+  "at": 1791536833603
  }
 }
