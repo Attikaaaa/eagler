@@ -121,7 +121,7 @@
     const r = await ghx(`contents/${CF}?ref=data`, { headers: { Accept: "application/vnd.github.raw+json" } });
     if (!r.ok) throw new Error("cloud download " + r.status);
     const d = JSON.parse(await gunz(await r.arrayBuffer()));
-    await load(d);
+    loading = true; try { await load(d); } finally { loading = false; }
     await setMeta("cloud", { sha, hash: await hashOf(await dump()), at: Date.now() });
     return { ok: true, changed: true, n: size(d) };
   }
@@ -204,16 +204,36 @@
   }
   let busy = false;
   const quiet = async () => { if (busy) return; busy = true; try { await backup(false); } catch (e) { console.warn("keep:", e); } try { if (tk() && cloudReady) await cloudPush(); } catch (e) { console.warn("keep cloud:", e); } busy = false; };
-  let cloudReady = false;
+  let cloudReady = false, loading = false;
+  // small status line so you can see whether this device uploads
+  const note = (t) => { try { let e = document.getElementById("keep-note"); if (!e) { e = document.createElement("div"); e.id = "keep-note"; e.style.cssText = "position:fixed;left:6px;bottom:4px;z-index:99999;font:11px monospace;color:#fff;background:#0008;padding:1px 5px;pointer-events:none;opacity:.7"; (document.body || document.documentElement).appendChild(e); } e.textContent = "cloud: " + t; } catch {} };
+  // push shortly after the game stops writing its world (saving / leaving a world), not only every few minutes
+  let pushTimer = 0, pushing = false;
+  async function pushNow() {
+    if (pushing) { pushTimer = setTimeout(pushNow, 2000); return; }
+    if (!tk()) { note("this device has no GitHub login, changes are NOT uploaded"); return; }
+    if (!cloudReady) { pushTimer = setTimeout(pushNow, 3000); return; }
+    pushing = true; note("uploading...");
+    try { const r = await cloudPush(); note(r.ok ? "saved " + new Date().toLocaleTimeString() : r.reason === "conflict" ? "conflict, kept as copy" : "not uploaded (" + r.reason + ")"); } catch (e) { note("upload failed"); console.warn("keep cloud:", e); }
+    pushing = false;
+  }
+  const IOS = IDBObjectStore.prototype;
+  for (const m of ["put", "add", "delete", "clear"]) {
+    const orig = IOS[m];
+    IOS[m] = function (...a) {
+      if (!loading && this.transaction && /PlatformFilesystem/.test(this.transaction.db.name)) { clearTimeout(pushTimer); pushTimer = setTimeout(pushNow, 1200); }
+      return orig.apply(this, a);
+    };
+  }
   function auto() {
     persist();
     // pull first; the game page reloads once if it merged something new, so the game starts on the merged saves
     cloudPull().then((r) => {
-      cloudReady = true;
+      cloudReady = true; note(tk() ? "synced " + new Date().toLocaleTimeString() : "read-only (no GitHub login on this device)");
       if (r.changed && location.pathname.includes("/play/") && Date.now() - Number(sessionStorage.getItem("keep-reload") || 0) > 60000) { sessionStorage.setItem("keep-reload", Date.now()); location.reload(); }
     }).catch((e) => { console.warn("keep cloud:", e); cloudReady = false; });
     setInterval(quiet, 3 * 60 * 1000);
-    document.addEventListener("visibilitychange", () => { if (document.hidden) quiet(); });
+    document.addEventListener("visibilitychange", () => { if (document.hidden) { quiet(); if (tk()) pushNow(); } });
     addEventListener("pagehide", quiet);
   }
 
