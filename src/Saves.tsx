@@ -3,6 +3,18 @@ import { useEffect, useState } from "react";
 export default function Saves() {
   const [st, setSt] = useState<KeepStatus | null>(null);
   const [msg, setMsg] = useState("");
+  const [cl, setCl] = useState<{ token: boolean; last: { at: number } | null } | null>(null);
+  const [syncing, setSyncing] = useState(false);
+  const cloud = () => window.Keep.cloud.status().then(setCl);
+  useEffect(() => { cloud(); }, []);
+  const sync = async () => {
+    setSyncing(true);
+    try {
+      const a = await window.Keep.cloud.pull(), b = await window.Keep.cloud.push();
+      setMsg(b.reason === "conflict" ? "Another device saved at the same time. Your version was kept as a conflict copy in the repo (sync/conflict-*)." : b.reason === "too-big" ? "Saves are over 70 MB, too big for cloud sync." : b.reason === "shrunk" ? "Not synced: storage looks emptier than before." : b.ok ? (a.changed ? "Pulled newer saves from the cloud (reload the game page to see them). " : "") + (b.same ? "Already up to date." : `Uploaded (${b.mb} MB).`) : "Sync failed.");
+    } catch (e) { setMsg(String(e)); }
+    setSyncing(false); cloud();
+  };
   const refresh = () => window.Keep.status().then(setSt);
   useEffect(() => { refresh(); }, []);
 
@@ -40,6 +52,9 @@ export default function Saves() {
           </label>
         </>
       )}
+      <h3 className="font-pixel" style={{ marginTop: "1rem" }}>Cloud sync</h3>
+      <p className="text-muted-foreground small">Singleplayer worlds follow you to every device: synced automatically (on start, then every 3 min while playing). Needs the GitHub token from the Servers page. Saves are stored in the public repo, so anyone could download them.</p>
+      {cl?.token ? <><button className="opt" disabled={syncing} onClick={sync}>{syncing ? "Syncing..." : "Sync now"}</button><span className="small"> Last sync: <b>{cl.last ? new Date(cl.last.at).toLocaleString() : "never"}</b></span></> : <p className="small">Connect GitHub on the <a className="link" href="#/servers">Servers</a> page first.</p>}
       {msg && <p className="small" style={{ marginTop: ".5rem" }}>{msg}</p>}
     </div>
   );

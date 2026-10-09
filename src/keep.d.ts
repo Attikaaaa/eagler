@@ -9,5 +9,6 @@ interface Window {
     restore(ask: boolean): Promise<KeepResult>;
     download(): Promise<KeepResult>;
     upload(f: File): Promise<KeepResult>;
+    cloud: { pull(): Promise<KeepResult & { changed?: boolean }>; push(): Promise<KeepResult & { same?: boolean; mb?: number }>; status(): Promise<{ token: boolean; last: { at: number } | null }> };
   };
 }
