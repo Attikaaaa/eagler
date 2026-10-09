@@ -76,7 +76,16 @@
       for (const s of x.stores) {
         if (!db.objectStoreNames.contains(s.name)) continue;
         const t = db.transaction(s.name, "readwrite"), st = t.objectStore(s.name);
-        for (const [k, v] of s.entries) { if (st.keyPath != null) st.put(dec(v)); else st.put(dec(v), dec(k)); }
+        for (const [k, v] of s.entries) {
+          if (st.keyPath == null) { st.put(dec(v), dec(k)); continue; }
+          const val = dec(v);
+          if (val && val.path === "options.txt") continue; // per-device settings stay as they are
+          if (val && val.path === "worlds_list.txt") { // world list: union of both devices
+            const old = await req(st.get([val.path])), dc = new TextDecoder();
+            if (old) { const names = [...new Set((dc.decode(old.data) + "\n" + dc.decode(val.data)).split("\n").map((x) => x.trim()).filter(Boolean))]; val.data = new TextEncoder().encode(names.join("\n")).buffer; }
+          }
+          st.put(val);
+        }
         await new Promise((ok, no) => { t.oncomplete = ok; t.onerror = () => no(t.error); });
       }
       db.close();
@@ -209,6 +218,6 @@
     addEventListener("pagehide", quiet);
   }
 
-  window.Keep = { hasFS, persist, status, chooseFolder, backup, restore, download, upload, auto, cloud: { pull: cloudPull, push: async () => { const r = await cloudPush(); return r; }, status: cloudStatus } };
+  window.Keep = { hasFS, persist, status, chooseFolder, backup, restore, download, upload, auto, cloud: { dump, publish: async (d) => { const bytes = await gz(JSON.stringify(d)); const sha = await remoteSha(); const nsha = await putFile(CF, bytes, sha); await setMeta("cloud", { sha: nsha, hash: await hashOf(await dump()), at: Date.now() }); return { ok: true, mb: +(bytes.length / 1e6).toFixed(1) }; }, pull: cloudPull, push: async () => { const r = await cloudPush(); return r; }, status: cloudStatus } };
   auto();
 })();
