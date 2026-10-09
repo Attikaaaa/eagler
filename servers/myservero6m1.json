@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791554543739,
+ "updated": 1791554560613,
  "runId": "37929946704",
  "address": "wss://f09ddf3a96c5ce32-4-236-166-145.serveousercontent.com",
  "addresses": {
@@ -32,30 +32,14 @@
  },
  "liveUrl": "https://integral-order-keep-que.trycloudflare.com",
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3609,
+  "cpu": 3,
+  "memUsedMb": 3610,
   "memTotalMb": 15990,
   "jvmMb": 2521,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.08,
+  "load1": 0.06,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3604
-   },
-   {
-    "cpu": 2,
-    "mem": 3605
-   },
-   {
-    "cpu": 0,
-    "mem": 3604
-   },
-   {
-    "cpu": 0,
-    "mem": 3602
-   },
    {
     "cpu": 0,
     "mem": 3602
@@ -159,9 +143,25 @@
    {
     "cpu": 1,
     "mem": 3609
+   },
+   {
+    "cpu": 0,
+    "mem": 3609
+   },
+   {
+    "cpu": 0,
+    "mem": 3609
+   },
+   {
+    "cpu": 0,
+    "mem": 3610
+   },
+   {
+    "cpu": 3,
+    "mem": 3610
    }
   ],
-  "ts": 1791554543648
+  "ts": 1791554560455
  },
  "playerNames": [],
  "startedAt": 1791548790391,
