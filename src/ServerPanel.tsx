@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { dispatch, getConsole, gh, saveServer, sendCommand, worldBackups, type Settings, type Srv } from "./gh";
+import { deleteServerFile, dispatch, getConsole, saveServer, sendCommand, worldBackups, type Settings, type Srv } from "./gh";
 import { LABEL } from "./Servers";
 import { DEFAULT_PLUGINS, PLUGINS } from "./plugins";
 
@@ -153,7 +153,7 @@ export default function ServerPanel({ srv, reload }: { srv: Srv; reload: () => v
   const restart = () => act(() => saveServer({ id: srv.id, want: "restart" }, "restart"));
   const del = () => act(async () => {
     if (!confirm(`Delete "${srv.name}" and its world permanently? This cannot be undone.`)) return;
-    await gh(`contents/servers/${srv.id}.json`, { method: "DELETE", body: JSON.stringify({ message: `delete ${srv.id}`, branch: "data", sha: srv.sha }) });
+    await deleteServerFile(srv.id);
     await dispatch(srv.id, "delete"); location.hash = "#/servers";
   });
   const st = srv.status, off = st === "stopped";

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { TK, dispatch, listServers, saveServer, token, type Srv } from "./gh";
+import { TK, dispatch, getServer, listServers, saveServer, token, type Srv } from "./gh";
 import ServerPanel from "./ServerPanel";
 
 export const LABEL: Record<string, string> = { starting: "Starting", running: "Online", stopping: "Stopping", stopped: "Offline" };
@@ -17,6 +17,14 @@ export default function Servers({ sel }: { sel: string | null }) {
     try { setItems(await listServers()); setErr(""); } catch (e) { setErr(String(e)); }
   }, [tok]);
   useEffect(() => { refresh(); const i = setInterval(refresh, 8000); return () => clearInterval(i); }, [refresh]);
+
+  // the open server is fetched directly, so a freshly created one shows up without waiting for the list
+  const [direct, setDirect] = useState<Srv | null>(null);
+  const loadOne = useCallback(async () => {
+    if (!sel || !tok) { setDirect(null); return; }
+    try { setDirect(await getServer(sel)); } catch { /* keep last */ }
+  }, [sel, tok]);
+  useEffect(() => { setDirect(null); loadOne(); const i = setInterval(loadOne, 4000); return () => clearInterval(i); }, [loadOne]);
 
   const create = async () => {
     setBusy(true);
@@ -47,8 +55,7 @@ export default function Servers({ sel }: { sel: string | null }) {
     </div>
   );
 
-  const cur = sel && items ? items.find((s) => s.id === sel) : null;
-  if (sel) return cur ? <ServerPanel srv={cur} reload={refresh} /> : <div className="page"><p className="text-muted-foreground">{items ? "Server not found." : "Loading..."} <a className="link" href="#/servers">Back</a></p></div>;
+  if (sel) return direct ? <ServerPanel srv={direct} reload={() => { loadOne(); refresh(); }} /> : <div className="page"><p className="text-muted-foreground">Loading server... <a className="link" href="#/servers">Back</a></p></div>;
 
   return (
     <div className="page">

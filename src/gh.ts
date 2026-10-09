@@ -31,12 +31,17 @@ export async function listServers(): Promise<Srv[]> {
 }
 export const getServer = async (id: string) => { const x = await getJson<Srv>(`servers/${id}.json`); return x ? ({ ...x.data, sha: x.sha } as Srv) : null; };
 export async function saveServer(s: Partial<Srv> & { id: string }, msg = "update") {
-  // always merge onto the newest copy so we never overwrite runner updates with stale data
-  const cur = await getJson<Srv>(`servers/${s.id}.json`);
+  // merge onto the newest copy; the runner writes the same file, so retry on sha conflicts
   const { sha: _a, ...patch } = s as Srv; void _a;
-  const next = { ...(cur?.data ?? {}), ...patch, updated: Date.now() };
-  const r = await gh(`contents/servers/${s.id}.json`, { method: "PUT", body: JSON.stringify({ message: `${msg} ${s.id}`, branch: "data", content: b64(next), ...(cur ? { sha: cur.sha } : {}) }) });
-  if (!r.ok) throw new Error(`Save failed (${r.status})`);
+  for (let i = 0; i < 8; i++) {
+    const cur = await getJson<Srv>(`servers/${s.id}.json`);
+    const next = { ...(cur?.data ?? {}), ...patch, updated: Date.now() };
+    const r = await gh(`contents/servers/${s.id}.json`, { method: "PUT", body: JSON.stringify({ message: `${msg} ${s.id}`, branch: "data", content: b64(next), ...(cur ? { sha: cur.sha } : {}) }) });
+    if (r.ok) return;
+    if (r.status !== 409 && r.status !== 422) throw new Error(`Save failed (${r.status})`);
+    await new Promise((ok) => setTimeout(ok, 300 + Math.random() * 700));
+  }
+  throw new Error("Save failed: the server is busy, try again in a moment");
 }
 export const dispatch = (id: string, action = "run") =>
   gh("actions/workflows/server.yml/dispatches", { method: "POST", body: JSON.stringify({ ref: "main", inputs: { id, action } }) });
@@ -59,4 +64,15 @@ export async function worldBackups(id: string) {
   if (!r.ok) return [];
   const j = await r.json();
   return (j.assets as { name: string; size: number; updated_at: string; browser_download_url: string }[]).filter((a) => a.name.startsWith(`world-${id}-`)).sort((a, b) => b.updated_at.localeCompare(a.updated_at));
+}
+
+export async function deleteServerFile(id: string) {
+  for (let i = 0; i < 6; i++) {
+    const cur = await getJson<Srv>(`servers/${id}.json`);
+    if (!cur) return;
+    const r = await gh(`contents/servers/${id}.json`, { method: "DELETE", body: JSON.stringify({ message: `delete ${id}`, branch: "data", sha: cur.sha }) });
+    if (r.ok) return;
+    await new Promise((ok) => setTimeout(ok, 400));
+  }
+  throw new Error("Delete failed, try again");
 }
