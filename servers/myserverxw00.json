@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791537448380,
- "updated": 1791537823038,
+ "updated": 1791537837273,
  "runId": "37910319871",
  "address": "wss://2a98c52bd53e3e8f-20-59-242-3.serveousercontent.com",
  "addresses": {
@@ -20,13 +20,13 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 2,
-  "memUsedMb": 3490,
+  "cpu": 1,
+  "memUsedMb": 3493,
   "memTotalMb": 15990,
   "jvmMb": 2479,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.08,
+  "load1": 0.04,
   "hist": [
    {
     "cpu": 27,
@@ -71,9 +71,13 @@
    {
     "cpu": 2,
     "mem": 3490
+   },
+   {
+    "cpu": 1,
+    "mem": 3493
    }
   ],
-  "ts": 1791537803047
+  "ts": 1791537837117
  },
  "playerNames": [],
  "startedAt": 1791537490551,
