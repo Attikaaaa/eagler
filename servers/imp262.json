@@ -20,7 +20,7 @@
   "cloudflare": "wss://lucia-motherboard-bottom-bureau.trycloudflare.com"
  },
  "players": 0,
- "updated": 1791546924132,
+ "updated": 1791546957191,
  "importResult": {
   "ok": true,
   "msg": "Imported 2730 chunks and 25 data files from the 26.2 EPK. Join with the same player name as in singleplayer to get your inventory and position.",
@@ -34,20 +34,24 @@
  },
  "liveUrl": "https://globe-ons-safari-leaf.trycloudflare.com",
  "metrics": {
-  "cpu": 25,
-  "memUsedMb": 2534,
+  "cpu": 8,
+  "memUsedMb": 3117,
   "memTotalMb": 15990,
-  "jvmMb": 1384,
+  "jvmMb": 2006,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.58,
+  "load1": 0.35,
   "hist": [
    {
     "cpu": 25,
     "mem": 2534
+   },
+   {
+    "cpu": 8,
+    "mem": 3117
    }
   ],
-  "ts": 1791546924013
+  "ts": 1791546956855
  },
  "playerNames": []
 }
