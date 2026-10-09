@@ -250,6 +250,7 @@ export default function ServerPanel({ srv, reload }: { srv: Srv; reload: () => v
   const act = async (f: () => Promise<unknown>) => { setBusy(true); try { await f(); } catch (e) { alert(String(e)); } setBusy(false); setTimeout(reload, 700); };
   const start = () => act(async () => { await saveServer({ id: srv.id, want: "run", status: "starting", error: undefined, note: undefined }, "start"); await dispatch(srv.id); });
   const stop = () => act(() => saveServer({ id: srv.id, want: "stop" }, "stop"));
+  const [pn, setPn] = useState(localStorage.getItem("eagler-name") || "");
   const restart = () => act(() => saveServer({ id: srv.id, want: "restart" }, "restart"));
   const del = () => act(async () => {
     if (!confirm(`Delete "${srv.name}" and its world permanently? This cannot be undone.`)) return;
@@ -290,7 +291,8 @@ export default function ServerPanel({ srv, reload }: { srv: Srv; reload: () => v
           <h3>Server address</h3>
           {srv.address ? (<>
             <div className="row" style={{ marginBottom: ".6rem" }}>
-              <a className="btn primary" target="_blank" rel="noopener" href={srv.version === "26.2" ? `play/26.2/?server=localhost&transport=wisp&wisp=${encodeURIComponent(srv.address)}` : `play/1.12.2-js/?server=${encodeURIComponent(srv.address)}`}>Join this server</a>
+              <input className="field" style={{ margin: 0, width: "11rem" }} placeholder="Your player name" value={pn} onChange={(e) => { const v = e.target.value.replace(/[^A-Za-z0-9_]/g, "").slice(0, 16); setPn(v); localStorage.setItem("eagler-name", v); }} />
+              <a className="btn primary" target="_blank" rel="noopener" href={srv.version === "26.2" ? `play/26.2/?server=localhost&transport=wisp&wisp=${encodeURIComponent(srv.address)}${pn ? `&name=${pn}` : ""}` : `play/1.12.2-js/?server=${encodeURIComponent(srv.address)}`}>Join this server</a>
               <span className="small text-muted-foreground">Opens Minecraft {srv.version} and connects automatically.</span>
             </div>
             <div className="addr big"><code>{srv.address}</code><Copy text={srv.address} /></div>

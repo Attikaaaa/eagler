@@ -3,7 +3,7 @@
 (() => {
   const q = new URLSearchParams(location.search), url = q.get("wisp");
   if (!url) return;
-  const name = (q.get("name") || localStorage.getItem("eagler-name") || "Player" + Math.floor(1000 + Math.random() * 9000)).replace(/[^A-Za-z0-9_]/g, "").slice(0, 16) || "Player";
+  const name = (q.get("name") || localStorage.getItem("eagler-name") || prompt("Your player name (use the same one every time):", "Player" + Math.floor(1000 + Math.random() * 9000)) || "Player").replace(/[^A-Za-z0-9_]/g, "").slice(0, 16) || "Player";
   localStorage.setItem("eagler-name", name);
   let h = 2166136261, id = "";
   for (let i = 0; id.length < 32; i++) { h = Math.imul(h ^ (name.charCodeAt(i % name.length) + i), 16777619) >>> 0; id += h.toString(16).padStart(8, "0"); }
