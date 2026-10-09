@@ -161,6 +161,23 @@ function tunnels(onAddr) {
   sv.stdout.on("data", grab2); sv.stderr.on("data", grab2);
 }
 
+// ---------- host metrics
+let prevCpu = os.cpus(), hist = [];
+function metrics(pid) {
+  const cur = os.cpus(); let idle = 0, tot = 0;
+  cur.forEach((c, i) => { const p = prevCpu[i]; for (const k of Object.keys(c.times)) { const d = c.times[k] - p.times[k]; tot += d; if (k === "idle") idle += d; } });
+  prevCpu = cur;
+  const cpu = tot ? Math.round((1 - idle / tot) * 100) : 0;
+  let memTotal = os.totalmem() / 2 ** 20, memAvail = os.freemem() / 2 ** 20;
+  try { const mi = fs.readFileSync("/proc/meminfo", "utf8"); memTotal = +mi.match(/MemTotal:\s+(\d+)/)[1] / 1024; memAvail = +mi.match(/MemAvailable:\s+(\d+)/)[1] / 1024; } catch {}
+  let jvm = 0, du = 0, dt = 0;
+  try { jvm = Number(sh("ps", ["-o", "rss=", "-p", String(pid)]).trim()) / 1024; } catch {}
+  try { const l = sh("df", ["-k", "/"]).trim().split("\n").pop().split(/\s+/); dt = +l[1] / 2 ** 20; du = +l[2] / 2 ** 20; } catch {}
+  const memUsed = memTotal - memAvail;
+  hist = [...hist, { cpu, mem: Math.round(memUsed) }].slice(-30);
+  return { cpu, memUsedMb: Math.round(memUsed), memTotalMb: Math.round(memTotal), jvmMb: Math.round(jvm), diskUsedGb: +du.toFixed(1), diskTotalGb: +dt.toFixed(1), load1: +os.loadavg()[0].toFixed(2), hist, ts: Date.now() };
+}
+
 // ---------- main
 const t0 = Date.now();
 const st0 = await getState();
@@ -228,7 +245,7 @@ while (true) {
   if (Date.now() - lastBeat > 30e3) {
     lastBeat = Date.now();
     const s = await getState();
-    await patch({ players: players.size, playerNames: [...players], ...(runningMarked ? { status: "running" } : {}) });
+    await patch({ metrics: metrics(mc.pid), players: players.size, playerNames: [...players], ...(runningMarked ? { status: "running" } : {}) });
     if (s?.want === "stop") { await shutdown("stop requested"); break; }
     if (s?.want === "restart") { await shutdown("restart requested", "starting", { want: "run", note: "Restarting..." }); fs.writeFileSync(path.join(TMP, "chain"), "1"); break; }
     if (s?.always === false && running && players.size === 0 && Date.now() - lastActive > IDLE_MS) { await shutdown("idle for 20 min", "stopped", { note: "Stopped automatically: nobody was online for 20 minutes." }); break; }

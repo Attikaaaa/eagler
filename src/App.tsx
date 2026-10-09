@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { VERSIONS, type Version } from "./versions";
 import Saves from "./Saves";
 import Servers from "./Servers";
+import Home from "./Home";
 
 function Panel({ v }: { v: Version }) {
   const runs = Object.keys(v.runs);
@@ -28,7 +29,7 @@ function Play() {
   const list = VERSIONS.filter((v) => v.label.toLowerCase().includes(q.toLowerCase()));
   return (
     <>
-      <main className="mx-auto max-w-7xl px-4 py-10">
+      <main className="mx-auto max-w-7xl px-4 py-10 playmain">
         <div className="wrap">
           <section>
             <input className="opt search" type="search" placeholder="Search versions..." aria-label="Search versions" value={q} onChange={(e) => setQ(e.target.value)} />
@@ -56,21 +57,27 @@ const route = () => location.hash.replace(/^#\/?/, "").split("/");
 
 export default function App() {
   const [r, setR] = useState(route());
-  useEffect(() => { const f = () => setR(route()); addEventListener("hashchange", f); return () => removeEventListener("hashchange", f); }, []);
-  const servers = r[0] === "servers";
+  useEffect(() => { const f = () => { setR(route()); scrollTo(0, 0); }; addEventListener("hashchange", f); return () => removeEventListener("hashchange", f); }, []);
+  const page = r[0] === "servers" ? "servers" : r[0] === "play" ? "play" : "home";
   return (
-    <div className="relative isolate flow-root">
+    <div className="relative isolate flow-root shell">
       <div className="site-wash -z-10" aria-hidden="true" />
-      <header className="sticky top-3 z-50 mx-auto mt-3 w-full max-w-7xl px-3 sm:px-4">
-        <div className="glass-bar flex h-14 items-center gap-4 rounded-2xl px-3 sm:h-16 sm:px-4">
-          <span className="font-brand brand">eagler</span>
-          <nav className="flex items-center gap-1">
-            <a href="#/" className={"navl" + (!servers ? " on" : "")}>Play</a>
-            <a href="#/servers" className={"navl" + (servers ? " on" : "")}>Servers</a>
-          </nav>
-        </div>
+      <div className="aurora" aria-hidden="true" />
+      <header className="topnav">
+        <a href="#/" className="brandlink"><img src="favicon.png" alt="" width={26} height={26} /><span className="font-brand brand">eagler</span></a>
+        <nav>
+          <a href="#/" className={"navl" + (page === "home" ? " on" : "")}>Home</a>
+          <a href="#/play" className={"navl" + (page === "play" ? " on" : "")}>Play</a>
+          <a href="#/servers" className={"navl" + (page === "servers" ? " on" : "")}>Servers</a>
+        </nav>
+        <a href="#/servers" className="btn primary navcta">Dashboard</a>
       </header>
-      {servers ? <Servers sel={r[1] || null} /> : <Play />}
+      {page === "servers" ? <Servers sel={r[1] || null} /> : page === "play" ? <Play /> : <Home />}
+      <footer className="foot">
+        <div><span className="font-brand brand sm">eagler</span><p>Free Minecraft hosting and an offline game launcher.</p></div>
+        <div className="cols"><a href="#/">Home</a><a href="#/play">Play</a><a href="#/servers">Servers</a></div>
+        <p className="legal">Not affiliated with Mojang or Microsoft. Minecraft is a trademark of Mojang AB.</p>
+      </footer>
     </div>
   );
 }

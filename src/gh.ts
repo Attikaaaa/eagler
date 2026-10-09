@@ -2,15 +2,17 @@ export const REPO = "Attikaaaa/eagler";
 export const TK = "eagler-gh-token";
 
 export type Settings = Partial<{ motd: string; maxPlayers: number; difficulty: string; gamemode: string; pvp: boolean; viewDistance: number; whitelist: boolean; allowNether: boolean; monsters: boolean; animals: boolean; spawnProtection: number; seed: string; forceGamemode: boolean; commandBlocks: boolean; ramGb: number; plugins: string[] }>;
+export type Metrics = { cpu: number; memUsedMb: number; memTotalMb: number; jvmMb: number; diskUsedGb: number; diskTotalGb: number; load1: number; hist: { cpu: number; mem: number }[]; ts: number };
 export type Srv = {
   id: string; name: string; version: string; want: string; status: string; sha: string;
   address?: string | null; addresses?: Record<string, string>; players?: number; playerNames?: string[];
   note?: string; error?: string; updated?: number; startedAt?: number; settings?: Settings; always?: boolean; host?: { cpus: number; totalGb: number; ramGb: number };
+  metrics?: Metrics;
 };
 
 export const token = () => localStorage.getItem(TK) || "";
 export const gh = (p: string, o: RequestInit = {}) =>
-  fetch(`https://api.github.com/repos/${REPO}/${p}`, { ...o, headers: { Authorization: `Bearer ${token()}`, Accept: "application/vnd.github+json" } });
+  fetch(`https://api.github.com/repos/${REPO}/${p}`, { cache: "no-store", ...o, headers: { Authorization: `Bearer ${token()}`, Accept: "application/vnd.github+json" } });
 const b64 = (o: unknown) => btoa(unescape(encodeURIComponent(JSON.stringify(o, null, 1))));
 const unb64 = (s: string) => JSON.parse(decodeURIComponent(escape(atob(s.replace(/\n/g, "")))));
 

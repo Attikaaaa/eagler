@@ -9,6 +9,34 @@ const TABS: [Tab, string][] = [["overview", "Overview"], ["console", "Console"],
 const up = (ms: number) => { const s = Math.floor(ms / 1000), h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60); return h ? `${h}h ${m}m` : m ? `${m}m ${s % 60}s` : `${s}s`; };
 const mb = (n: number) => (n / 1e6).toFixed(1) + " MB";
 
+function Spark({ v, max, color }: { v: number[]; max: number; color: string }) {
+  if (v.length < 2) return <div className="spark empty" />;
+  const pts = v.map((x, i) => `${(i / (v.length - 1)) * 100},${30 - Math.min(1, x / max) * 28 - 1}`).join(" ");
+  return <svg className="spark" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline points={`0,30 ${pts} 100,30`} fill={color} fillOpacity=".15" stroke="none" /><polyline points={pts} fill="none" stroke={color} strokeWidth="1.6" vectorEffect="non-scaling-stroke" /></svg>;
+}
+function Bar({ pct, label, sub }: { pct: number; label: string; sub: string }) {
+  const p = Math.max(0, Math.min(100, pct));
+  return <div className="meter"><div className="mtop"><span>{label}</span><b>{sub}</b></div><div className="mbar"><i style={{ width: p + "%", background: p > 85 ? "#ff5e5e" : p > 65 ? "#f5a623" : "#2ecc71" }} /></div></div>;
+}
+function Resources({ srv }: { srv: Srv }) {
+  const m = srv.metrics, live = srv.status === "running" && m;
+  const stale = m ? Date.now() - m.ts > 3 * 60e3 : false;
+  if (!live) return <div className="box"><h3>Resources</h3><p className="small text-muted-foreground">Live CPU, memory and disk appear here while the server is online.</p></div>;
+  const gb = (mb: number) => (mb / 1024).toFixed(1);
+  return (
+    <div className="box">
+      <div className="row" style={{ justifyContent: "space-between" }}><h3>Resources</h3><span className="small text-muted-foreground">{stale ? "no recent update" : "host machine · updates every 30 s"}</span></div>
+      <div className="res">
+        <div><Bar pct={m.cpu} label="CPU" sub={`${m.cpu}% of ${srv.host?.cpus ?? 4} cores`} /><Spark v={m.hist.map((h) => h.cpu)} max={100} color="#ff8a1f" /></div>
+        <div><Bar pct={(m.memUsedMb / m.memTotalMb) * 100} label="Host memory" sub={`${gb(m.memUsedMb)} / ${gb(m.memTotalMb)} GB`} /><Spark v={m.hist.map((h) => h.mem)} max={m.memTotalMb} color="#5865f2" /></div>
+        <div><Bar pct={(m.jvmMb / ((srv.settings?.ramGb ?? 5) * 1024)) * 100} label="Server process (Java)" sub={`${gb(m.jvmMb)} GB of ${srv.settings?.ramGb ?? 5} GB`} /></div>
+        <div><Bar pct={(m.diskUsedGb / m.diskTotalGb) * 100} label="Disk" sub={`${m.diskUsedGb} / ${m.diskTotalGb} GB`} /></div>
+      </div>
+      <p className="small text-muted-foreground" style={{ marginTop: ".6rem" }}>Load average {m.load1}. Each server runs on its own dedicated machine, nothing is shared with other servers.</p>
+    </div>
+  );
+}
+
 function Copy({ text }: { text: string }) {
   const [ok, setOk] = useState(false);
   return <button className="link" onClick={() => { navigator.clipboard.writeText(text); setOk(true); setTimeout(() => setOk(false), 1200); }}>{ok ? "Copied" : "Copy"}</button>;
@@ -185,6 +213,7 @@ export default function ServerPanel({ srv, reload }: { srv: Srv; reload: () => v
           <div className="stat"><span>Server RAM</span><b>{srv.settings?.ramGb ?? 5} GB<small> of {srv.host?.totalGb ?? 16}</small></b></div>
           <div className="stat"><span>Keep-alive</span><b>24/7</b></div>
         </div>
+        <Resources srv={srv} />
         <div className="box">
           <h3>Server address</h3>
           {srv.address ? (<>

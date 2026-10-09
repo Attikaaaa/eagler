@@ -68,6 +68,20 @@ export default function Servers({ sel }: { sel: string | null }) {
         <button className="btn primary" disabled={busy} onClick={create}>Create server</button>
       </div>
       {err && <p className="err">{err}</p>}
+      {items && items.length > 0 && (() => {
+        const on = items.filter((x) => x.status === "running");
+        const players = on.reduce((n, x) => n + (x.players ?? 0), 0);
+        const ram = on.reduce((n, x) => n + (x.settings?.ramGb ?? 5), 0);
+        const cpu = on.length ? Math.round(on.reduce((n, x) => n + (x.metrics?.cpu ?? 0), 0) / on.length) : 0;
+        const disk = on.reduce((n, x) => n + (x.metrics?.diskUsedGb ?? 0), 0);
+        return (<div className="dashstats">
+          <div className="stat"><span>Servers online</span><b>{on.length}<small> / {items.length}</small></b></div>
+          <div className="stat"><span>Players online</span><b>{players}</b></div>
+          <div className="stat"><span>RAM allocated</span><b>{ram} GB</b></div>
+          <div className="stat"><span>Avg CPU</span><b>{cpu}%</b></div>
+          <div className="stat"><span>Disk in use</span><b>{disk.toFixed(1)} GB</b></div>
+        </div>);
+      })()}
       <div className="srvgrid">
         {items === null && !err && <p className="text-muted-foreground">Loading...</p>}
         {items?.length === 0 && <p className="text-muted-foreground">No servers yet. Create one above, it is online in about a minute.</p>}
@@ -76,7 +90,7 @@ export default function Servers({ sel }: { sel: string | null }) {
             <div className="sicon"><span className={"dot " + s.status} /></div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <b className="ell">{s.name}</b>
-              <div className="small text-muted-foreground">Minecraft {s.version} · {s.status === "running" ? `${s.players ?? 0} players online` : LABEL[s.status] ?? s.status}</div>
+              <div className="meta"><span className="chip">Minecraft {s.version}</span><span className="chip">{s.settings?.ramGb ?? 5} GB RAM</span>{s.status === "running" && <><span className="chip">{s.players ?? 0} players</span>{s.metrics && <span className="chip">CPU {s.metrics.cpu}%</span>}</>}</div>
             </div>
             <span className={"badge " + s.status}>{LABEL[s.status] ?? s.status}</span>
           </a>
