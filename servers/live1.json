@@ -4,30 +4,14 @@
  "version": "1.12.2",
  "created": 1791538105822,
  "metrics": {
-  "cpu": 4,
-  "memUsedMb": 3386,
+  "cpu": 5,
+  "memUsedMb": 3393,
   "memTotalMb": 15990,
   "jvmMb": 2329,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.27,
+  "load1": 0.21,
   "hist": [
-   {
-    "cpu": 1,
-    "mem": 3377
-   },
-   {
-    "cpu": 4,
-    "mem": 3377
-   },
-   {
-    "cpu": 1,
-    "mem": 3377
-   },
-   {
-    "cpu": 1,
-    "mem": 3376
-   },
    {
     "cpu": 1,
     "mem": 3376
@@ -131,12 +115,28 @@
    {
     "cpu": 4,
     "mem": 3386
+   },
+   {
+    "cpu": 1,
+    "mem": 3385
+   },
+   {
+    "cpu": 2,
+    "mem": 3392
+   },
+   {
+    "cpu": 2,
+    "mem": 3393
+   },
+   {
+    "cpu": 5,
+    "mem": 3393
    }
   ],
-  "ts": 1791538138965
+  "ts": 1791538155619
  },
  "players": 0,
  "playerNames": [],
  "status": "running",
- "updated": 1791538139101
+ "updated": 1791538155718
 }
