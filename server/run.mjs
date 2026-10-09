@@ -190,13 +190,7 @@ function metrics(pid) {
 // ---------- live channel (SSE console/players/metrics, instant commands) reachable through its own tunnel
 const clients = new Set(); const authCache = new Map();
 let liveState = { players: [], metrics: null }, sendCmd = () => {}, getBacklog = () => [];
-async function authed(token) {
-  if (!token) return false;
-  const c = authCache.get(token); if (c && Date.now() - c.t < 5 * 60e3) return c.ok;
-  let ok = false;
-  try { const r = await fetch(`https://api.github.com/repos/${REPO}`, { headers: { Authorization: `Bearer ${token}`, "User-Agent": "eagler-host" } }); ok = r.ok && (await r.json()).permissions?.push === true; } catch {}
-  authCache.set(token, { ok, t: Date.now() }); return ok;
-}
+async function authed() { return true; } // the site has no token any more; the address itself is the key
 const frame = (str) => { const p = Buffer.from(str); const n = p.length; let h; if (n < 126) h = Buffer.from([0x81, n]); else if (n < 65536) { h = Buffer.alloc(4); h[0] = 0x81; h[1] = 126; h.writeUInt16BE(n, 2); } else { h = Buffer.alloc(10); h[0] = 0x81; h[1] = 127; h.writeBigUInt64BE(BigInt(n), 2); } return Buffer.concat([h, p]); };
 const emit = (type, data) => { const f = frame(JSON.stringify({ t: type, d: data })); for (const c of clients) { try { c.write(f); } catch { clients.delete(c); } } };
 const CORS = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization,content-type", "Access-Control-Allow-Methods": "GET,POST,OPTIONS" };
@@ -353,8 +347,8 @@ while (true) {
   if (exited) { await putJson(CON, { lines: consoleBuf.slice(-200), updated: Date.now() }); await patch({ status: "stopped", address: null, addresses: {}, liveUrl: null, players: 0, runId: null, error: logTail.slice(-8).join("\n") }); await saveWorld().catch(() => {}); break; }
   if (running && Date.now() - lastList > 15000) { lastList = Date.now(); listAt = Date.now(); cmd("minecraft:list"); }
   if (running && Date.now() - lastMet > 5000) { lastMet = Date.now(); liveState.metrics = metrics(mc.pid); emit("metrics", liveState.metrics); }
-  if (consoleDirty && Date.now() - lastCon > 7000) { lastCon = Date.now(); consoleDirty = false; await putJson(CON, { lines: consoleBuf.slice(-200), updated: Date.now() }); }
-  if (running && Date.now() - lastCmd > 4000) {
+  if (consoleDirty && Date.now() - lastCon > (clients.size ? 60000 : 8000)) { lastCon = Date.now(); consoleDirty = false; await putJson(CON, { lines: consoleBuf.slice(-200), updated: Date.now() }); }
+  if (running && Date.now() - lastCmd > (clients.size ? 20000 : 4000)) {
     lastCmd = Date.now();
     const c = (await getJson(CMD))?.data;
     for (const it of (c?.items || []).filter((x) => x.n > cmdN)) { cmdN = it.n; log("console command:", it.cmd); if (!exited) cmd(String(it.cmd).replace(/[\r\n]/g, " ").replace(/^\//, "")); }

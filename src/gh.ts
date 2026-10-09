@@ -14,8 +14,23 @@ export type Srv = {
 };
 
 export const token = () => localStorage.getItem(TK) || "";
-export const gh = (p: string, o: RequestInit = {}) =>
-  fetch(`https://api.github.com/repos/${REPO}/${p}`, { cache: "no-store", ...o, headers: { ...(token() ? { Authorization: `Bearer ${token()}` } : {}), Accept: "application/vnd.github+json" } });
+// With a token the site talks to GitHub directly; without one it goes through the gateway (an allow-listed proxy running in Actions).
+let gw: { url: string; at: number } | null = null;
+export async function apiBase(): Promise<string> {
+  if (token()) return "https://api.github.com";
+  if (gw && Date.now() - gw.at < 30e3) return gw.url;
+  try {
+    const r = await fetch(`https://raw.githubusercontent.com/${REPO}/data/gateway.json?t=${Math.floor(Date.now() / 20e3)}`, { cache: "no-store" });
+    const j = await r.json() as { url: string; ts: number };
+    if (j.url && Date.now() - j.ts < 5 * 60e3) { const ok = await fetch(`${j.url}/ping`, { cache: "no-store" }).then((x) => x.ok).catch(() => false); if (ok) { gw = { url: `${j.url}/gh`, at: Date.now() }; return gw.url; } }
+  } catch { /* fall through */ }
+  gw = null;
+  throw new Error("The control service is starting up (it takes about a minute). Try again shortly.");
+}
+export const gh = async (p: string, o: RequestInit = {}) => {
+  const base = await apiBase();
+  return fetch(`${base}/repos/${REPO}/${p}`, { cache: "no-store", ...o, headers: { ...(token() ? { Authorization: `Bearer ${token()}` } : {}), Accept: "application/vnd.github+json" } });
+};
 const b64 = (o: unknown) => btoa(unescape(encodeURIComponent(JSON.stringify(o, null, 1))));
 const unb64 = (s: string) => JSON.parse(decodeURIComponent(escape(atob(s.replace(/\n/g, "")))));
 
@@ -89,11 +104,13 @@ const readB64 = (f: File) => new Promise<string>((ok, no) => {
   r.readAsDataURL(f);
 });
 /** PUT with real upload progress (fetch cannot report it). Resolves with the HTTP status. */
-function putWithProgress(path: string, body: string, onPct: (p: number) => void, signal: { abort?: () => void }) {
+async function putWithProgress(path: string, body: string, onPct: (p: number) => void, signal: { abort?: () => void }) {
+  const base = await apiBase();
   return new Promise<number>((ok, no) => {
     const x = new XMLHttpRequest();
-    x.open("PUT", `https://api.github.com/repos/${REPO}/contents/${path}`);
-    x.setRequestHeader("Authorization", `Bearer ${token()}`); x.setRequestHeader("Accept", "application/vnd.github+json");
+    x.open("PUT", `${base}/repos/${REPO}/contents/${path}`);
+    if (token()) x.setRequestHeader("Authorization", `Bearer ${token()}`);
+    x.setRequestHeader("Accept", "application/vnd.github+json");
     x.timeout = 10 * 60e3;
     x.upload.onprogress = (e) => e.lengthComputable && onPct(Math.round((e.loaded / e.total) * 100));
     x.onload = () => ok(x.status); x.onerror = () => no(new Error("Network error during upload")); x.ontimeout = () => no(new Error("Upload timed out"));

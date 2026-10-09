@@ -96,7 +96,18 @@
   // ---- cloud sync: the whole save set as one gzip file on the repo's `data` branch (needs the GitHub token from the Servers page)
   const REPO = "Attikaaaa/eagler", CF = "sync/saves.json.gz";
   const tk = () => localStorage.getItem("eagler-gh-token");
-  const ghx = (p, o = {}) => fetch(`https://api.github.com/repos/${REPO}/${p}`, { cache: "no-store", ...o, headers: { ...(tk() ? { Authorization: "Bearer " + tk() } : {}), Accept: "application/vnd.github+json", ...o.headers } });
+  let gwc = null; // the gateway (token-free access), found through gateway.json on the data branch
+  async function apiBase() {
+    if (tk()) return "https://api.github.com";
+    if (gwc && Date.now() - gwc.at < 30000) return gwc.url;
+    try {
+      const j = await (await fetch(`https://raw.githubusercontent.com/${REPO}/data/gateway.json?t=${Math.floor(Date.now() / 20000)}`, { cache: "no-store" })).json();
+      if (j.url && Date.now() - j.ts < 300000 && (await fetch(j.url + "/ping", { cache: "no-store" })).ok) { gwc = { url: j.url + "/gh", at: Date.now() }; return gwc.url; }
+    } catch {}
+    gwc = null; return "https://api.github.com";
+  }
+  const canWrite = async () => !!tk() || (await apiBase()).endsWith("/gh");
+  const ghx = async (p, o = {}) => fetch(`${await apiBase()}/repos/${REPO}/${p}`, { cache: "no-store", ...o, headers: { ...(tk() ? { Authorization: "Bearer " + tk() } : {}), Accept: "application/vnd.github+json", ...o.headers } });
   const gz = async (str) => new Uint8Array(await new Response(new Blob([str]).stream().pipeThrough(new CompressionStream("gzip"))).arrayBuffer());
   const gunz = (buf) => new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream("gzip"))).text();
   const hashOf = async (d) => { const { at, ...rest } = d; const h = await crypto.subtle.digest("SHA-1", new TextEncoder().encode(JSON.stringify(rest))); return Array.from(new Uint8Array(h), (b) => b.toString(16).padStart(2, "0")).join(""); };
@@ -115,7 +126,7 @@
     const sha = await remoteSha(), c = (await getMeta("cloud")) || {};
     if (!sha || sha === c.sha) return { ok: true, changed: false };
     const here = await dump();
-    if (tk() && size(here) > 0 && c.hash !== (await hashOf(here)) && c.sha) { // this browser has unsynced changes: keep them as a conflict copy first
+    if ((await canWrite()) && size(here) > 0 && c.hash !== (await hashOf(here)) && c.sha) { // this browser has unsynced changes: keep them as a conflict copy first
       await putFile(`sync/conflict-${Date.now()}.json.gz`, await gz(JSON.stringify(here)), null);
     }
     const r = await ghx(`contents/${CF}?ref=data`, { headers: { Accept: "application/vnd.github.raw+json" } });
@@ -126,7 +137,7 @@
     return { ok: true, changed: true, n: size(d) };
   }
   async function cloudPush() {
-    if (!tk()) return { ok: false, reason: "no-token" };
+    if (!(await canWrite())) return { ok: false, reason: "no-token" };
     const d = await dump(), n = size(d), last = (await getMeta("last")) || { n: 0 }, c = (await getMeta("cloud")) || {};
     if (n === 0 || n < last.n * 0.5) return { ok: false, reason: "shrunk", n, prev: last.n };
     const hash = await hashOf(d);
@@ -142,7 +153,7 @@
     await setMeta("cloud", { sha: nsha, hash, at: Date.now() });
     return { ok: true, n, mb: +(bytes.length / 1e6).toFixed(1) };
   }
-  const cloudStatus = async () => ({ token: !!tk(), last: (await getMeta("cloud")) || null });
+  const cloudStatus = async () => ({ token: true, last: (await getMeta("cloud")) || null });
 
   // ---- folder handling
   const stamp = () => new Date().toISOString().replace(/[-:T]/g, "").slice(0, 12);
@@ -203,7 +214,7 @@
     return { fs: hasFS, persisted: navigator.storage && navigator.storage.persisted ? await navigator.storage.persisted() : false, folder: h ? h.name : null, granted: h ? await perm(h, false) : false, last: last || null };
   }
   let busy = false;
-  const quiet = async () => { if (busy) return; busy = true; try { await backup(false); } catch (e) { console.warn("keep:", e); } try { if (tk() && cloudReady) await cloudPush(); } catch (e) { console.warn("keep cloud:", e); } busy = false; };
+  const quiet = async () => { if (busy) return; busy = true; try { await backup(false); } catch (e) { console.warn("keep:", e); } try { if (cloudReady) await cloudPush(); } catch (e) { console.warn("keep cloud:", e); } busy = false; };
   let cloudReady = false, loading = false;
   // small status line so you can see whether this device uploads
   const note = (t) => { try { let e = document.getElementById("keep-note"); if (!e) { e = document.createElement("div"); e.id = "keep-note"; e.style.cssText = "position:fixed;left:6px;bottom:4px;z-index:99999;font:11px monospace;color:#fff;background:#0008;padding:1px 5px;pointer-events:none;opacity:.7"; (document.body || document.documentElement).appendChild(e); } e.textContent = "cloud: " + t; } catch {} };
@@ -211,7 +222,7 @@
   let pushTimer = 0, pushing = false;
   async function pushNow() {
     if (pushing) { pushTimer = setTimeout(pushNow, 2000); return; }
-    if (!tk()) { note("this device has no GitHub login, changes are NOT uploaded"); return; }
+    if (!(await canWrite())) { note("cloud service is starting, will retry"); pushTimer = setTimeout(pushNow, 15000); return; }
     if (!cloudReady) { pushTimer = setTimeout(pushNow, 3000); return; }
     pushing = true; note("uploading...");
     try { const r = await cloudPush(); note(r.ok ? "saved " + new Date().toLocaleTimeString() : r.reason === "conflict" ? "conflict, kept as copy" : "not uploaded (" + r.reason + ")"); } catch (e) { note("upload failed"); console.warn("keep cloud:", e); }
@@ -229,11 +240,11 @@
     persist();
     // pull first; the game page reloads once if it merged something new, so the game starts on the merged saves
     cloudPull().then((r) => {
-      cloudReady = true; note(tk() ? "synced " + new Date().toLocaleTimeString() : "read-only (no GitHub login on this device)");
+      cloudReady = true; note("synced " + new Date().toLocaleTimeString());
       if (r.changed && location.pathname.includes("/play/") && Date.now() - Number(sessionStorage.getItem("keep-reload") || 0) > 60000) { sessionStorage.setItem("keep-reload", Date.now()); location.reload(); }
     }).catch((e) => { console.warn("keep cloud:", e); cloudReady = false; });
     setInterval(quiet, 3 * 60 * 1000);
-    document.addEventListener("visibilitychange", () => { if (document.hidden) { quiet(); if (tk()) pushNow(); } });
+    document.addEventListener("visibilitychange", () => { if (document.hidden) { quiet(); pushNow(); } });
     addEventListener("pagehide", quiet);
   }
 

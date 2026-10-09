@@ -1,0 +1,24 @@
+name: Gateway
+run-name: "gateway ${{ inputs.generation }}"
+on:
+  workflow_dispatch:
+    inputs:
+      generation:
+        description: chain counter
+        default: "1"
+permissions:
+  contents: write
+  actions: write
+jobs:
+  gateway:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      GENERATION: ${{ inputs.generation }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: server
+      - run: node server/gateway.mjs
