@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791538201924,
- "updated": 1791538404910,
+ "updated": 1791538427240,
  "runId": "37911900255",
  "address": "wss://424005c6ee370ecd-172-182-213-4.serveousercontent.com",
  "addresses": {
@@ -21,13 +21,13 @@
  },
  "liveUrl": "https://creates-nascar-proven-assuming.trycloudflare.com",
  "metrics": {
-  "cpu": 3,
+  "cpu": 2,
   "memUsedMb": 3402,
   "memTotalMb": 15990,
-  "jvmMb": 2403,
+  "jvmMb": 2404,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.82,
+  "load1": 0.67,
   "hist": [
    {
     "cpu": 26,
@@ -64,9 +64,25 @@
    {
     "cpu": 3,
     "mem": 3402
+   },
+   {
+    "cpu": 1,
+    "mem": 3402
+   },
+   {
+    "cpu": 2,
+    "mem": 3402
+   },
+   {
+    "cpu": 2,
+    "mem": 3402
+   },
+   {
+    "cpu": 2,
+    "mem": 3402
    }
   ],
-  "ts": 1791538404728
+  "ts": 1791538423880
  },
  "playerNames": [],
  "startedAt": 1791538370337,
