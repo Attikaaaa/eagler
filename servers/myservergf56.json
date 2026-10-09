@@ -6,27 +6,27 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791539188281,
+ "updated": 1791539207125,
  "runId": "37913322763",
  "address": "wss://2c588b4ee923aeb9-20-171-37-172.serveousercontent.com",
  "addresses": {
   "stable": "wss://2c588b4ee923aeb9-20-171-37-172.serveousercontent.com",
   "cloudflare": "wss://rings-compaq-voted-archives.trycloudflare.com"
  },
- "players": 0,
+ "players": 1,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 3,
-  "memUsedMb": 3596,
+  "cpu": 78,
+  "memUsedMb": 3692,
   "memTotalMb": 15990,
-  "jvmMb": 2511,
+  "jvmMb": 2613,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
-  "load1": 1.58,
+  "load1": 1.35,
   "hist": [
    {
     "cpu": 13,
@@ -39,11 +39,29 @@
    {
     "cpu": 3,
     "mem": 3596
+   },
+   {
+    "cpu": 1,
+    "mem": 3602
+   },
+   {
+    "cpu": 20,
+    "mem": 3632
+   },
+   {
+    "cpu": 59,
+    "mem": 3691
+   },
+   {
+    "cpu": 78,
+    "mem": 3692
    }
   ],
-  "ts": 1791539188167
+  "ts": 1791539206952
  },
- "playerNames": [],
+ "playerNames": [
+  "Player8934"
+ ],
  "liveUrl": "https://glucose-wisconsin-prep-star.trycloudflare.com",
  "importPending": null,
  "startedAt": 1791539179565,
