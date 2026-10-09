@@ -20,7 +20,7 @@
  "status": "running",
  "always": true,
  "created": 1791547976832,
- "updated": 1791548553594,
+ "updated": 1791548570832,
  "runId": "37928582068",
  "address": "wss://ec0656b8daede750-52-173-13-233.serveousercontent.com",
  "addresses": {
@@ -35,31 +35,15 @@
  },
  "metrics": {
   "cpu": 1,
-  "memUsedMb": 3467,
+  "memUsedMb": 3469,
   "memTotalMb": 15989,
   "jvmMb": 2385,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.01,
+  "load1": 0,
   "hist": [
    {
     "cpu": 0,
-    "mem": 3459
-   },
-   {
-    "cpu": 1,
-    "mem": 3459
-   },
-   {
-    "cpu": 0,
-    "mem": 3467
-   },
-   {
-    "cpu": 0,
-    "mem": 3467
-   },
-   {
-    "cpu": 0,
     "mem": 3467
    },
    {
@@ -161,9 +145,25 @@
    {
     "cpu": 1,
     "mem": 3467
+   },
+   {
+    "cpu": 1,
+    "mem": 3467
+   },
+   {
+    "cpu": 1,
+    "mem": 3467
+   },
+   {
+    "cpu": 1,
+    "mem": 3468
+   },
+   {
+    "cpu": 1,
+    "mem": 3469
    }
   ],
-  "ts": 1791548553450
+  "ts": 1791548570676
  },
  "playerNames": [],
  "liveUrl": "https://missile-tube-enclosed-bullet.trycloudflare.com",
