@@ -206,7 +206,7 @@ function ImportWorld({ srv }: { srv: Srv }) {
   return (
     <div className="box">
       <h3>Import a world</h3>
-      <p className="text-muted-foreground small">Upload an <b>.epk</b> exported from Eaglercraft singleplayer (1.8.8 or 1.12) or a <b>.zip</b> of a vanilla world folder (up to Minecraft 1.12.2, max about 70 MB). It is loaded the next time the server starts, and your current world is saved as a backup first.</p>
+      <p className="text-muted-foreground small">Upload an <b>.epk</b> exported from singleplayer (a 1.12.2 world for a 1.12.2 server, a 26.2 world for a 26.2 server) or a <b>.zip</b> of a vanilla world folder (max about 70 MB). It is loaded the next time the server starts, and your current world is saved as a backup first.</p>
       <div className="row">
         <label className="btn" style={{ cursor: busy ? "not-allowed" : "pointer", opacity: busy ? 0.5 : 1 }}>Choose world file<input type="file" accept=".epk,.zip" hidden disabled={busy} onChange={(e) => { pick(e.target.files?.[0]); e.target.value = ""; }} /></label>
         {busy && <button className="btn danger sm" onClick={() => sig.current.abort?.()}>Cancel</button>}
