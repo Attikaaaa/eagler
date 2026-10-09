@@ -2,17 +2,14 @@
  "id": "myservergf56",
  "name": "My server",
  "version": "26.2",
- "want": "restart",
- "status": "stopping",
+ "want": "run",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791539120512,
- "runId": "37913170389",
- "address": "wss://231f8d11368f32e5-172-183-94-137.serveousercontent.com",
- "addresses": {
-  "stable": "wss://231f8d11368f32e5-172-183-94-137.serveousercontent.com",
-  "cloudflare": "wss://navigate-suite-enforcement-typically.trycloudflare.com"
- },
+ "updated": 1791539127685,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -60,11 +57,12 @@
   "ts": 1791539119153
  },
  "playerNames": [],
- "liveUrl": "https://october-gordon-galaxy-amend.trycloudflare.com",
+ "liveUrl": null,
  "importPending": {
   "name": "nigger2.epk",
   "kind": "epk",
   "size": 7601705
  },
- "startedAt": 1791539093394
+ "startedAt": 1791539093394,
+ "note": "Restarting..."
 }
