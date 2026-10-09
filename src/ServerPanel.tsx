@@ -290,12 +290,12 @@ export default function ServerPanel({ srv, reload }: { srv: Srv; reload: () => v
           <h3>Server address</h3>
           {srv.address ? (<>
             <div className="row" style={{ marginBottom: ".6rem" }}>
-              <a className="btn primary" target="_blank" rel="noopener" href={`play/1.12.2-js/?server=${encodeURIComponent(srv.address)}`}>Join this server</a>
-              <span className="small text-muted-foreground">Opens Minecraft 1.12.2 and connects automatically.</span>
+              <a className="btn primary" target="_blank" rel="noopener" href={srv.version === "26.2" ? `play/26.2/?server=localhost&transport=wisp&wisp=${encodeURIComponent(srv.address)}` : `play/1.12.2-js/?server=${encodeURIComponent(srv.address)}`}>Join this server</a>
+              <span className="small text-muted-foreground">Opens Minecraft {srv.version} and connects automatically.</span>
             </div>
             <div className="addr big"><code>{srv.address}</code><Copy text={srv.address} /></div>
             {all.filter(([, v]) => v !== srv.address).map(([k, v]) => <div className="addr" key={k}><code>{v}</code><Copy text={v} /><span className="small text-muted-foreground">backup address ({k})</span></div>)}
-            <ol className="steps small"><li>Press <b>Join this server</b>, or</li><li>open Multiplayer &rarr; Direct Connect and paste the address.</li></ol>
+            <ol className="steps small"><li>Press <b>Join this server</b>, or</li>{srv.version !== "26.2" && <li>open Multiplayer &rarr; Direct Connect and paste the address.</li>}</ol>
           </>) : <p className="text-muted-foreground small">{off ? "Offline. Press Start, it is online in about a minute." : "Getting a public address..."}</p>}
           {srv.note && <p className="small text-muted-foreground">{srv.note}</p>}
           {st === "running" && <p className="small text-muted-foreground">The address changes when the server restarts (about every 6 hours). Copy the new one from here.</p>}
