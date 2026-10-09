@@ -13,7 +13,7 @@
   "cloudflare": "wss://chargers-meters-dale-tmp.trycloudflare.com"
  },
  "players": 0,
- "updated": 1791537781617,
+ "updated": 1791537799085,
  "host": {
   "cpus": 4,
   "totalGb": 16,
@@ -22,12 +22,12 @@
  "liveUrl": "https://combo-solved-sheep-westminster.trycloudflare.com",
  "metrics": {
   "cpu": 2,
-  "memUsedMb": 3417,
+  "memUsedMb": 3428,
   "memTotalMb": 15990,
-  "jvmMb": 2390,
+  "jvmMb": 2396,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.52,
+  "load1": 0.37,
   "hist": [
    {
     "cpu": 26,
@@ -84,9 +84,25 @@
    {
     "cpu": 2,
     "mem": 3417
+   },
+   {
+    "cpu": 1,
+    "mem": 3418
+   },
+   {
+    "cpu": 1,
+    "mem": 3426
+   },
+   {
+    "cpu": 1,
+    "mem": 3427
+   },
+   {
+    "cpu": 2,
+    "mem": 3428
    }
   ],
-  "ts": 1791537781407
+  "ts": 1791537798915
  },
  "playerNames": [],
  "startedAt": 1791537730946
