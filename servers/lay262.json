@@ -17,10 +17,27 @@
   "cloudflare": "wss://expense-acrobat-soil-exam.trycloudflare.com"
  },
  "players": 0,
- "updated": 1791546349824,
+ "updated": 1791546353464,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 3
- }
+ },
+ "metrics": {
+  "cpu": 34,
+  "memUsedMb": 2441,
+  "memTotalMb": 15990,
+  "jvmMb": 1071,
+  "diskUsedGb": 58.5,
+  "diskTotalGb": 144.3,
+  "load1": 0.72,
+  "hist": [
+   {
+    "cpu": 34,
+    "mem": 2441
+   }
+  ],
+  "ts": 1791546353299
+ },
+ "playerNames": []
 }
