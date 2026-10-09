@@ -35,6 +35,22 @@ async function patch(p) {
   log("could not write state");
 }
 
+async function getJson(p) {
+  const r = await api(`contents/${p}?ref=data`);
+  if (!r.ok) return null;
+  const j = await r.json();
+  return { sha: j.sha, data: JSON.parse(Buffer.from(j.content, "base64").toString()) };
+}
+async function putJson(p, obj) {
+  for (let i = 0; i < 4; i++) {
+    const cur = await getJson(p);
+    const r = await api(`contents/${p}`, { method: "PUT", body: JSON.stringify({ message: `update ${p}`, branch: "data", content: Buffer.from(JSON.stringify(obj)).toString("base64"), ...(cur ? { sha: cur.sha } : {}) }) });
+    if (r.ok) return true;
+    await sleep(400 + Math.random() * 800);
+  }
+  return false;
+}
+
 // ---------- world storage in release `data` (two alternating slots, newest wins)
 const slotName = (s) => `world-${ID}-${s}.tgz`;
 async function assets() {
@@ -65,7 +81,19 @@ async function saveWorld() {
 }
 
 // ---------- server files
-async function provision(name) {
+const PROPS = { motd: "motd", maxPlayers: "max-players", difficulty: "difficulty", gamemode: "gamemode", pvp: "pvp", viewDistance: "view-distance", whitelist: "white-list", allowNether: "allow-nether", monsters: "spawn-monsters", animals: "spawn-animals", spawnProtection: "spawn-protection", seed: "level-seed", forceGamemode: "force-gamemode", commandBlocks: "enable-command-block" };
+function applySettings(st, fresh) {
+  const f = path.join(DIR, "server.properties");
+  let txt = fs.existsSync(f) ? fs.readFileSync(f, "utf8") : "";
+  const set = (k, v) => { const re = new RegExp(`^${k}=.*$`, "m"); txt = re.test(txt) ? txt.replace(re, `${k}=${v}`) : txt + `${txt.endsWith("\n") || !txt ? "" : "\n"}${k}=${v}\n`; };
+  set("online-mode", "false"); set("server-port", "25565");
+  for (const [k, prop] of Object.entries(PROPS)) { const v = st.settings?.[k]; if (v === undefined || v === "" || (k === "seed" && !fresh)) continue; set(prop, String(v).replace(/[\r\n]/g, " ")); }
+  fs.writeFileSync(f, txt);
+  const lst = path.join(DIR, "plugins/EaglercraftXServer/listener.yml");
+  const motd = String(st.settings?.motd ?? st.name).replace(/'/g, "").replace(/[\r\n]/g, " ");
+  if (fs.existsSync(lst)) fs.writeFileSync(lst, fs.readFileSync(lst, "utf8").replace(/server_motd:\n(?:- .*\n?)+/, `server_motd:\n- '${motd}'\n`));
+}
+async function provision(name, st, fresh) {
   fs.mkdirSync(path.join(DIR, "plugins"), { recursive: true });
   const jar = path.join(DIR, "paper.jar");
   if (!fs.existsSync(jar)) {
@@ -78,7 +106,8 @@ async function provision(name) {
   const props = path.join(DIR, "server.properties");
   if (!fs.existsSync(props)) fs.writeFileSync(props, `online-mode=false\nserver-port=25565\nmotd=${name}\nmax-players=30\nview-distance=8\nenable-command-block=true\nspawn-protection=0\n`);
   const lst = path.join(DIR, "plugins/EaglercraftXServer/listener.yml");
-  if (!fs.existsSync(lst)) { fs.mkdirSync(path.dirname(lst), { recursive: true }); fs.writeFileSync(lst, `server_motd:\n- '&6${name.replace(/'/g, "")}'\n`); }
+  if (!fs.existsSync(lst)) { fs.mkdirSync(path.dirname(lst), { recursive: true }); fs.writeFileSync(lst, `server_motd:\n- '${name.replace(/'/g, "")}'\n`); }
+  applySettings(st || {}, fresh);
 }
 
 // ---------- tunnels (public address)
@@ -104,14 +133,17 @@ const t0 = Date.now();
 const st0 = await getState();
 const name = st0?.name || ID;
 await patch({ status: "starting", runId: RUN_ID, address: null, addresses: {}, players: 0 });
-if (!(await restore())) log("no saved world, creating a new one");
-await provision(name);
+const had = await restore();
+if (!had) log("no saved world, creating a new one");
+await provision(name, st0, !had);
 
 const mc = spawn("java", ["-Xms1G", "-Xmx5G", "-jar", "paper.jar", "nogui"], { cwd: DIR });
 const players = new Set(); let running = false, lastActive = Date.now(), logTail = [];
 let saveWaiters = [];
+let consoleBuf = [], consoleDirty = false;
 const onLine = (l) => {
   process.stdout.write(l + "\n");
+  consoleBuf.push(l.replace(/\u001b\[[0-9;]*[A-Za-z]/g, "")); if (consoleBuf.length > 250) consoleBuf.shift(); consoleDirty = true;
   logTail.push(l); if (logTail.length > 60) logTail.shift();
   let m;
   if (/Done \(/.test(l)) { running = true; }
@@ -139,20 +171,29 @@ async function shutdown(reason, finalStatus = "stopped", extra = {}) {
   await patch({ status: "stopping" });
   if (!exited) { cmd("save-all"); await sleep(2000); cmd("stop"); for (let i = 0; i < 90 && !exited; i++) await sleep(1000); if (!exited) mc.kill("SIGKILL"); }
   await saveWorld();
+  await putJson(CON, { lines: consoleBuf.slice(-200), updated: Date.now() });
   await patch({ status: finalStatus, address: null, addresses: {}, players: 0, runId: null, ...extra });
 }
 for (const sig of ["SIGINT", "SIGTERM"]) process.on(sig, async () => { await shutdown("signal " + sig); process.exit(0); });
 
-let lastSave = Date.now(), lastBeat = 0, runningMarked = false;
+let lastSave = Date.now(), lastBeat = 0, runningMarked = false, lastCon = 0, lastCmd = 0, cmdN = (await getJson(`cmd/${ID}.json`))?.data?.n || 0, startedAt = null;
+const CMD = `cmd/${ID}.json`, CON = `console/${ID}.json`;
 while (true) {
   await sleep(5000);
-  if (exited) { await patch({ status: "stopped", address: null, addresses: {}, players: 0, runId: null, error: logTail.slice(-8).join("\n") }); await saveWorld().catch(() => {}); break; }
-  if (running && !runningMarked && (addrs.stable || addrs.cloudflare)) { runningMarked = true; await patch({ status: "running", address: addrs.stable || addrs.cloudflare, addresses: addrs }); }
+  if (exited) { await putJson(CON, { lines: consoleBuf.slice(-200), updated: Date.now() }); await patch({ status: "stopped", address: null, addresses: {}, players: 0, runId: null, error: logTail.slice(-8).join("\n") }); await saveWorld().catch(() => {}); break; }
+  if (consoleDirty && Date.now() - lastCon > 7000) { lastCon = Date.now(); consoleDirty = false; await putJson(CON, { lines: consoleBuf.slice(-200), updated: Date.now() }); }
+  if (running && Date.now() - lastCmd > 4000) {
+    lastCmd = Date.now();
+    const c = (await getJson(CMD))?.data;
+    for (const it of (c?.items || []).filter((x) => x.n > cmdN)) { cmdN = it.n; log("console command:", it.cmd); if (!exited) cmd(String(it.cmd).replace(/[\r\n]/g, " ").replace(/^\//, "")); }
+  }
+  if (running && !runningMarked && (addrs.stable || addrs.cloudflare)) { runningMarked = true; startedAt = Date.now(); await patch({ startedAt }); await patch({ status: "running", address: addrs.stable || addrs.cloudflare, addresses: addrs }); }
   if (Date.now() - lastBeat > 30e3) {
     lastBeat = Date.now();
     const s = await getState();
     await patch({ players: players.size, playerNames: [...players], ...(runningMarked ? { status: "running" } : {}) });
     if (s?.want === "stop") { await shutdown("stop requested"); break; }
+    if (s?.want === "restart") { await shutdown("restart requested", "starting", { want: "run", note: "Restarting..." }); fs.writeFileSync(path.join(TMP, "chain"), "1"); break; }
     if (s?.always === false && running && players.size === 0 && Date.now() - lastActive > IDLE_MS) { await shutdown("idle for 20 min", "stopped", { note: "Stopped automatically: nobody was online for 20 minutes." }); break; }
     if (Date.now() - t0 > MAX_MS) {
       await shutdown("job time limit, restarting", "starting", { want: "run", note: "Restarting after the 6h job limit." }); fs.writeFileSync(path.join(TMP, "chain"), "1");

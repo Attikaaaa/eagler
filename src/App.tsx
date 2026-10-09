@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { VERSIONS, type Version } from "./versions";
 import Saves from "./Saves";
 import Servers from "./Servers";
@@ -22,18 +22,12 @@ function Panel({ v }: { v: Version }) {
   );
 }
 
-export default function App() {
+function Play() {
   const [q, setQ] = useState("");
   const [cur, setCur] = useState(VERSIONS[0]);
   const list = VERSIONS.filter((v) => v.label.toLowerCase().includes(q.toLowerCase()));
   return (
-    <div className="relative isolate flow-root">
-      <div className="site-wash -z-10" aria-hidden="true" />
-      <header className="sticky top-3 z-50 mx-auto mt-3 w-full max-w-7xl px-3 sm:px-4">
-        <div className="glass-bar flex h-14 items-center gap-4 rounded-2xl px-3 sm:h-16 sm:px-4">
-          <span className="font-brand brand">eagler</span>
-        </div>
-      </header>
+    <>
       <main className="mx-auto max-w-7xl px-4 py-10">
         <div className="wrap">
           <section>
@@ -51,10 +45,32 @@ export default function App() {
           </section>
           <div><Panel key={cur.id} v={cur} /><Saves /></div>
         </div>
-        <Servers />
         <h1 className="font-pixel hero">Minecraft in your browser</h1>
         <p className="text-muted-foreground">Everything runs from local files, no internet needed.</p>
       </main>
+    </>
+  );
+}
+
+const route = () => location.hash.replace(/^#\/?/, "").split("/");
+
+export default function App() {
+  const [r, setR] = useState(route());
+  useEffect(() => { const f = () => setR(route()); addEventListener("hashchange", f); return () => removeEventListener("hashchange", f); }, []);
+  const servers = r[0] === "servers";
+  return (
+    <div className="relative isolate flow-root">
+      <div className="site-wash -z-10" aria-hidden="true" />
+      <header className="sticky top-3 z-50 mx-auto mt-3 w-full max-w-7xl px-3 sm:px-4">
+        <div className="glass-bar flex h-14 items-center gap-4 rounded-2xl px-3 sm:h-16 sm:px-4">
+          <span className="font-brand brand">eagler</span>
+          <nav className="flex items-center gap-1">
+            <a href="#/" className={"navl" + (!servers ? " on" : "")}>Play</a>
+            <a href="#/servers" className={"navl" + (servers ? " on" : "")}>Servers</a>
+          </nav>
+        </div>
+      </header>
+      {servers ? <Servers sel={r[1] || null} /> : <Play />}
     </div>
   );
 }
