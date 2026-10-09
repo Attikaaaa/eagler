@@ -3,21 +3,18 @@
  "name": "lay262",
  "version": "26.2",
  "want": "stop",
- "status": "stopping",
+ "status": "stopped",
  "always": true,
  "created": 1,
  "settings": {
   "ramGb": 3,
   "plugins": []
  },
- "runId": "37925706994",
- "address": "wss://54d3169a68248c0f-172-182-196-54.serveousercontent.com",
- "addresses": {
-  "stable": "wss://54d3169a68248c0f-172-182-196-54.serveousercontent.com",
-  "cloudflare": "wss://expense-acrobat-soil-exam.trycloudflare.com"
- },
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
- "updated": 1791546813582,
+ "updated": 1791546820674,
  "host": {
   "cpus": 4,
   "totalGb": 16,
@@ -156,7 +153,7 @@
   "ts": 1791546812214
  },
  "playerNames": [],
- "liveUrl": "https://spin-formerly-smtp-magical.trycloudflare.com",
+ "liveUrl": null,
  "startedAt": 1791546373519,
  "note": null
 }
