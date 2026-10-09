@@ -122,3 +122,20 @@
 @media(max-width:900px){.pt-grid{grid-template-columns:1fr}.pt-charts{grid-template-columns:1fr}.ptero .termbody{height:20rem}}
 .pt-res{display:flex;gap:1.4rem;font-size:.9rem}.pt-res span{display:flex;flex-direction:column;align-items:flex-end;min-width:5rem}.pt-res small{color:#8a96a6;font-size:.7rem;margin-top:.1rem}
 @media(max-width:700px){.pt-res{display:none}}
+
+/* ---- whole site in the Pterodactyl look ---- */
+html.dark:root,:root{--background:#10151b;--foreground:#e6ebf2;--card:#2a323d;--muted:#232a34;--muted-foreground:#8a96a6;--border:#3a4452;--input:#1a2029;--primary:#22b8cf;--secondary:#3a4452;--ring:#22b8cf}
+html,body{background:#10151b!important;color:#e6ebf2}
+.site-wash{display:none!important}
+header.sticky{position:sticky!important;top:0!important;margin:0!important;max-width:none!important;padding:0!important}
+.glass-bar{border-radius:0!important;background:#0b0f13!important;border:0!important;border-bottom:1px solid #1d2530!important;box-shadow:none!important;backdrop-filter:none!important;height:3.4rem!important;padding:0 1.5rem!important}
+.brand{font-size:1.15rem!important;font-weight:700;letter-spacing:.02em;font-family:inherit!important;color:#fff}
+.navl{padding:.95rem 1rem!important;border-radius:0!important;border-bottom:2px solid transparent;color:#9aa6b6}
+.navl:hover{background:#161c24;color:#fff}.navl.on{background:none!important;color:#fff;border-bottom-color:#22b8cf}
+.font-pixel{font-family:inherit!important;font-weight:700;letter-spacing:0}.artname{font-family:var(--font-pixel,inherit)!important}
+.panel,.saves,.srv{border-radius:.5rem;box-shadow:0 1px 3px #0006}
+.card .art{border-radius:.5rem}.panel .big{border-radius:.4rem}
+.opt{border-radius:.35rem;background:#1a2029;border:1px solid #3a4452}
+.pbtn{border-radius:.35rem;color:#06222a;background:#22b8cf}.playdot{color:#06222a}
+.ptero{background:transparent;margin-top:0;min-height:0}
+.hero{margin:2rem 0 .5rem}

@@ -232,7 +232,8 @@
   for (const m of ["put", "add", "delete", "clear"]) {
     const orig = IOS[m];
     IOS[m] = function (...a) {
-      if (!loading && this.transaction && /PlatformFilesystem/.test(this.transaction.db.name)) { clearTimeout(pushTimer); pushTimer = setTimeout(pushNow, 1200); }
+      const k = m === "delete" ? (Array.isArray(a[0]) ? a[0][0] : a[0]) : m === "clear" ? "worlds/" : a[0] && a[0].path; // only world files count
+      if (!loading && this.transaction && /PlatformFilesystem/.test(this.transaction.db.name) && typeof k === "string" && k.startsWith("worlds/")) { clearTimeout(pushTimer); pushTimer = setTimeout(pushNow, 1200); }
       return orig.apply(this, a);
     };
   }
