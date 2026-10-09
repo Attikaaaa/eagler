@@ -13,7 +13,7 @@
   "cloudflare": "wss://nathan-interpreted-michigan-carroll.trycloudflare.com"
  },
  "players": 0,
- "updated": 1791538309025,
+ "updated": 1791538320877,
  "host": {
   "cpus": 4,
   "totalGb": 16,
@@ -21,13 +21,13 @@
  },
  "liveUrl": "https://adopt-mill-which-ink.trycloudflare.com",
  "metrics": {
-  "cpu": 4,
-  "memUsedMb": 3613,
+  "cpu": 6,
+  "memUsedMb": 3614,
   "memTotalMb": 15990,
   "jvmMb": 2552,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
-  "load1": 1.99,
+  "load1": 1.69,
   "hist": [
    {
     "cpu": 15,
@@ -40,9 +40,21 @@
    {
     "cpu": 4,
     "mem": 3613
+   },
+   {
+    "cpu": 3,
+    "mem": 3613
+   },
+   {
+    "cpu": 3,
+    "mem": 3615
+   },
+   {
+    "cpu": 6,
+    "mem": 3614
    }
   ],
-  "ts": 1791538308945
+  "ts": 1791538320706
  },
  "playerNames": [],
  "startedAt": 1791538306269
