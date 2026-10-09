@@ -1,1 +1,154 @@
-{"id": "live1", "name": "Live test", "version": "1.12.2", "created": 1791537691000, "want": "run", "status": "starting", "always": true, "runId": null, "address": null, "addresses": {}, "players": 0, "updated": 1791537860790, "host": {"cpus": 4, "totalGb": 16, "ramGb": 5}, "liveUrl": null, "metrics": {"cpu": 2, "memUsedMb": 3437, "memTotalMb": 15990, "jvmMb": 2403, "diskUsedGb": 58.5, "diskTotalGb": 144.3, "load1": 0.16, "hist": [{"cpu": 26, "mem": 3230}, {"cpu": 71, "mem": 3393}, {"cpu": 7, "mem": 3395}, {"cpu": 2, "mem": 3400}, {"cpu": 2, "mem": 3404}, {"cpu": 4, "mem": 3404}, {"cpu": 1, "mem": 3405}, {"cpu": 1, "mem": 3410}, {"cpu": 1, "mem": 3410}, {"cpu": 2, "mem": 3411}, {"cpu": 1, "mem": 3412}, {"cpu": 1, "mem": 3412}, {"cpu": 2, "mem": 3418}, {"cpu": 2, "mem": 3417}, {"cpu": 1, "mem": 3418}, {"cpu": 1, "mem": 3426}, {"cpu": 1, "mem": 3427}, {"cpu": 2, "mem": 3428}, {"cpu": 1, "mem": 3428}, {"cpu": 1, "mem": 3428}, {"cpu": 1, "mem": 3427}, {"cpu": 1, "mem": 3427}, {"cpu": 1, "mem": 3428}, {"cpu": 1, "mem": 3428}, {"cpu": 1, "mem": 3426}, {"cpu": 2, "mem": 3427}, {"cpu": 1, "mem": 3429}, {"cpu": 0, "mem": 3429}, {"cpu": 1, "mem": 3437}, {"cpu": 2, "mem": 3437}], "ts": 1791537851854}, "playerNames": [], "startedAt": 1791537730946}
+{
+ "id": "live1",
+ "name": "Live test",
+ "version": "1.12.2",
+ "created": 1791537691000,
+ "want": "run",
+ "status": "starting",
+ "always": true,
+ "runId": "37911153323",
+ "address": null,
+ "addresses": {},
+ "players": 0,
+ "updated": 1791537924625,
+ "host": {
+  "cpus": 4,
+  "totalGb": 16,
+  "ramGb": 5
+ },
+ "liveUrl": null,
+ "metrics": {
+  "cpu": 2,
+  "memUsedMb": 3437,
+  "memTotalMb": 15990,
+  "jvmMb": 2403,
+  "diskUsedGb": 58.5,
+  "diskTotalGb": 144.3,
+  "load1": 0.16,
+  "hist": [
+   {
+    "cpu": 26,
+    "mem": 3230
+   },
+   {
+    "cpu": 71,
+    "mem": 3393
+   },
+   {
+    "cpu": 7,
+    "mem": 3395
+   },
+   {
+    "cpu": 2,
+    "mem": 3400
+   },
+   {
+    "cpu": 2,
+    "mem": 3404
+   },
+   {
+    "cpu": 4,
+    "mem": 3404
+   },
+   {
+    "cpu": 1,
+    "mem": 3405
+   },
+   {
+    "cpu": 1,
+    "mem": 3410
+   },
+   {
+    "cpu": 1,
+    "mem": 3410
+   },
+   {
+    "cpu": 2,
+    "mem": 3411
+   },
+   {
+    "cpu": 1,
+    "mem": 3412
+   },
+   {
+    "cpu": 1,
+    "mem": 3412
+   },
+   {
+    "cpu": 2,
+    "mem": 3418
+   },
+   {
+    "cpu": 2,
+    "mem": 3417
+   },
+   {
+    "cpu": 1,
+    "mem": 3418
+   },
+   {
+    "cpu": 1,
+    "mem": 3426
+   },
+   {
+    "cpu": 1,
+    "mem": 3427
+   },
+   {
+    "cpu": 2,
+    "mem": 3428
+   },
+   {
+    "cpu": 1,
+    "mem": 3428
+   },
+   {
+    "cpu": 1,
+    "mem": 3428
+   },
+   {
+    "cpu": 1,
+    "mem": 3427
+   },
+   {
+    "cpu": 1,
+    "mem": 3427
+   },
+   {
+    "cpu": 1,
+    "mem": 3428
+   },
+   {
+    "cpu": 1,
+    "mem": 3428
+   },
+   {
+    "cpu": 1,
+    "mem": 3426
+   },
+   {
+    "cpu": 2,
+    "mem": 3427
+   },
+   {
+    "cpu": 1,
+    "mem": 3429
+   },
+   {
+    "cpu": 0,
+    "mem": 3429
+   },
+   {
+    "cpu": 1,
+    "mem": 3437
+   },
+   {
+    "cpu": 2,
+    "mem": 3437
+   }
+  ],
+  "ts": 1791537851854
+ },
+ "playerNames": [],
+ "startedAt": 1791537730946
+}
