@@ -13,7 +13,7 @@
   "cloudflare": "wss://ate-values-diagnosis-framing.trycloudflare.com"
  },
  "players": 0,
- "updated": 1791538053915,
+ "updated": 1791538072224,
  "host": {
   "cpus": 4,
   "totalGb": 16,
@@ -21,18 +21,14 @@
  },
  "liveUrl": "https://suits-numerical-mud-shame.trycloudflare.com",
  "metrics": {
-  "cpu": 2,
-  "memUsedMb": 3378,
+  "cpu": 3,
+  "memUsedMb": 3379,
   "memTotalMb": 15990,
-  "jvmMb": 2325,
+  "jvmMb": 2327,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.48,
+  "load1": 0.34,
   "hist": [
-   {
-    "cpu": 21,
-    "mem": 2057
-   },
    {
     "cpu": 59,
     "mem": 3361
@@ -136,9 +132,25 @@
    {
     "cpu": 2,
     "mem": 3378
+   },
+   {
+    "cpu": 1,
+    "mem": 3378
+   },
+   {
+    "cpu": 1,
+    "mem": 3379
+   },
+   {
+    "cpu": 2,
+    "mem": 3379
+   },
+   {
+    "cpu": 3,
+    "mem": 3379
    }
   ],
-  "ts": 1791538053778
+  "ts": 1791538072145
  },
  "playerNames": [],
  "startedAt": 1791537950044
