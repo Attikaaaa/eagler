@@ -4,8 +4,8 @@ import { deleteServerFile, dispatch, getConsole, saveServer, sendCommand, upload
 import { LABEL } from "./Servers";
 import { DEFAULT_PLUGINS, PLUGINS } from "./plugins";
 
-type Tab = "overview" | "console" | "players" | "settings" | "backups";
-const TABS: [Tab, string][] = [["overview", "Overview"], ["console", "Console"], ["players", "Players"], ["settings", "Settings"], ["backups", "Backups"]];
+type Tab = "console" | "players" | "network" | "backups" | "settings";
+const TABS: [Tab, string][] = [["console", "Console"], ["players", "Players"], ["network", "Network"], ["backups", "Backups"], ["settings", "Settings"]];
 
 const up = (ms: number) => { const s = Math.floor(ms / 1000), h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60); return h ? `${h}h ${m}m` : m ? `${m}m ${s % 60}s` : `${s}s`; };
 const mb = (n: number) => (n / 1e6).toFixed(1) + " MB";
@@ -243,7 +243,7 @@ function Backups({ srv }: { srv: Srv }) {
 
 export default function ServerPanel({ srv, reload, guest = false }: { srv: Srv; reload: () => void; guest?: boolean }) {
   const lv = useLive(srv);
-  const [tab, setTab] = useState<Tab>("overview");
+  const [tab, setTab] = useState<Tab>("console");
   const [now, setNow] = useState(Date.now());
   const [busy, setBusy] = useState(false);
   useEffect(() => { const i = setInterval(() => setNow(Date.now()), 1000); return () => clearInterval(i); }, []);
@@ -260,35 +260,50 @@ export default function ServerPanel({ srv, reload, guest = false }: { srv: Srv; 
   const st = srv.status, off = st === "stopped";
   const all = Object.entries(srv.addresses ?? {});
 
+  const m = lv.metrics ?? srv.metrics, run = st === "running", gib = (x: number) => (x / 1024).toFixed(2) + " GiB";
+  const ram = srv.settings?.ramGb ?? 5;
+  const label = LABEL[st] ?? st;
   return (
     <div className="page">
-      <a className="link" href="#/servers">&larr; All servers</a>
-      <div className="phead">
-        <div className="sicon big"><span className={"dot " + st} /></div>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <h1 className="ell">{srv.name}</h1>
-          <div className="small text-muted-foreground">Minecraft {srv.version} · Paper · {srv.settings?.ramGb ?? 5} GB RAM</div>
-        </div>
-        <span className={"badge lg " + st}>{LABEL[st] ?? st}</span>
-        {!guest && <div className="row">
-          {off ? <button className="btn primary" disabled={busy} onClick={start}>Start</button>
-            : <><button className="btn" disabled={busy || srv.want === "stop"} onClick={restart}>Restart</button>
-              <button className="btn danger" disabled={busy || srv.want === "stop"} onClick={stop}>Stop</button></>}
-        </div>}
-      </div>
+      <div className="pt-top"><a className="link" href="#/servers">&larr; Servers</a><span className="pt-crumb">{srv.name}</span></div>
+      <div className="pt-nav">{TABS.map(([k, l]) => <button key={k} className={"pt-tab" + (tab === k ? " on" : "")} onClick={() => setTab(k)}>{l}</button>)}</div>
 
-      <div className="tabs">{TABS.filter(([k]) => !guest || k === "overview").map(([k, l]) => <button key={k} className={"tab" + (tab === k ? " on" : "")} onClick={() => setTab(k)}>{l}</button>)}</div>
-
-      {tab === "overview" && (<>
-        <div className="stats">
-          <div className="stat"><span>Players</span><b>{lv.players ? lv.players.length : srv.players ?? 0}<small> / {srv.settings?.maxPlayers ?? 30}</small></b></div>
-          <div className="stat"><span>Uptime</span><b>{st === "running" && srv.startedAt ? up(now - srv.startedAt) : "-"}</b></div>
-          <div className="stat"><span>Server RAM</span><b>{srv.settings?.ramGb ?? 5} GB<small> of {srv.host?.totalGb ?? 16}</small></b></div>
-          <div className="stat"><span>Keep-alive</span><b>24/7</b></div>
+      {tab === "console" && (
+        <div className="pt-grid">
+          <div className="pt-left">
+            <div className="pt-card pt-info">
+              <div className="pt-name"><span className={"pt-dot " + st} />{srv.name}</div>
+              <div className={"pt-state " + st}>{label}</div>
+              <dl className="pt-dl">
+                <dt>Address</dt><dd>{srv.address ? <><code>{srv.address.replace(/^wss?:\/\//, "")}</code> <Copy text={srv.address} /></> : "—"}</dd>
+                <dt>Version</dt><dd>Minecraft {srv.version} · Paper</dd>
+                <dt>Uptime</dt><dd>{run && srv.startedAt ? up(now - srv.startedAt) : "Offline"}</dd>
+                <dt>CPU load</dt><dd>{run && m ? `${m.cpu}%` : "—"} <small>/ {(srv.host?.cpus ?? 4) * 100}%</small></dd>
+                <dt>Memory</dt><dd>{run && m ? gib(m.jvmMb) : "—"} <small>/ {ram} GiB</small></dd>
+                <dt>Disk</dt><dd>{run && m ? `${m.diskUsedGb} GB` : "—"} <small>/ {m?.diskTotalGb ?? 144} GB</small></dd>
+                <dt>Players</dt><dd>{lv.players ? lv.players.length : srv.players ?? 0} <small>/ {srv.settings?.maxPlayers ?? 30}</small></dd>
+              </dl>
+              <div className="pt-power">
+                <button className="ptb green" disabled={busy || !off} onClick={start}>Start</button>
+                <button className="ptb blue" disabled={busy || off || srv.want === "stop"} onClick={restart}>Restart</button>
+                <button className="ptb red" disabled={busy || off || srv.want === "stop"} onClick={stop}>Stop</button>
+              </div>
+              {srv.address && <a className="ptb join" target="_blank" rel="noopener" href={srv.version === "26.2" ? `play/26.2/?server=localhost&transport=wisp&wisp=${encodeURIComponent(srv.address)}${pn ? `&name=${pn}` : ""}` : `play/1.12.2-js/?server=${encodeURIComponent(srv.address)}`}>Join this server</a>}
+              {srv.note && <p className="small text-muted-foreground" style={{ marginTop: ".6rem" }}>{srv.note}</p>}
+            </div>
+          </div>
+          <div className="pt-right"><Console srv={srv} live={lv} /></div>
+          <div className="pt-charts">
+            <div className="pt-card"><div className="pt-ch">CPU load <b>{run && m ? `${m.cpu}%` : "—"}</b></div>{run && m ? <Spark v={m.hist.map((h) => h.cpu)} max={100} color="#22b8cf" /> : <div className="spark empty" />}</div>
+            <div className="pt-card"><div className="pt-ch">Memory <b>{run && m ? `${gib(m.memUsedMb)} / ${gib(m.memTotalMb)}` : "—"}</b></div>{run && m ? <Spark v={m.hist.map((h) => h.mem)} max={m.memTotalMb} color="#7c5cff" /> : <div className="spark empty" />}</div>
+          </div>
+          {srv.error && off && <div className="pt-card" style={{ gridColumn: "1 / -1" }}><div className="pt-ch">Last output before it stopped</div><pre className="errlog">{srv.error}</pre></div>}
         </div>
-        <Resources srv={srv} lv={lv} />
+      )}
+      {tab === "players" && <Players srv={srv} lv={lv} />}
+      {tab === "network" && (
         <div className="box">
-          <h3>Server address</h3>
+          <h3>Network</h3>
           {srv.address ? (<>
             <div className="row" style={{ marginBottom: ".6rem" }}>
               <input className="field" style={{ margin: 0, width: "11rem" }} placeholder="Your player name" value={pn} onChange={(e) => { const v = e.target.value.replace(/[^A-Za-z0-9_]/g, "").slice(0, 16); setPn(v); localStorage.setItem("eagler-name", v); }} />
@@ -298,17 +313,15 @@ export default function ServerPanel({ srv, reload, guest = false }: { srv: Srv; 
             <div className="addr big"><code>{srv.address}</code><Copy text={srv.address} /></div>
             {all.filter(([, v]) => v !== srv.address).map(([k, v]) => <div className="addr" key={k}><code>{v}</code><Copy text={v} /><span className="small text-muted-foreground">backup address ({k})</span></div>)}
             <ol className="steps small"><li>Press <b>Join this server</b>, or</li>{srv.version !== "26.2" && <li>open Multiplayer &rarr; Direct Connect and paste the address.</li>}</ol>
-          </>) : <p className="text-muted-foreground small">{off ? "Offline. Press Start, it is online in about a minute." : "Getting a public address..."}</p>}
-          {srv.note && <p className="small text-muted-foreground">{srv.note}</p>}
+          </>) : <p className="text-muted-foreground small">{off ? "Offline. Press Start on the Console page, it is online in about a minute." : "Getting a public address..."}</p>}
           {st === "running" && <p className="small text-muted-foreground">The address changes when the server restarts (about every 6 hours). Copy the new one from here.</p>}
         </div>
-        {srv.error && off && <div className="box"><h3>Last output before it stopped</h3><pre className="errlog">{srv.error}</pre></div>}
-        {!guest && <div className="box row" style={{ justifyContent: "space-between" }}><span className="small text-muted-foreground">Deleting removes the server and its saved world for good.</span><button className="btn danger" disabled={busy || !off} onClick={del}>Delete server</button></div>}
-      </>)}
-      {tab === "console" && <Console srv={srv} live={lv} />}
-      {tab === "players" && <Players srv={srv} lv={lv} />}
-      {tab === "settings" && <SettingsTab srv={srv} reload={reload} />}
+      )}
       {tab === "backups" && <><Backups srv={srv} /><ImportWorld srv={srv} /></>}
+      {tab === "settings" && <>
+        <SettingsTab srv={srv} reload={reload} />
+        <div className="box row" style={{ justifyContent: "space-between" }}><span className="small text-muted-foreground">Deleting removes the server and its saved world for good.</span><button className="btn danger" disabled={busy || !off} onClick={del}>Delete server</button></div>
+      </>}
     </div>
   );
 }

@@ -43,10 +43,10 @@ export default function Servers({ sel }: { sel: string | null }) {
     setBusy(false);
   };
 
-  if (sel) return direct ? <ServerPanel srv={direct} reload={() => { loadOne(); refresh(); }} /> : <div className="page"><p className="text-muted-foreground">Loading server... <a className="link" href="#/servers">Back</a></p></div>;
+  if (sel) return <div className="ptero">{direct ? <ServerPanel srv={direct} reload={() => { loadOne(); refresh(); }} /> : <div className="page"><p className="text-muted-foreground">Loading server... <a className="link" href="#/servers">Back</a></p></div>}</div>;
 
   return (
-    <div className="page">
+    <div className="ptero"><div className="page">
       <div className="hero2">
         <h1 className="font-pixel">Servers</h1>
         {tok && <button className="link" onClick={() => { localStorage.removeItem(TK); setTok(""); }}>Disconnect GitHub</button>}
@@ -93,12 +93,17 @@ export default function Servers({ sel }: { sel: string | null }) {
             <div className="sicon"><span className={"dot " + s.status} /></div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <b className="ell">{s.name}</b>
-              <div className="meta"><span className="chip">Minecraft {s.version}</span><span className="chip">{s.settings?.ramGb ?? 5} GB RAM</span>{s.status === "running" && <><span className="chip">{s.players ?? 0} players</span>{s.metrics && <span className="chip">CPU {s.metrics.cpu}%</span>}</>}</div>
+              <div className="meta"><span className="chip">Minecraft {s.version}</span>{s.address && s.status === "running" && <span className="chip">{s.address.replace(/^wss?:\/\//, "")}</span>}</div>
+            </div>
+            <div className="pt-res">
+              <span>{s.status === "running" && s.metrics ? `${s.metrics.cpu}%` : "—"}<small>CPU</small></span>
+              <span>{s.status === "running" && s.metrics ? `${(s.metrics.jvmMb / 1024).toFixed(1)} / ${s.settings?.ramGb ?? 5} GiB` : `${s.settings?.ramGb ?? 5} GiB`}<small>Memory</small></span>
+              <span>{s.status === "running" && s.metrics ? `${s.metrics.diskUsedGb} GB` : "—"}<small>Disk</small></span>
             </div>
             <span className={"badge " + s.status}>{LABEL[s.status] ?? s.status}</span>
           </a>
         ))}
       </div>
-    </div>
+    </div></div>
   );
 }
