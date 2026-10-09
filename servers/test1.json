@@ -12,7 +12,7 @@
   "cloudflare": "wss://desktop-enter-usual-invalid.trycloudflare.com"
  },
  "players": 0,
- "updated": 1791536362159,
+ "updated": 1791536395551,
  "playerNames": [],
  "startedAt": 1791536337765,
  "settings": {
@@ -33,13 +33,13 @@
   "ramGb": 8
  },
  "metrics": {
-  "cpu": 7,
-  "memUsedMb": 3368,
+  "cpu": 1,
+  "memUsedMb": 3374,
   "memTotalMb": 15990,
-  "jvmMb": 2359,
+  "jvmMb": 2363,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.69,
+  "load1": 0.38,
   "hist": [
    {
     "cpu": 24,
@@ -48,9 +48,13 @@
    {
     "cpu": 7,
     "mem": 3368
+   },
+   {
+    "cpu": 1,
+    "mem": 3374
    }
   ],
-  "ts": 1791536361975
+  "ts": 1791536395390
  },
  "note": "Restarting..."
 }
