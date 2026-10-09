@@ -6,7 +6,7 @@
  "status": "starting",
  "always": true,
  "created": 1791539021583,
- "updated": 1791539043045,
+ "updated": 1791539045907,
  "runId": "37913131303",
  "address": "wss://fd3a98dea13cbb82-57-154-232-210.serveousercontent.com",
  "addresses": {
@@ -19,5 +19,22 @@
   "totalGb": 16,
   "ramGb": 5
  },
- "liveUrl": "https://foto-ltd-editions-lan.trycloudflare.com"
+ "liveUrl": "https://foto-ltd-editions-lan.trycloudflare.com",
+ "metrics": {
+  "cpu": 12,
+  "memUsedMb": 1875,
+  "memTotalMb": 15990,
+  "jvmMb": 835,
+  "diskUsedGb": 58.4,
+  "diskTotalGb": 144.3,
+  "load1": 0.2,
+  "hist": [
+   {
+    "cpu": 12,
+    "mem": 1875
+   }
+  ],
+  "ts": 1791539043533
+ },
+ "playerNames": []
 }
