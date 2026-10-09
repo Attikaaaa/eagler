@@ -4,6 +4,7 @@ import { spawn, execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
+import os from "node:os";
 
 const ID = process.env.SERVER_ID, REPO = process.env.GITHUB_REPOSITORY, TOKEN = process.env.GITHUB_TOKEN;
 const RUN_ID = process.env.GITHUB_RUN_ID, GENERATION = Number(process.env.GENERATION || 1);
@@ -110,6 +111,38 @@ async function provision(name, st, fresh) {
   applySettings(st || {}, fresh);
 }
 
+// ---------- plugins (resolved at start, jars are not stored in the world save)
+const PLUGINS = {
+  spark: { url: "https://sparkapi.lucko.me/download/bukkit" },
+  vault: { gh: "MilkBowl/Vault", asset: "Vault.jar" },
+  essentialsx: { modrinth: "essentialsx" },
+  luckperms: { modrinth: "luckperms" },
+  worldedit: { modrinth: "worldedit" },
+  placeholderapi: { modrinth: "placeholderapi" },
+};
+async function installPlugins(ids) {
+  const dir = path.join(DIR, "plugins");
+  for (const id of ids) {
+    const src = PLUGINS[id]; if (!src) continue;
+    try {
+      if (src.modrinth) {
+        const v = await (await fetch(`https://api.modrinth.com/v2/project/${src.modrinth}/version?game_versions=%5B%221.12.2%22%5D&loaders=%5B%22paper%22%2C%22spigot%22%2C%22bukkit%22%5D`, { headers: { "User-Agent": "eagler-host/1.0" } })).json();
+        const f = v[0].files.find((x) => x.primary) || v[0].files[0];
+        fs.writeFileSync(path.join(dir, f.filename), Buffer.from(await (await fetch(f.url)).arrayBuffer()));
+        log("plugin", id, f.filename);
+      } else if (src.gh) {
+        sh("gh", ["release", "download", "-R", src.gh, "-p", src.asset, "-D", dir, "--clobber"]);
+        log("plugin", id, src.asset);
+      } else {
+        const r = await fetch(src.url, { headers: { "User-Agent": "eagler-host/1.0" } });
+        const name = (r.headers.get("content-disposition") || "").match(/filename="?([^";]+)/)?.[1] || `${id}.jar`;
+        fs.writeFileSync(path.join(dir, name), Buffer.from(await r.arrayBuffer()));
+        log("plugin", id, name);
+      }
+    } catch (e) { log("plugin failed", id, String(e).slice(0, 150)); }
+  }
+}
+
 // ---------- tunnels (public address)
 function tunnels(onAddr) {
   const found = {};
@@ -137,7 +170,11 @@ const had = await restore();
 if (!had) log("no saved world, creating a new one");
 await provision(name, st0, !had);
 
-const mc = spawn("java", ["-Xms1G", "-Xmx5G", "-jar", "paper.jar", "nogui"], { cwd: DIR });
+const ram = Math.min(12, Math.max(1, Number(st0?.settings?.ramGb) || 5));
+await installPlugins(st0?.settings?.plugins ?? ["spark", "vault", "essentialsx", "luckperms", "worldedit"]);
+log(`host: ${os.cpus().length} cpus, ${(os.totalmem() / 2 ** 30).toFixed(1)} GB RAM; server heap ${ram} GB`);
+await patch({ host: { cpus: os.cpus().length, totalGb: Math.round(os.totalmem() / 2 ** 30), ramGb: ram } });
+const mc = spawn("java", [`-Xms${Math.min(ram, 2)}G`, `-Xmx${ram}G`, "-XX:+UseG1GC", "-XX:+ParallelRefProcEnabled", "-XX:MaxGCPauseMillis=200", "-jar", "paper.jar", "nogui"], { cwd: DIR });
 const players = new Set(); let running = false, lastActive = Date.now(), logTail = [];
 let saveWaiters = [];
 let consoleBuf = [], consoleDirty = false;

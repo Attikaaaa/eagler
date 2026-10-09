@@ -1,11 +1,11 @@
 export const REPO = "Attikaaaa/eagler";
 export const TK = "eagler-gh-token";
 
-export type Settings = Partial<{ motd: string; maxPlayers: number; difficulty: string; gamemode: string; pvp: boolean; viewDistance: number; whitelist: boolean; allowNether: boolean; monsters: boolean; animals: boolean; spawnProtection: number; seed: string; forceGamemode: boolean; commandBlocks: boolean }>;
+export type Settings = Partial<{ motd: string; maxPlayers: number; difficulty: string; gamemode: string; pvp: boolean; viewDistance: number; whitelist: boolean; allowNether: boolean; monsters: boolean; animals: boolean; spawnProtection: number; seed: string; forceGamemode: boolean; commandBlocks: boolean; ramGb: number; plugins: string[] }>;
 export type Srv = {
   id: string; name: string; version: string; want: string; status: string; sha: string;
   address?: string | null; addresses?: Record<string, string>; players?: number; playerNames?: string[];
-  note?: string; error?: string; updated?: number; startedAt?: number; settings?: Settings; always?: boolean;
+  note?: string; error?: string; updated?: number; startedAt?: number; settings?: Settings; always?: boolean; host?: { cpus: number; totalGb: number; ramGb: number };
 };
 
 export const token = () => localStorage.getItem(TK) || "";

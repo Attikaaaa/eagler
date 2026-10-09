@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { dispatch, getConsole, gh, saveServer, sendCommand, worldBackups, type Settings, type Srv } from "./gh";
 import { LABEL } from "./Servers";
+import { DEFAULT_PLUGINS, PLUGINS } from "./plugins";
 
 type Tab = "overview" | "console" | "players" | "settings" | "backups";
 const TABS: [Tab, string][] = [["overview", "Overview"], ["console", "Console"], ["players", "Players"], ["settings", "Settings"], ["backups", "Backups"]];
@@ -84,7 +85,7 @@ function Players({ srv }: { srv: Srv }) {
 }
 
 function SettingsTab({ srv, reload }: { srv: Srv; reload: () => void }) {
-  const [s, setS] = useState<Settings>({ motd: srv.name, maxPlayers: 30, difficulty: "easy", gamemode: "survival", pvp: true, viewDistance: 8, whitelist: false, allowNether: true, monsters: true, animals: true, spawnProtection: 0, commandBlocks: true, ...srv.settings });
+  const [s, setS] = useState<Settings>({ motd: srv.name, maxPlayers: 30, difficulty: "easy", gamemode: "survival", pvp: true, viewDistance: 8, whitelist: false, allowNether: true, monsters: true, animals: true, spawnProtection: 0, commandBlocks: true, ramGb: 5, plugins: DEFAULT_PLUGINS, ...srv.settings });
   const [saved, setSaved] = useState("");
   const set = <K extends keyof Settings>(k: K, v: Settings[K]) => setS((o) => ({ ...o, [k]: v }));
   const Tog = ({ k, label }: { k: keyof Settings; label: string }) => (
@@ -104,6 +105,14 @@ function SettingsTab({ srv, reload }: { srv: Srv; reload: () => void }) {
         <label>Spawn protection (blocks)<input className="field" type="number" min={0} max={64} value={s.spawnProtection} onChange={(e) => set("spawnProtection", +e.target.value)} /></label>
         <label style={{ gridColumn: "1/-1" }}>World seed (only for a brand-new world)<input className="field" value={s.seed ?? ""} onChange={(e) => set("seed", e.target.value)} /></label>
       </div>
+      <h3 style={{ marginTop: "1.25rem" }}>Memory (RAM)</h3>
+      <div className="row"><input type="range" min={1} max={12} step={1} value={s.ramGb} onChange={(e) => set("ramGb", +e.target.value)} style={{ flex: 1, maxWidth: "24rem" }} /><b>{s.ramGb} GB</b></div>
+      <p className="small text-muted-foreground">The GitHub machine has 16 GB in total (4 CPU cores, 14 GB disk). Up to 12 GB can go to the server, the rest is needed by the system and tunnels. 4-6 GB is plenty for most worlds.</p>
+      <h3 style={{ marginTop: "1.25rem" }}>Plugins</h3>
+      <p className="small text-muted-foreground">Server software: Paper 1.12.2 (fixed, it has to match the 1.12.2 game client). Plugin settings and data are kept in your world save. Changes apply on restart.</p>
+      <div className="plist">{PLUGINS.map((p) => (
+        <label key={p.id} className="pl"><input type="checkbox" checked={(s.plugins ?? []).includes(p.id)} onChange={(e) => set("plugins", e.target.checked ? [...(s.plugins ?? []), p.id] : (s.plugins ?? []).filter((x) => x !== p.id))} />
+          <span><b>{p.name}</b><small>{p.desc}</small></span></label>))}</div>
       <div className="togs"><Tog k="pvp" label="PvP" /><Tog k="whitelist" label="Whitelist" /><Tog k="allowNether" label="Nether" /><Tog k="monsters" label="Monsters" /><Tog k="animals" label="Animals" /><Tog k="commandBlocks" label="Command blocks" /><Tog k="forceGamemode" label="Force game mode" /></div>
       <div className="row" style={{ marginTop: "1rem" }}>
         <button className="btn" onClick={() => save(false)}>Save</button>
@@ -157,7 +166,7 @@ export default function ServerPanel({ srv, reload }: { srv: Srv; reload: () => v
         <div className="sicon big"><span className={"dot " + st} /></div>
         <div style={{ flex: 1, minWidth: 0 }}>
           <h1 className="ell">{srv.name}</h1>
-          <div className="small text-muted-foreground">Minecraft {srv.version} · Paper + EaglerXServer · up to 5 GB RAM</div>
+          <div className="small text-muted-foreground">Minecraft {srv.version} · Paper + EaglerXServer · {srv.settings?.ramGb ?? 5} GB RAM</div>
         </div>
         <span className={"badge lg " + st}>{LABEL[st] ?? st}</span>
         <div className="row">
@@ -173,7 +182,7 @@ export default function ServerPanel({ srv, reload }: { srv: Srv; reload: () => v
         <div className="stats">
           <div className="stat"><span>Players</span><b>{srv.players ?? 0}<small> / {srv.settings?.maxPlayers ?? 30}</small></b></div>
           <div className="stat"><span>Uptime</span><b>{st === "running" && srv.startedAt ? up(now - srv.startedAt) : "-"}</b></div>
-          <div className="stat"><span>Memory limit</span><b>5 GB</b></div>
+          <div className="stat"><span>Server RAM</span><b>{srv.settings?.ramGb ?? 5} GB<small> of {srv.host?.totalGb ?? 16}</small></b></div>
           <div className="stat"><span>Keep-alive</span><b>24/7</b></div>
         </div>
         <div className="box">
