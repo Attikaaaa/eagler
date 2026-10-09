@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791559710995,
+ "updated": 1791559727923,
  "runId": "37951709446",
  "address": "wss://coast-conditioning-tree-history.trycloudflare.com",
  "addresses": {
@@ -20,13 +20,13 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 5,
-  "memUsedMb": 3589,
+  "cpu": 4,
+  "memUsedMb": 3588,
   "memTotalMb": 15990,
   "jvmMb": 2529,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
-  "load1": 0.43,
+  "load1": 0.4,
   "hist": [
    {
     "cpu": 15,
@@ -131,9 +131,25 @@
    {
     "cpu": 5,
     "mem": 3589
+   },
+   {
+    "cpu": 3,
+    "mem": 3587
+   },
+   {
+    "cpu": 4,
+    "mem": 3587
+   },
+   {
+    "cpu": 4,
+    "mem": 3586
+   },
+   {
+    "cpu": 4,
+    "mem": 3588
    }
   ],
-  "ts": 1791559710852
+  "ts": 1791559727768
  },
  "playerNames": [],
  "liveUrl": "https://toward-salt-chassis-buys.trycloudflare.com",
