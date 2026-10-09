@@ -190,7 +190,8 @@ async function authed(token) {
   try { const r = await fetch(`https://api.github.com/repos/${REPO}`, { headers: { Authorization: `Bearer ${token}`, "User-Agent": "eagler-host" } }); ok = r.ok && (await r.json()).permissions?.push === true; } catch {}
   authCache.set(token, { ok, t: Date.now() }); return ok;
 }
-const emit = (type, data) => { const m = `event: ${type}\ndata: ${JSON.stringify(data)}\n\n`; for (const r of clients) { try { r.write(m); } catch { clients.delete(r); } } };
+const frame = (str) => { const p = Buffer.from(str); const n = p.length; let h; if (n < 126) h = Buffer.from([0x81, n]); else if (n < 65536) { h = Buffer.alloc(4); h[0] = 0x81; h[1] = 126; h.writeUInt16BE(n, 2); } else { h = Buffer.alloc(10); h[0] = 0x81; h[1] = 127; h.writeBigUInt64BE(BigInt(n), 2); } return Buffer.concat([h, p]); };
+const emit = (type, data) => { const f = frame(JSON.stringify({ t: type, d: data })); for (const c of clients) { try { c.write(f); } catch { clients.delete(c); } } };
 const CORS = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization,content-type", "Access-Control-Allow-Methods": "GET,POST,OPTIONS" };
 const live = http.createServer(async (req, res) => {
   const u = new URL(req.url, "http://x");
@@ -198,18 +199,38 @@ const live = http.createServer(async (req, res) => {
   const token = u.searchParams.get("token") || (req.headers.authorization || "").replace(/^Bearer /, "");
   if (u.pathname === "/ping") { res.writeHead(200, CORS); return res.end("ok"); }
   if (!(await authed(token))) { res.writeHead(401, CORS); return res.end("unauthorized"); }
-  if (u.pathname === "/live") {
-    res.writeHead(200, { ...CORS, "Content-Type": "text/event-stream", "Cache-Control": "no-cache, no-transform", Connection: "keep-alive", "X-Accel-Buffering": "no" });
-    res.write(`event: hello\ndata: ${JSON.stringify({ lines: getBacklog(), ...liveState })}\n\n`);
-    clients.add(res); const hb = setInterval(() => { try { res.write(": hb\n\n"); } catch {} }, 15000);
-    req.on("close", () => { clients.delete(res); clearInterval(hb); }); return;
-  }
   if (u.pathname === "/cmd" && req.method === "POST") {
     let b = ""; for await (const c of req) b += c;
     try { const { cmd: c } = JSON.parse(b); sendCmd(String(c)); res.writeHead(200, CORS); res.end("ok"); } catch { res.writeHead(400, CORS); res.end("bad"); }
     return;
   }
   res.writeHead(404, CORS); res.end("not found");
+});
+live.on("upgrade", async (req, sock) => {
+  const u = new URL(req.url, "http://x");
+  if (u.pathname !== "/live" || !(await authed(u.searchParams.get("token")))) { sock.write("HTTP/1.1 401 Unauthorized\r\n\r\n"); return sock.destroy(); }
+  const acc = crypto.createHash("sha1").update(req.headers["sec-websocket-key"] + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11").digest("base64");
+  sock.write(`HTTP/1.1 101 Switching Protocols\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Accept: ${acc}\r\n\r\n`);
+  sock.setNoDelay(true); clients.add(sock);
+  sock.write(frame(JSON.stringify({ t: "hello", d: { lines: getBacklog(), ...liveState } })));
+  const hb = setInterval(() => { try { sock.write(Buffer.from([0x89, 0])); } catch {} }, 20000);
+  let buf = Buffer.alloc(0);
+  sock.on("data", (d) => {
+    buf = Buffer.concat([buf, d]);
+    for (;;) {
+      if (buf.length < 2) return;
+      const op = buf[0] & 15; let len = buf[1] & 127, p = 2;
+      if (len === 126) { if (buf.length < 4) return; len = buf.readUInt16BE(2); p = 4; } else if (len === 127) { if (buf.length < 10) return; len = Number(buf.readBigUInt64BE(2)); p = 10; }
+      if (buf.length < p + 4 + len) return;
+      const mask = buf.subarray(p, p + 4), pl = Buffer.from(buf.subarray(p + 4, p + 4 + len)); for (let i = 0; i < pl.length; i++) pl[i] ^= mask[i & 3];
+      buf = buf.subarray(p + 4 + len);
+      if (op === 8) return sock.end();
+      if (op === 9) sock.write(Buffer.concat([Buffer.from([0x8a, pl.length]), pl]));
+      if (op === 1) { try { const m = JSON.parse(pl.toString()); if (m.t === "cmd") sendCmd(String(m.d)); } catch {} }
+    }
+  });
+  const off = () => { clients.delete(sock); clearInterval(hb); };
+  sock.on("close", off); sock.on("error", off);
 });
 live.listen(8787);
 function liveTunnel(onUrl) {

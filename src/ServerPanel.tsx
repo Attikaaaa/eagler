@@ -44,30 +44,36 @@ function Copy({ text }: { text: string }) {
 }
 
 type Live = { on: boolean; lines: string[]; players: string[] | null; metrics: Srv["metrics"] | null; send: (c: string) => Promise<boolean> };
-/** Direct stream from the running server (instant). Falls back to the slower GitHub polling when unavailable. */
+/** Direct WebSocket to the running server (instant). Falls back to the slower GitHub polling when unavailable. */
 function useLive(srv: Srv): Live {
   const [on, setOn] = useState(false);
   const [lines, setLines] = useState<string[]>([]);
   const [players, setPlayers] = useState<string[] | null>(null);
   const [metrics, setMetrics] = useState<Srv["metrics"] | null>(null);
   const base = srv.status === "running" ? srv.liveUrl : null;
+  const wsRef = useRef<WebSocket | null>(null);
   useEffect(() => {
     setOn(false); if (!base) return;
-    let es: EventSource | null = null, dead = false, retry = 0;
+    let dead = false, retry = 0;
     const open = () => {
-      es = new EventSource(`${base}/live?token=${encodeURIComponent(token())}`);
-      es.addEventListener("hello", (e) => { const d = JSON.parse((e as MessageEvent).data); setLines(d.lines ?? []); setPlayers(d.players ?? []); setMetrics(d.metrics ?? null); setOn(true); retry = 0; });
-      es.addEventListener("log", (e) => setLines((l) => [...l.slice(-399), JSON.parse((e as MessageEvent).data)]));
-      es.addEventListener("players", (e) => setPlayers(JSON.parse((e as MessageEvent).data)));
-      es.addEventListener("metrics", (e) => setMetrics(JSON.parse((e as MessageEvent).data)));
-      es.onerror = () => { setOn(false); es?.close(); if (!dead && retry++ < 20) setTimeout(open, Math.min(1000 * retry, 5000)); };
+      const ws = new WebSocket(`${base.replace(/^http/, "ws")}/live?token=${encodeURIComponent(token())}`);
+      wsRef.current = ws;
+      ws.onmessage = (e) => {
+        const { t, d } = JSON.parse(e.data);
+        if (t === "hello") { setLines(d.lines ?? []); setPlayers(d.players ?? []); setMetrics(d.metrics ?? null); setOn(true); retry = 0; }
+        else if (t === "log") setLines((l) => [...l.slice(-399), d]);
+        else if (t === "players") setPlayers(d);
+        else if (t === "metrics") setMetrics(d);
+      };
+      ws.onclose = () => { setOn(false); if (!dead && retry++ < 30) setTimeout(open, Math.min(1000 * retry, 5000)); };
     };
     open();
-    return () => { dead = true; es?.close(); };
+    return () => { dead = true; wsRef.current?.close(); };
   }, [base]);
   const send = async (c: string) => {
-    if (!base || !on) return false;
-    try { const r = await fetch(`${base}/cmd`, { method: "POST", headers: { Authorization: `Bearer ${token()}`, "Content-Type": "application/json" }, body: JSON.stringify({ cmd: c }) }); return r.ok; } catch { return false; }
+    const ws = wsRef.current;
+    if (!on || !ws || ws.readyState !== 1) return false;
+    ws.send(JSON.stringify({ t: "cmd", d: c })); return true;
   };
   return { on, lines, players, metrics, send };
 }
@@ -186,21 +192,30 @@ function SettingsTab({ srv, reload }: { srv: Srv; reload: () => void }) {
 }
 
 function ImportWorld({ srv }: { srv: Srv }) {
-  const [step, setStep] = useState(""); const [err, setErr] = useState("");
+  const [step, setStep] = useState(""); const [pct, setPct] = useState<number | null>(null); const [err, setErr] = useState(""); const [busy, setBusy] = useState(false);
+  const sig = useRef<{ abort?: () => void }>({});
   const pick = async (f?: File) => {
     if (!f) return; setErr("");
     if (!confirm(`Replace the world of "${srv.name}" with "${f.name}"? Your current world is kept as a separate backup.`)) return;
-    try { await uploadWorld(srv.id, f, setStep); setStep("Uploaded. Restart the server to load it."); } catch (e) { setErr(String(e)); setStep(""); }
+    setBusy(true); setPct(null);
+    try { await uploadWorld(srv.id, f, (t, p) => { setStep(t); setPct(p ?? null); }, sig.current); setStep("Uploaded. Restart the server to load it."); setPct(null); }
+    catch (e) { setErr(String((e as Error).message || e)); setStep(""); setPct(null); }
+    setBusy(false);
   };
   const r = srv.importResult;
   return (
     <div className="box">
       <h3>Import a world</h3>
-      <p className="text-muted-foreground small">Upload an <b>.epk</b> exported from Eaglercraft singleplayer (1.8.8 or 1.12) or a <b>.zip</b> of a vanilla world folder (up to Minecraft 1.12.2). It is loaded the next time the server starts, and your current world is saved as a backup first.</p>
-      <label className="btn" style={{ cursor: "pointer" }}>Choose world file<input type="file" accept=".epk,.zip" hidden onChange={(e) => { pick(e.target.files?.[0]); e.target.value = ""; }} /></label>
-      {step && <p className="small" style={{ marginTop: ".5rem" }}>{step}</p>}
+      <p className="text-muted-foreground small">Upload an <b>.epk</b> exported from Eaglercraft singleplayer (1.8.8 or 1.12) or a <b>.zip</b> of a vanilla world folder (up to Minecraft 1.12.2, max about 70 MB). It is loaded the next time the server starts, and your current world is saved as a backup first.</p>
+      <div className="row">
+        <label className="btn" style={{ cursor: busy ? "not-allowed" : "pointer", opacity: busy ? 0.5 : 1 }}>Choose world file<input type="file" accept=".epk,.zip" hidden disabled={busy} onChange={(e) => { pick(e.target.files?.[0]); e.target.value = ""; }} /></label>
+        {busy && <button className="btn danger sm" onClick={() => sig.current.abort?.()}>Cancel</button>}
+      </div>
+      {step && <p className="small" style={{ marginTop: ".5rem" }}>{step}{pct !== null ? ` ${pct}%` : ""}</p>}
+      {pct !== null && <div className="mbar" style={{ marginTop: ".4rem" }}><i style={{ width: pct + "%", background: "var(--primary)" }} /></div>}
       {srv.importPending && <p className="small" style={{ marginTop: ".5rem" }}>Waiting for restart: <b>{srv.importPending.name}</b> ({(srv.importPending.size / 1e6).toFixed(1)} MB)</p>}
       {srv.importPending && srv.status === "running" && <button className="btn primary" style={{ marginTop: ".5rem" }} onClick={() => saveServer({ id: srv.id, want: "restart" }, "restart")}>Restart now to load it</button>}
+      {srv.importPending && srv.status === "stopped" && <p className="small text-muted-foreground">Press Start, the world is loaded during startup.</p>}
       {r && <p className="small" style={{ marginTop: ".5rem", color: r.ok ? "#2ecc71" : "#fa3439" }}>{r.ok ? "Loaded" : "Import failed"}: {r.name}. {r.msg}</p>}
       {err && <p className="err">{err}</p>}
     </div>

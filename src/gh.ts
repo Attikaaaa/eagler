@@ -82,22 +82,50 @@ export async function deleteServerFile(id: string) {
   throw new Error("Delete failed, try again");
 }
 
-export async function uploadWorld(id: string, file: File, onStep?: (s: string) => void) {
+const readB64 = (f: File) => new Promise<string>((ok, no) => {
+  const r = new FileReader();
+  r.onload = () => ok(String(r.result).split(",")[1] ?? "");
+  r.onerror = () => no(r.error);
+  r.readAsDataURL(f);
+});
+/** PUT with real upload progress (fetch cannot report it). Resolves with the HTTP status. */
+function putWithProgress(path: string, body: string, onPct: (p: number) => void, signal: { abort?: () => void }) {
+  return new Promise<number>((ok, no) => {
+    const x = new XMLHttpRequest();
+    x.open("PUT", `https://api.github.com/repos/${REPO}/contents/${path}`);
+    x.setRequestHeader("Authorization", `Bearer ${token()}`); x.setRequestHeader("Accept", "application/vnd.github+json");
+    x.timeout = 10 * 60e3;
+    x.upload.onprogress = (e) => e.lengthComputable && onPct(Math.round((e.loaded / e.total) * 100));
+    x.onload = () => ok(x.status); x.onerror = () => no(new Error("Network error during upload")); x.ontimeout = () => no(new Error("Upload timed out"));
+    x.onabort = () => no(new Error("Upload cancelled"));
+    signal.abort = () => x.abort();
+    x.send(body);
+  });
+}
+export async function uploadWorld(id: string, file: File, onStep: (s: string, pct?: number) => void, signal: { abort?: () => void } = {}) {
   const kind = /\.epk$/i.test(file.name) ? "epk" : /\.zip$/i.test(file.name) ? "zip" : "";
   if (!kind) throw new Error("Choose an .epk (Eaglercraft world export) or a .zip (vanilla world folder).");
-  if (file.size > 70e6) throw new Error("The file is too large (limit about 70 MB). Remove unused regions or use a smaller world.");
-  onStep?.("Reading file...");
-  const buf = new Uint8Array(await file.arrayBuffer());
-  let bin = ""; for (let i = 0; i < buf.length; i += 0x8000) bin += String.fromCharCode(...buf.subarray(i, i + 0x8000));
-  onStep?.("Uploading...");
-  const content = btoa(bin);
-  let ok = false, status = 0;
-  for (let i = 0; i < 10 && !ok; i++) { // the branch is also written by the running server, retry on conflicts
-    const cur = await getJson<unknown>(`uploads/${id}.bin`).catch(() => null);
-    const r = await gh(`contents/uploads/${id}.bin`, { method: "PUT", body: JSON.stringify({ message: `upload ${id}`, branch: "data", content, ...(cur ? { sha: cur.sha } : {}) }) });
-    ok = r.ok; status = r.status;
-    if (!ok) await new Promise((res) => setTimeout(res, 500 + Math.random() * 1000));
+  if (file.size > 70e6) throw new Error(`The file is ${(file.size / 1e6).toFixed(0)} MB, the limit is about 70 MB.`);
+  onStep(`Reading ${(file.size / 1e6).toFixed(1)} MB...`);
+  const content = await readB64(file);
+  const path = `uploads/${id}.bin`;
+  for (let attempt = 1; attempt <= 6; attempt++) {
+    onStep(attempt > 1 ? `Uploading (try ${attempt})...` : "Uploading...", 0);
+    // sha of an already uploaded file, from the directory listing (the single-file read cannot return big files)
+    let sha: string | undefined;
+    const ls = await gh("contents/uploads?ref=data");
+    if (ls.ok) sha = ((await ls.json()) as { name: string; sha: string }[]).find((f) => f.name === `${id}.bin`)?.sha;
+    const body = JSON.stringify({ message: `upload ${id}`, branch: "data", content, ...(sha ? { sha } : {}) });
+    const status = await putWithProgress(path, body, (p) => onStep("Uploading...", p), signal);
+    if (status === 200 || status === 201) {
+      onStep("Saving...", 100);
+      await saveServer({ id, importPending: { name: file.name, kind, size: file.size }, importResult: undefined }, "import");
+      return;
+    }
+    if (status === 401 || status === 403 || status === 404) throw new Error(`GitHub refused the upload (${status}). Check the token permissions.`);
+    if (status === 413 || status === 422 && attempt === 6) throw new Error("GitHub rejected the file (too large).");
+    await new Promise((res) => setTimeout(res, 800 + Math.random() * 1200)); // branch busy, retry
   }
-  if (!ok) throw new Error(`Upload failed (${status}). Try again.`);
-  await saveServer({ id, importPending: { name: file.name, kind, size: file.size }, importResult: undefined }, "import");
+  throw new Error("The server was busy writing, please try again.");
 }
+
