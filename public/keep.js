@@ -96,7 +96,7 @@
   // ---- cloud sync: the whole save set as one gzip file on the repo's `data` branch (needs the GitHub token from the Servers page)
   const REPO = "Attikaaaa/eagler", CF = "sync/saves.json.gz";
   const tk = () => localStorage.getItem("eagler-gh-token");
-  const ghx = (p, o = {}) => fetch(`https://api.github.com/repos/${REPO}/${p}`, { cache: "no-store", ...o, headers: { Authorization: "Bearer " + tk(), Accept: "application/vnd.github+json", ...o.headers } });
+  const ghx = (p, o = {}) => fetch(`https://api.github.com/repos/${REPO}/${p}`, { cache: "no-store", ...o, headers: { ...(tk() ? { Authorization: "Bearer " + tk() } : {}), Accept: "application/vnd.github+json", ...o.headers } });
   const gz = async (str) => new Uint8Array(await new Response(new Blob([str]).stream().pipeThrough(new CompressionStream("gzip"))).arrayBuffer());
   const gunz = (buf) => new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream("gzip"))).text();
   const hashOf = async (d) => { const { at, ...rest } = d; const h = await crypto.subtle.digest("SHA-1", new TextEncoder().encode(JSON.stringify(rest))); return Array.from(new Uint8Array(h), (b) => b.toString(16).padStart(2, "0")).join(""); };
@@ -111,12 +111,11 @@
     throw new Error("cloud busy");
   }
   // startup pull: remote snapshot is newer than what this browser last saw -> merge it in (before the game opens its storage)
-  async function cloudPull() {
-    if (!tk()) return { ok: false, reason: "no-token" };
+  async function cloudPull() { // reading needs no token (public repo); only uploading does
     const sha = await remoteSha(), c = (await getMeta("cloud")) || {};
     if (!sha || sha === c.sha) return { ok: true, changed: false };
     const here = await dump();
-    if (size(here) > 0 && c.hash !== (await hashOf(here)) && c.sha) { // this browser has unsynced changes: keep them as a conflict copy first
+    if (tk() && size(here) > 0 && c.hash !== (await hashOf(here)) && c.sha) { // this browser has unsynced changes: keep them as a conflict copy first
       await putFile(`sync/conflict-${Date.now()}.json.gz`, await gz(JSON.stringify(here)), null);
     }
     const r = await ghx(`contents/${CF}?ref=data`, { headers: { Accept: "application/vnd.github.raw+json" } });

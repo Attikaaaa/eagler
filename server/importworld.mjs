@@ -9,7 +9,7 @@ import { execFileSync } from "node:child_process";
 const MAX_DATA_VERSION = 1343; // Minecraft 1.12.2
 
 // ---- minimal NBT reader (only what we need: ints inside Level / DataVersion)
-function readNbt(buf) {
+export function readNbt(buf) {
   let p = 0;
   const str = () => { const n = buf.readUInt16BE(p); p += 2; const s = buf.toString("utf8", p, p + n); p += n; return s; };
   const payload = (t) => {
