@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791549411840,
+ "updated": 1791549431125,
  "runId": "37913322763",
  "address": "wss://2c588b4ee923aeb9-20-171-37-172.serveousercontent.com",
  "addresses": {
@@ -20,8 +20,8 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3934,
+  "cpu": 2,
+  "memUsedMb": 3936,
   "memTotalMb": 15990,
   "jvmMb": 2806,
   "diskUsedGb": 58.6,
@@ -30,22 +30,6 @@
   "hist": [
    {
     "cpu": 0,
-    "mem": 3929
-   },
-   {
-    "cpu": 3,
-    "mem": 3929
-   },
-   {
-    "cpu": 0,
-    "mem": 3929
-   },
-   {
-    "cpu": 0,
-    "mem": 3930
-   },
-   {
-    "cpu": 0,
     "mem": 3930
    },
    {
@@ -147,9 +131,25 @@
    {
     "cpu": 1,
     "mem": 3934
+   },
+   {
+    "cpu": 0,
+    "mem": 3934
+   },
+   {
+    "cpu": 0,
+    "mem": 3935
+   },
+   {
+    "cpu": 1,
+    "mem": 3935
+   },
+   {
+    "cpu": 2,
+    "mem": 3936
    }
   ],
-  "ts": 1791549411585
+  "ts": 1791549429046
  },
  "playerNames": [],
  "liveUrl": "https://glucose-wisconsin-prep-star.trycloudflare.com",
