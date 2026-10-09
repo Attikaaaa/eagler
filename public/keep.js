@@ -45,7 +45,7 @@
   // ---- dump / load
   async function dump() {
     const out = { v: 1, at: Date.now(), ls: {}, idb: [] };
-    for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); out.ls[k] = localStorage.getItem(k); }
+    for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (!k.startsWith("eagler-gh")) out.ls[k] = localStorage.getItem(k); }
     for (const { name } of await indexedDB.databases()) {
       if (!name || SKIP.has(name)) continue;
       const db = await open(name);

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { VERSIONS, type Version } from "./versions";
 import Saves from "./Saves";
+import Servers from "./Servers";
 
 function Panel({ v }: { v: Version }) {
   const runs = Object.keys(v.runs);
@@ -50,6 +51,7 @@ export default function App() {
           </section>
           <div><Panel key={cur.id} v={cur} /><Saves /></div>
         </div>
+        <Servers />
         <h1 className="font-pixel hero">Minecraft in your browser</h1>
         <p className="text-muted-foreground">Everything runs from local files, no internet needed.</p>
       </main>

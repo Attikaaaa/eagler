@@ -153,10 +153,9 @@ while (true) {
     const s = await getState();
     await patch({ players: players.size, playerNames: [...players], ...(runningMarked ? { status: "running" } : {}) });
     if (s?.want === "stop") { await shutdown("stop requested"); break; }
-    if (running && players.size === 0 && Date.now() - lastActive > IDLE_MS) { await shutdown("idle for 20 min", "stopped", { note: "Stopped automatically: nobody was online for 20 minutes." }); break; }
+    if (s?.always === false && running && players.size === 0 && Date.now() - lastActive > IDLE_MS) { await shutdown("idle for 20 min", "stopped", { note: "Stopped automatically: nobody was online for 20 minutes." }); break; }
     if (Date.now() - t0 > MAX_MS) {
-      if (players.size > 0) { await shutdown("job time limit, restarting", "starting", { want: "run", note: "Restarting after the 6h job limit." }); fs.writeFileSync(path.join(TMP, "chain"), "1"); }
-      else await shutdown("job time limit");
+      await shutdown("job time limit, restarting", "starting", { want: "run", note: "Restarting after the 6h job limit." }); fs.writeFileSync(path.join(TMP, "chain"), "1");
       break;
     }
   }

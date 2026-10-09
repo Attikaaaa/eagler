@@ -1,4 +1,5 @@
 name: Game server
+run-name: "server ${{ inputs.id }} ${{ inputs.action }}"
 on:
   workflow_dispatch:
     inputs:
