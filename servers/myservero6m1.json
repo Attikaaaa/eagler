@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791567985934,
+ "updated": 1791568003048,
  "runId": "37952710823",
  "address": "wss://cart-revisions-ricky-belle.trycloudflare.com",
  "addresses": {
@@ -35,27 +35,11 @@
   "cpu": 2,
   "memUsedMb": 3499,
   "memTotalMb": 15990,
-  "jvmMb": 2426,
+  "jvmMb": 2428,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
   "load1": 0.01,
   "hist": [
-   {
-    "cpu": 1,
-    "mem": 3507
-   },
-   {
-    "cpu": 1,
-    "mem": 3507
-   },
-   {
-    "cpu": 2,
-    "mem": 3507
-   },
-   {
-    "cpu": 1,
-    "mem": 3506
-   },
    {
     "cpu": 1,
     "mem": 3507
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3499
+   },
+   {
+    "cpu": 0,
+    "mem": 3500
+   },
+   {
+    "cpu": 0,
+    "mem": 3499
+   },
+   {
+    "cpu": 0,
+    "mem": 3499
+   },
+   {
+    "cpu": 2,
+    "mem": 3499
    }
   ],
-  "ts": 1791567985781
+  "ts": 1791568002873
  },
  "playerNames": [],
  "startedAt": 1791560084575,
