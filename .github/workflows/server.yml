@@ -1,0 +1,48 @@
+name: Game server
+on:
+  workflow_dispatch:
+    inputs:
+      id:
+        description: server id
+        required: true
+      action:
+        description: run | delete
+        default: run
+      generation:
+        description: chain counter
+        default: "1"
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: server-${{ inputs.id }}
+  cancel-in-progress: false
+jobs:
+  server:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      SERVER_ID: ${{ inputs.id }}
+      GENERATION: ${{ inputs.generation }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: server
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Delete server data
+        if: inputs.action == 'delete'
+        run: node server/delete.mjs
+      - name: Run server
+        if: inputs.action != 'delete'
+        run: node server/run.mjs
+      - name: Continue after time limit
+        if: always() && inputs.action != 'delete'
+        run: |
+          if [ -f "$RUNNER_TEMP/chain" ]; then
+            gh workflow run server.yml -R "$GITHUB_REPOSITORY" -f id="$SERVER_ID" -f generation="$(( GENERATION + 1 ))"
+          fi
