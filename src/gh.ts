@@ -15,7 +15,7 @@ export type Srv = {
 
 export const token = () => localStorage.getItem(TK) || "";
 export const gh = (p: string, o: RequestInit = {}) =>
-  fetch(`https://api.github.com/repos/${REPO}/${p}`, { cache: "no-store", ...o, headers: { Authorization: `Bearer ${token()}`, Accept: "application/vnd.github+json" } });
+  fetch(`https://api.github.com/repos/${REPO}/${p}`, { cache: "no-store", ...o, headers: { ...(token() ? { Authorization: `Bearer ${token()}` } : {}), Accept: "application/vnd.github+json" } });
 const b64 = (o: unknown) => btoa(unescape(encodeURIComponent(JSON.stringify(o, null, 1))));
 const unb64 = (s: string) => JSON.parse(decodeURIComponent(escape(atob(s.replace(/\n/g, "")))));
 

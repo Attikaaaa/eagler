@@ -241,7 +241,7 @@ function Backups({ srv }: { srv: Srv }) {
   );
 }
 
-export default function ServerPanel({ srv, reload }: { srv: Srv; reload: () => void }) {
+export default function ServerPanel({ srv, reload, guest = false }: { srv: Srv; reload: () => void; guest?: boolean }) {
   const lv = useLive(srv);
   const [tab, setTab] = useState<Tab>("overview");
   const [now, setNow] = useState(Date.now());
@@ -270,14 +270,14 @@ export default function ServerPanel({ srv, reload }: { srv: Srv; reload: () => v
           <div className="small text-muted-foreground">Minecraft {srv.version} · Paper · {srv.settings?.ramGb ?? 5} GB RAM</div>
         </div>
         <span className={"badge lg " + st}>{LABEL[st] ?? st}</span>
-        <div className="row">
+        {!guest && <div className="row">
           {off ? <button className="btn primary" disabled={busy} onClick={start}>Start</button>
             : <><button className="btn" disabled={busy || srv.want === "stop"} onClick={restart}>Restart</button>
               <button className="btn danger" disabled={busy || srv.want === "stop"} onClick={stop}>Stop</button></>}
-        </div>
+        </div>}
       </div>
 
-      <div className="tabs">{TABS.map(([k, l]) => <button key={k} className={"tab" + (tab === k ? " on" : "")} onClick={() => setTab(k)}>{l}</button>)}</div>
+      <div className="tabs">{TABS.filter(([k]) => !guest || k === "overview").map(([k, l]) => <button key={k} className={"tab" + (tab === k ? " on" : "")} onClick={() => setTab(k)}>{l}</button>)}</div>
 
       {tab === "overview" && (<>
         <div className="stats">
@@ -303,7 +303,7 @@ export default function ServerPanel({ srv, reload }: { srv: Srv; reload: () => v
           {st === "running" && <p className="small text-muted-foreground">The address changes when the server restarts (about every 6 hours). Copy the new one from here.</p>}
         </div>
         {srv.error && off && <div className="box"><h3>Last output before it stopped</h3><pre className="errlog">{srv.error}</pre></div>}
-        <div className="box row" style={{ justifyContent: "space-between" }}><span className="small text-muted-foreground">Deleting removes the server and its saved world for good.</span><button className="btn danger" disabled={busy || !off} onClick={del}>Delete server</button></div>
+        {!guest && <div className="box row" style={{ justifyContent: "space-between" }}><span className="small text-muted-foreground">Deleting removes the server and its saved world for good.</span><button className="btn danger" disabled={busy || !off} onClick={del}>Delete server</button></div>}
       </>)}
       {tab === "console" && <Console srv={srv} live={lv} />}
       {tab === "players" && <Players srv={srv} lv={lv} />}

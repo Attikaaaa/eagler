@@ -54,7 +54,7 @@ export default function Saves() {
       )}
       <h3 className="font-pixel" style={{ marginTop: "1rem" }}>Cloud sync</h3>
       <p className="text-muted-foreground small">Singleplayer worlds follow you to every device: synced automatically (on start, then every 3 min while playing). Needs the GitHub token from the Servers page. Saves are stored in the public repo, so anyone could download them.</p>
-      {cl?.token ? <><button className="opt" disabled={syncing} onClick={sync}>{syncing ? "Syncing..." : "Sync now"}</button><span className="small"> Last sync: <b>{cl.last ? new Date(cl.last.at).toLocaleString() : "never"}</b></span></> : <p className="small">Connect GitHub on the <a className="link" href="#/servers">Servers</a> page first.</p>}
+      {cl?.token ? <><button className="opt" disabled={syncing} onClick={sync}>{syncing ? "Syncing..." : "Sync now"}</button><span className="small"> Last sync: <b>{cl.last ? new Date(cl.last.at).toLocaleString() : "never"}</b></span></> : <p className="small">Worlds from the cloud load by themselves, no login. To also upload what you play on this device, connect GitHub once on the <a className="link" href="#/servers">Servers</a> page.</p>}
       {msg && <p className="small" style={{ marginTop: ".5rem" }}>{msg}</p>}
     </div>
   );

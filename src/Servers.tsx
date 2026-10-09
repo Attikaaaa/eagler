@@ -20,18 +20,17 @@ export default function Servers({ sel }: { sel: string | null }) {
   const [busy, setBusy] = useState(false);
 
   const refresh = useCallback(async () => {
-    if (!tok) return;
     try { setItems(await listServers()); setErr(""); } catch (e) { setErr(String(e)); }
   }, [tok]);
-  useEffect(() => { refresh(); const i = setInterval(refresh, 8000); return () => clearInterval(i); }, [refresh]);
+  useEffect(() => { refresh(); if (!tok) return; const i = setInterval(refresh, 8000); return () => clearInterval(i); }, [refresh, tok]); // guests load once (GitHub rate limit)
 
   // the open server is fetched directly, so a freshly created one shows up without waiting for the list
   const [direct, setDirect] = useState<Srv | null>(null);
   const loadOne = useCallback(async () => {
-    if (!sel || !tok) { setDirect(null); return; }
+    if (!sel) { setDirect(null); return; }
     try { setDirect(await getServer(sel)); } catch { /* keep last */ }
   }, [sel, tok]);
-  useEffect(() => { setDirect(null); loadOne(); const i = setInterval(loadOne, 4000); return () => clearInterval(i); }, [loadOne]);
+  useEffect(() => { setDirect(null); loadOne(); const i = setInterval(loadOne, tok ? 4000 : 20000); return () => clearInterval(i); }, [loadOne, tok]);
 
   const create = async () => {
     setBusy(true);
@@ -44,33 +43,22 @@ export default function Servers({ sel }: { sel: string | null }) {
     setBusy(false);
   };
 
-  if (!tok) return (
-    <div className="page narrow">
-      <div className="hero2">
-        <h1 className="font-pixel">Your own server</h1>
-        <p className="text-muted-foreground">A real multiplayer server that runs on GitHub, not on your computer. Always on, world saved automatically, join from any device.</p>
-      </div>
-      <div className="box">
-        <ol className="steps">
-          <li><b>Create a token</b> (one click, tick nothing else, then press <i>Generate token</i> at the bottom of the page).<br />
-            <a className="btn" target="_blank" rel="noreferrer" href="https://github.com/settings/tokens/new?scopes=repo,workflow&description=eagler-servers">Open GitHub token page</a></li>
-          <li><b>Paste it here.</b> It stays only in this browser.
-            <input className="field" placeholder="ghp_..." value={draft} onChange={(e) => setDraft(e.target.value.trim())} />
-            <button className="btn primary" disabled={!draft} onClick={() => { localStorage.setItem(TK, draft); setTok(draft); }}>Connect</button></li>
-        </ol>
-      </div>
-    </div>
-  );
-
-  if (sel) return direct ? <ServerPanel srv={direct} reload={() => { loadOne(); refresh(); }} /> : <div className="page"><p className="text-muted-foreground">Loading server... <a className="link" href="#/servers">Back</a></p></div>;
+  if (sel) return direct ? <ServerPanel guest={!tok} srv={direct} reload={() => { loadOne(); refresh(); }} /> : <div className="page"><p className="text-muted-foreground">Loading server... <a className="link" href="#/servers">Back</a></p></div>;
 
   return (
     <div className="page">
       <div className="hero2">
         <h1 className="font-pixel">Servers</h1>
-        <button className="link" onClick={() => { localStorage.removeItem(TK); setTok(""); }}>Disconnect GitHub</button>
+        {tok && <button className="link" onClick={() => { localStorage.removeItem(TK); setTok(""); }}>Disconnect GitHub</button>}
       </div>
-      <div className="box">
+      {!tok && <div className="box"><h3>Guest mode</h3><p className="small text-muted-foreground">You can see the servers and join them without anything. To create, start or stop servers, connect GitHub once:</p><ol className="steps">
+          <li><b>Create a token</b> (one click, tick nothing else, then press <i>Generate token</i> at the bottom of the page).<br />
+            <a className="btn" target="_blank" rel="noreferrer" href="https://github.com/settings/tokens/new?scopes=repo,workflow&description=eagler-servers">Open GitHub token page</a></li>
+          <li><b>Paste it here.</b> It stays only in this browser.
+            <input className="field" placeholder="ghp_..." value={draft} onChange={(e) => setDraft(e.target.value.trim())} />
+            <button className="btn primary" disabled={!draft} onClick={() => { localStorage.setItem(TK, draft); setTok(draft); }}>Connect</button></li>
+        </ol></div>}
+      {tok && <div className="box">
         <h3>New server</h3>
         <div className="row" style={{ marginBottom: ".7rem" }}>
           <input className="field" style={{ margin: 0, flex: 1 }} placeholder="Server name" value={name} onChange={(e) => setName(e.target.value)} />
@@ -88,7 +76,7 @@ export default function Servers({ sel }: { sel: string | null }) {
           <label key={p.id} className="pl"><input type="checkbox" checked={plug.includes(p.id)} onChange={(e) => setPlug(e.target.checked ? [...plug, p.id] : plug.filter((x) => x !== p.id))} /> <b>{p.name}</b> <span className="small text-muted-foreground">{p.desc}</span></label>
         ))}</div>
         <button className="btn primary" disabled={busy} onClick={create}>Create server</button>
-      </div>
+      </div>}
       {err && <p className="err">{err}</p>}
       {items && items.length > 0 && (() => {
         const on = items.filter((x) => x.status === "running");
