@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import os from "node:os";
+import { importEpk, importZip } from "./importworld.mjs";
 
 const ID = process.env.SERVER_ID, REPO = process.env.GITHUB_REPOSITORY, TOKEN = process.env.GITHUB_TOKEN;
 const RUN_ID = process.env.GITHUB_RUN_ID, GENERATION = Number(process.env.GENERATION || 1);
@@ -184,6 +185,29 @@ const st0 = await getState();
 const name = st0?.name || ID;
 await patch({ status: "starting", runId: RUN_ID, address: null, addresses: {}, players: 0 });
 const had = await restore();
+if (st0?.importPending) {
+  const imp = st0.importPending, UP = `uploads/${ID}.bin`, f = path.join(TMP, "upload.bin");
+  try {
+    log("importing uploaded world", imp.name);
+    const r = await api(`contents/${UP}?ref=data`, { headers: { Accept: "application/vnd.github.raw" } });
+    if (!r.ok) throw new Error("the uploaded file is missing, upload it again");
+    fs.writeFileSync(f, Buffer.from(await r.arrayBuffer()));
+    if (had) { // keep the old world as a separate downloadable backup
+      const bk = path.join(TMP, `backup-${ID}-before-import.tgz`);
+      sh("tar", ["czf", bk, "--exclude=*.jar", "--exclude=./logs", "-C", DIR, "."]);
+      sh("gh", ["release", "upload", "data", bk, "-R", REPO, "--clobber"]);
+    }
+    fs.mkdirSync(DIR, { recursive: true });
+    const msg = imp.kind === "epk" ? importEpk(f, DIR) : importZip(f, DIR);
+    log(msg);
+    const meta = await api(`contents/${UP}?ref=data`); const mj = await meta.json();
+    await api(`contents/${UP}`, { method: "DELETE", body: JSON.stringify({ message: "import done", branch: "data", sha: mj.sha }) });
+    await patch({ importPending: null, importResult: { ok: true, msg, name: imp.name, at: Date.now() } });
+  } catch (e) {
+    log("import failed:", String(e.message || e));
+    await patch({ importPending: null, importResult: { ok: false, msg: String(e.message || e), name: imp.name, at: Date.now() } });
+  }
+}
 if (!had) log("no saved world, creating a new one");
 await provision(name, st0, !had);
 

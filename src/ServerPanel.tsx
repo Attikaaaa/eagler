@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { deleteServerFile, dispatch, getConsole, saveServer, sendCommand, worldBackups, type Settings, type Srv } from "./gh";
+import { deleteServerFile, dispatch, getConsole, saveServer, sendCommand, uploadWorld, worldBackups, type Settings, type Srv } from "./gh";
 import { LABEL } from "./Servers";
 import { DEFAULT_PLUGINS, PLUGINS } from "./plugins";
 
@@ -151,6 +151,28 @@ function SettingsTab({ srv, reload }: { srv: Srv; reload: () => void }) {
   );
 }
 
+function ImportWorld({ srv }: { srv: Srv }) {
+  const [step, setStep] = useState(""); const [err, setErr] = useState("");
+  const pick = async (f?: File) => {
+    if (!f) return; setErr("");
+    if (!confirm(`Replace the world of "${srv.name}" with "${f.name}"? Your current world is kept as a separate backup.`)) return;
+    try { await uploadWorld(srv.id, f, setStep); setStep("Uploaded. Restart the server to load it."); } catch (e) { setErr(String(e)); setStep(""); }
+  };
+  const r = srv.importResult;
+  return (
+    <div className="box">
+      <h3>Import a world</h3>
+      <p className="text-muted-foreground small">Upload an <b>.epk</b> exported from Eaglercraft singleplayer (1.8.8 or 1.12) or a <b>.zip</b> of a vanilla world folder (up to Minecraft 1.12.2). It is loaded the next time the server starts, and your current world is saved as a backup first.</p>
+      <label className="btn" style={{ cursor: "pointer" }}>Choose world file<input type="file" accept=".epk,.zip" hidden onChange={(e) => { pick(e.target.files?.[0]); e.target.value = ""; }} /></label>
+      {step && <p className="small" style={{ marginTop: ".5rem" }}>{step}</p>}
+      {srv.importPending && <p className="small" style={{ marginTop: ".5rem" }}>Waiting for restart: <b>{srv.importPending.name}</b> ({(srv.importPending.size / 1e6).toFixed(1)} MB)</p>}
+      {srv.importPending && srv.status === "running" && <button className="btn primary" style={{ marginTop: ".5rem" }} onClick={() => saveServer({ id: srv.id, want: "restart" }, "restart")}>Restart now to load it</button>}
+      {r && <p className="small" style={{ marginTop: ".5rem", color: r.ok ? "#2ecc71" : "#fa3439" }}>{r.ok ? "Loaded" : "Import failed"}: {r.name}. {r.msg}</p>}
+      {err && <p className="err">{err}</p>}
+    </div>
+  );
+}
+
 function Backups({ srv }: { srv: Srv }) {
   const [a, setA] = useState<Awaited<ReturnType<typeof worldBackups>> | null>(null);
   useEffect(() => { worldBackups(srv.id).then(setA); }, [srv.id, srv.status]);
@@ -217,9 +239,13 @@ export default function ServerPanel({ srv, reload }: { srv: Srv; reload: () => v
         <div className="box">
           <h3>Server address</h3>
           {srv.address ? (<>
+            <div className="row" style={{ marginBottom: ".6rem" }}>
+              <a className="btn primary" href={`play/1.12.2-js/?server=${encodeURIComponent(srv.address)}`}>Join this server</a>
+              <span className="small text-muted-foreground">Opens Minecraft 1.12.2 and connects automatically.</span>
+            </div>
             <div className="addr big"><code>{srv.address}</code><Copy text={srv.address} /></div>
             {all.filter(([, v]) => v !== srv.address).map(([k, v]) => <div className="addr" key={k}><code>{v}</code><Copy text={v} /><span className="small text-muted-foreground">backup address ({k})</span></div>)}
-            <ol className="steps small"><li>Open Minecraft 1.12.2 from the Play page.</li><li>Multiplayer &rarr; Direct Connect.</li><li>Paste the address and join.</li></ol>
+            <ol className="steps small"><li>Press <b>Join this server</b>, or</li><li>open Multiplayer &rarr; Direct Connect and paste the address.</li></ol>
           </>) : <p className="text-muted-foreground small">{off ? "Offline. Press Start, it is online in about a minute." : "Getting a public address..."}</p>}
           {srv.note && <p className="small text-muted-foreground">{srv.note}</p>}
           {st === "running" && <p className="small text-muted-foreground">The address changes when the server restarts (about every 6 hours). Copy the new one from here.</p>}
@@ -230,7 +256,7 @@ export default function ServerPanel({ srv, reload }: { srv: Srv; reload: () => v
       {tab === "console" && <Console srv={srv} />}
       {tab === "players" && <Players srv={srv} />}
       {tab === "settings" && <SettingsTab srv={srv} reload={reload} />}
-      {tab === "backups" && <Backups srv={srv} />}
+      {tab === "backups" && <><Backups srv={srv} /><ImportWorld srv={srv} /></>}
     </div>
   );
 }

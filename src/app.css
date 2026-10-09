@@ -80,3 +80,12 @@
 .plist{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:.5rem;margin-top:.5rem}
 .pl{display:flex;gap:.6rem;align-items:flex-start;background:var(--muted);padding:.65rem .8rem;border-radius:.9rem;cursor:pointer}
 .pl small{display:block;color:var(--muted-foreground);font-size:.78rem;margin-top:.15rem}
+
+/* ---- resource meters, fleet stats ---- */
+.dashstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:.75rem;margin-top:1rem}
+.chip{font-size:.72rem;padding:.12rem .55rem;border-radius:9999px;background:var(--input);color:var(--muted-foreground)}
+.scard .meta{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;margin-top:.25rem}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem 1.5rem;margin-top:.5rem}
+.meter .mtop{display:flex;justify-content:space-between;font-size:.82rem;color:var(--muted-foreground);margin-bottom:.35rem}.meter .mtop b{color:var(--foreground);font-weight:600}
+.mbar{height:8px;border-radius:9px;background:var(--input);overflow:hidden}.mbar i{display:block;height:100%;border-radius:9px;transition:width .6s}
+.spark{width:100%;height:34px;margin-top:.4rem;display:block}.spark.empty{background:var(--muted);border-radius:6px;opacity:.5}

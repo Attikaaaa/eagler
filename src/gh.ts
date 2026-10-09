@@ -8,6 +8,8 @@ export type Srv = {
   address?: string | null; addresses?: Record<string, string>; players?: number; playerNames?: string[];
   note?: string; error?: string; updated?: number; startedAt?: number; settings?: Settings; always?: boolean; host?: { cpus: number; totalGb: number; ramGb: number };
   metrics?: Metrics;
+  importPending?: { name: string; kind: string; size: number } | null;
+  importResult?: { ok: boolean; msg: string; name: string; at: number };
 };
 
 export const token = () => localStorage.getItem(TK) || "";
@@ -77,4 +79,18 @@ export async function deleteServerFile(id: string) {
     await new Promise((ok) => setTimeout(ok, 400));
   }
   throw new Error("Delete failed, try again");
+}
+
+export async function uploadWorld(id: string, file: File, onStep?: (s: string) => void) {
+  const kind = /\.epk$/i.test(file.name) ? "epk" : /\.zip$/i.test(file.name) ? "zip" : "";
+  if (!kind) throw new Error("Choose an .epk (Eaglercraft world export) or a .zip (vanilla world folder).");
+  if (file.size > 70e6) throw new Error("The file is too large (limit about 70 MB). Remove unused regions or use a smaller world.");
+  onStep?.("Reading file...");
+  const buf = new Uint8Array(await file.arrayBuffer());
+  let bin = ""; for (let i = 0; i < buf.length; i += 0x8000) bin += String.fromCharCode(...buf.subarray(i, i + 0x8000));
+  onStep?.("Uploading...");
+  const cur = await getJson<unknown>(`uploads/${id}.bin`).catch(() => null);
+  const r = await gh(`contents/uploads/${id}.bin`, { method: "PUT", body: JSON.stringify({ message: `upload ${id}`, branch: "data", content: btoa(bin), ...(cur ? { sha: cur.sha } : {}) }) });
+  if (!r.ok) throw new Error(`Upload failed (${r.status})`);
+  await saveServer({ id, importPending: { name: file.name, kind, size: file.size }, importResult: undefined }, "import");
 }
