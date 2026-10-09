@@ -12,7 +12,7 @@
   "cloudflare": "wss://want-fare-appears-selective.trycloudflare.com"
  },
  "players": 0,
- "updated": 1791536725738,
+ "updated": 1791536758598,
  "playerNames": [],
  "startedAt": 1791536698240,
  "settings": {
@@ -33,13 +33,13 @@
   "ramGb": 8
  },
  "metrics": {
-  "cpu": 16,
-  "memUsedMb": 3297,
+  "cpu": 1,
+  "memUsedMb": 3307,
   "memTotalMb": 15990,
-  "jvmMb": 2329,
+  "jvmMb": 2333,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.78,
+  "load1": 0.43,
   "hist": [
    {
     "cpu": 8,
@@ -48,8 +48,12 @@
    {
     "cpu": 16,
     "mem": 3297
+   },
+   {
+    "cpu": 1,
+    "mem": 3307
    }
   ],
-  "ts": 1791536723699
+  "ts": 1791536758478
  }
 }
