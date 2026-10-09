@@ -3,23 +3,20 @@
  "name": "My server",
  "version": "1.12.2",
  "want": "stop",
- "status": "stopping",
+ "status": "stopped",
  "always": true,
  "created": 1791539021583,
- "updated": 1791539047082,
- "runId": "37913131303",
- "address": "wss://fd3a98dea13cbb82-57-154-232-210.serveousercontent.com",
- "addresses": {
-  "stable": "wss://fd3a98dea13cbb82-57-154-232-210.serveousercontent.com",
-  "cloudflare": "wss://annex-pressure-maximum-hopes.trycloudflare.com"
- },
+ "updated": 1791539060668,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 5
  },
- "liveUrl": "https://foto-ltd-editions-lan.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 12,
   "memUsedMb": 1875,
