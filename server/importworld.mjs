@@ -89,11 +89,36 @@ function check(levelDat) {
 
 function resetWorld(dir) { for (const w of ["world", "world_nether", "world_the_end"]) fs.rmSync(path.join(dir, w), { recursive: true, force: true }); }
 
-export function importEpk(file, dir) {
+const DIMS = { minecraft_overworld: "overworld", minecraft_the_nether: "the_nether", minecraft_the_end: "the_end" };
+// 26.x EPK: chunk files are named <x+1900000><z+1900000> in hex (6+6 digits); dimension folders become world/dimensions/minecraft/<dim>
+function importEpk262(files, dir) {
+  const level = files.find((f) => f.type === "FILE" && f.name === "level.dat");
+  if (!level) throw new Error("The world has no level.dat.");
+  resetWorld(dir);
+  const w = path.join(dir, "world"), put = (rel, data) => { const f = path.join(w, rel); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, data); };
+  const regions = {}; let n = 0, other = 0;
+  for (const f of files) {
+    if (f.type !== "FILE") continue;
+    let m;
+    if ((m = f.name.match(/^(minecraft_\w+)\/(chunk|entities|poi)\/([0-9a-f]{12})$/)) && DIMS[m[1]]) {
+      const x = parseInt(m[3].slice(0, 6), 16) - 1900000, z = parseInt(m[3].slice(6), 16) - 1900000;
+      const kind = m[2] === "chunk" ? "region" : m[2], key = `dimensions/minecraft/${DIMS[m[1]]}/${kind}`;
+      (regions[key] ??= []).push({ x, z, nbt: gunzipMaybe(f.data) }); if (kind === "region") n++;
+    } else if ((m = f.name.match(/^(minecraft_\w+)\/data\/(.+)$/)) && DIMS[m[1]]) { put(`dimensions/minecraft/${DIMS[m[1]]}/data/${m[2]}`, f.data); other++; }
+    else if (/^(data|players)\//.test(f.name) || f.name === "level.dat") { put(f.name, f.data); other++; }
+  }
+  if (!n) throw new Error("The world contains no chunks.");
+  for (const [rel, list] of Object.entries(regions)) writeRegions(list, path.join(w, rel));
+  return `Imported ${n} chunks and ${other} data files from the 26.2 EPK. Join with the same player name as in singleplayer to get your inventory and position.`;
+}
+
+export function importEpk(file, dir, modern = false) {
   const files = readEpk(fs.readFileSync(file));
   const head = files.find((f) => f.type === "HEAD" && f.name === "file-type")?.data.toString("latin1");
   if (head === "epk/world152") throw new Error("This is a 1.5.2 world. Only 1.8.8 and 1.12 worlds are supported.");
+  if (head === "epk/world262") { if (!modern) throw new Error("This is a 26.2 world. Create a Minecraft 26.2 server to use it."); return importEpk262(files, dir); }
   if (head !== "epk/world188") throw new Error("This EPK is not a singleplayer world export.");
+  if (modern) throw new Error("This is a 1.12.2/1.8 world. Create a 1.12.2 server to use it.");
   const level = files.find((f) => f.type === "FILE" && f.name === "level.dat");
   if (!level) throw new Error("The world has no level.dat.");
   check(level.data);
@@ -113,13 +138,14 @@ export function importEpk(file, dir) {
   return `Imported ${n} chunks from the EPK.`;
 }
 
-export function importZip(file, dir) {
+export function importZip(file, dir, modern = false) {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "w-"));
   execFileSync("unzip", ["-q", "-o", file, "-d", tmp]);
   let root = null; const stack = [[tmp, 0]];
   while (stack.length) { const [d, depth] = stack.shift(); if (fs.existsSync(path.join(d, "level.dat"))) { root = d; break; } if (depth < 4) for (const e of fs.readdirSync(d, { withFileTypes: true })) if (e.isDirectory()) stack.push([path.join(d, e.name), depth + 1]); }
   if (!root) throw new Error("No level.dat found in the zip. Zip the world folder (the one that contains level.dat).");
-  check(fs.readFileSync(path.join(root, "level.dat")));
+  if (modern && !fs.existsSync(path.join(root, "dimensions"))) throw new Error("This world uses the old folder layout. Open it once in Minecraft 26.2, export it again (.epk or zip) and upload that.");
+  if (!modern) check(fs.readFileSync(path.join(root, "level.dat")));
   resetWorld(dir);
   const w = path.join(dir, "world"); fs.mkdirSync(w, { recursive: true });
   for (const e of fs.readdirSync(root)) {
@@ -134,5 +160,5 @@ export function importZip(file, dir) {
 
 if (process.argv[1]?.endsWith("importworld.mjs")) {
   const [, , file, kind, dir] = process.argv;
-  console.log(kind === "epk" ? importEpk(file, dir) : importZip(file, dir));
+  console.log(kind === "epk" ? importEpk(file, dir, process.argv[5] === "26") : importZip(file, dir, process.argv[5] === "26"));
 }

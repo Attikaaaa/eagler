@@ -268,7 +268,7 @@ if (st0?.importPending) {
       sh("gh", ["release", "upload", "data", bk, "-R", REPO, "--clobber"]);
     }
     fs.mkdirSync(DIR, { recursive: true });
-    const msg = imp.kind === "epk" ? importEpk(f, DIR) : importZip(f, DIR);
+    const msg = imp.kind === "epk" ? importEpk(f, DIR, MOD) : importZip(f, DIR, MOD);
     log(msg);
     const meta = await api(`contents/${UP}?ref=data`); const mj = await meta.json();
     await api(`contents/${UP}`, { method: "DELETE", body: JSON.stringify({ message: "import done", branch: "data", sha: mj.sha }) });
