@@ -3,7 +3,7 @@
  "name": "imp262",
  "version": "26.2",
  "want": "stop",
- "status": "stopping",
+ "status": "stopped",
  "always": true,
  "created": 1,
  "settings": {
@@ -13,14 +13,11 @@
   ]
  },
  "importPending": null,
- "runId": "37926658906",
- "address": "wss://41fe036aa441fc7b-172-182-202-198.serveousercontent.com",
- "addresses": {
-  "stable": "wss://41fe036aa441fc7b-172-182-202-198.serveousercontent.com",
-  "cloudflare": "wss://lucia-motherboard-bottom-bureau.trycloudflare.com"
- },
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
- "updated": 1791547259296,
+ "updated": 1791547267492,
  "importResult": {
   "ok": true,
   "msg": "Imported 2730 chunks and 25 data files from the 26.2 EPK. Join with the same player name as in singleplayer to get your inventory and position.",
@@ -32,7 +29,7 @@
   "totalGb": 16,
   "ramGb": 4
  },
- "liveUrl": "https://globe-ons-safari-leaf.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 2,
   "memUsedMb": 3807,
