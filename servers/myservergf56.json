@@ -6,7 +6,7 @@
  "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791539142146,
+ "updated": 1791539147639,
  "runId": "37913322763",
  "address": null,
  "addresses": {},
@@ -58,11 +58,13 @@
  },
  "playerNames": [],
  "liveUrl": null,
- "importPending": {
-  "name": "nigger2.epk",
-  "kind": "epk",
-  "size": 7601705
- },
+ "importPending": null,
  "startedAt": 1791539093394,
- "note": "Restarting..."
+ "note": "Restarting...",
+ "importResult": {
+  "ok": false,
+  "msg": "This EPK is not a singleplayer world export.",
+  "name": "nigger2.epk",
+  "at": 1791539147491
+ }
 }
