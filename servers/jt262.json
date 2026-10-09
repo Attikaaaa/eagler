@@ -17,7 +17,7 @@
   "cloudflare": "wss://filling-britannica-optimum-dot.trycloudflare.com"
  },
  "players": 0,
- "updated": 1791549653236,
+ "updated": 1791549665245,
  "host": {
   "cpus": 4,
   "totalGb": 16,
@@ -26,12 +26,12 @@
  "liveUrl": "https://frequent-ground-monte-chapel.trycloudflare.com",
  "metrics": {
   "cpu": 1,
-  "memUsedMb": 3583,
+  "memUsedMb": 3584,
   "memTotalMb": 15990,
   "jvmMb": 2521,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.86,
+  "load1": 0.73,
   "hist": [
    {
     "cpu": 15,
@@ -64,9 +64,21 @@
    {
     "cpu": 1,
     "mem": 3583
+   },
+   {
+    "cpu": 0,
+    "mem": 3584
+   },
+   {
+    "cpu": 0,
+    "mem": 3584
+   },
+   {
+    "cpu": 1,
+    "mem": 3584
    }
   ],
-  "ts": 1791549653040
+  "ts": 1791549665036
  },
  "playerNames": [],
  "startedAt": 1791549622730,
