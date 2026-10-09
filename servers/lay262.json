@@ -17,20 +17,20 @@
   "cloudflare": "wss://expense-acrobat-soil-exam.trycloudflare.com"
  },
  "players": 0,
- "updated": 1791546408825,
+ "updated": 1791546426631,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 3
  },
  "metrics": {
-  "cpu": 3,
-  "memUsedMb": 3563,
+  "cpu": 6,
+  "memUsedMb": 3562,
   "memTotalMb": 15990,
   "jvmMb": 2496,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.5,
+  "load1": 0.39,
   "hist": [
    {
     "cpu": 34,
@@ -71,9 +71,25 @@
    {
     "cpu": 3,
     "mem": 3563
+   },
+   {
+    "cpu": 1,
+    "mem": 3564
+   },
+   {
+    "cpu": 0,
+    "mem": 3564
+   },
+   {
+    "cpu": 0,
+    "mem": 3564
+   },
+   {
+    "cpu": 6,
+    "mem": 3562
    }
   ],
-  "ts": 1791546408650
+  "ts": 1791546426447
  },
  "playerNames": [],
  "liveUrl": "https://spin-formerly-smtp-magical.trycloudflare.com",
