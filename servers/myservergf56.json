@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791581233455,
+ "updated": 1791581250970,
  "runId": "37991383974",
  "address": "wss://klein-warranty-generous-buffer.trycloudflare.com",
  "addresses": {
@@ -20,30 +20,14 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3653,
+  "cpu": 2,
+  "memUsedMb": 3654,
   "memTotalMb": 15990,
   "jvmMb": 2555,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
   "load1": 0.02,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3645
-   },
-   {
-    "cpu": 2,
-    "mem": 3645
-   },
-   {
-    "cpu": 0,
-    "mem": 3646
-   },
-   {
-    "cpu": 0,
-    "mem": 3648
-   },
    {
     "cpu": 0,
     "mem": 3649
@@ -147,9 +131,25 @@
    {
     "cpu": 1,
     "mem": 3653
+   },
+   {
+    "cpu": 0,
+    "mem": 3654
+   },
+   {
+    "cpu": 0,
+    "mem": 3654
+   },
+   {
+    "cpu": 0,
+    "mem": 3654
+   },
+   {
+    "cpu": 2,
+    "mem": 3654
    }
   ],
-  "ts": 1791581233312
+  "ts": 1791581250789
  },
  "playerNames": [],
  "liveUrl": "https://experts-snap-frost-seekers.trycloudflare.com",
