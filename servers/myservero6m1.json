@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791585529790,
+ "updated": 1791585546801,
  "runId": "37992231613",
  "address": "wss://keeps-trim-standards-limousines.trycloudflare.com",
  "addresses": {
@@ -32,30 +32,14 @@
  },
  "liveUrl": "https://pitch-parks-little-favourites.trycloudflare.com",
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3500,
+  "cpu": 3,
+  "memUsedMb": 3509,
   "memTotalMb": 15990,
   "jvmMb": 2412,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.01,
+  "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3494
-   },
-   {
-    "cpu": 1,
-    "mem": 3494
-   },
-   {
-    "cpu": 0,
-    "mem": 3495
-   },
-   {
-    "cpu": 0,
-    "mem": 3495
-   },
    {
     "cpu": 0,
     "mem": 3496
@@ -159,9 +143,25 @@
    {
     "cpu": 1,
     "mem": 3500
+   },
+   {
+    "cpu": 0,
+    "mem": 3500
+   },
+   {
+    "cpu": 0,
+    "mem": 3499
+   },
+   {
+    "cpu": 1,
+    "mem": 3510
+   },
+   {
+    "cpu": 3,
+    "mem": 3509
    }
   ],
-  "ts": 1791585529633
+  "ts": 1791585546645
  },
  "playerNames": [],
  "startedAt": 1791580519019,
