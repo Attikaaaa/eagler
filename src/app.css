@@ -17,3 +17,8 @@
 .search{margin:0 0 1rem}
 .hero{font-size:1.6rem;margin:3rem 0 .5rem}
 @media(max-width:900px){.wrap{grid-template-columns:1fr}.panel{position:static}}
+.brand{font-size:1.9rem;color:#fff}
+.saves{background:var(--card);border-radius:1.5rem;padding:1rem;margin-top:1rem}
+.saves h3{font-size:1.05rem}
+.small{font-size:.8rem;margin-top:.5rem}
+.panel{position:static}

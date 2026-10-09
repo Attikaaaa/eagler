@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { VERSIONS, type Version } from "./versions";
-
-const NAV = ["Home", "Play", "Servers", "Worlds", "Resource Packs", "News"];
+import Saves from "./Saves";
 
 function Panel({ v }: { v: Version }) {
   const runs = Object.keys(v.runs);
@@ -10,7 +9,7 @@ function Panel({ v }: { v: Version }) {
   return (
     <aside className="panel">
       <img className="big" src={v.art ?? "dirt.png"} alt="" />
-      <h2 className="font-pixel ptitle">Eaglercraft {v.label}</h2>
+      <h2 className="font-pixel ptitle">Minecraft {v.label}</h2>
       <p className="text-muted-foreground pdesc">{v.desc}</p>
       {runs.length > 1 && (
         <select className="opt" value={pick} onChange={(e) => setPick(e.target.value)}>
@@ -31,12 +30,7 @@ export default function App() {
       <div className="site-wash -z-10" aria-hidden="true" />
       <header className="sticky top-3 z-50 mx-auto mt-3 w-full max-w-7xl px-3 sm:px-4">
         <div className="glass-bar flex h-14 items-center gap-4 rounded-2xl px-3 sm:h-16 sm:px-4">
-          <img src="brand/eagler-full-white.png" alt="Eaglercraft" className="h-7 w-auto" />
-          <nav className="hidden items-center gap-1 md:flex">
-            {NAV.map((n) => (
-              <a key={n} href="#" className={"rounded-full px-3 py-1.5 text-sm transition-colors " + (n === "Play" ? "bg-foreground/15 text-foreground" : "text-muted-foreground hover:text-foreground")}>{n}</a>
-            ))}
-          </nav>
+          <span className="font-brand brand">eagler</span>
         </div>
       </header>
       <main className="mx-auto max-w-7xl px-4 py-10">
@@ -49,15 +43,15 @@ export default function App() {
                   <div className="art">
                     {v.art ? <img src={v.art} alt="" /> : <span className="font-pixel artname">{v.label}</span>}
                   </div>
-                  <div className="row"><span>{v.label}</span><span className="playdot">&#9654;</span></div>
+                  <div className="row"><span>{v.label}</span><span className="playdot" onClick={(e) => { e.stopPropagation(); const h = Object.values(v.runs)[0]; if (h) location.href = h; }}>&#9654;</span></div>
                 </button>
               ))}
             </div>
           </section>
-          <Panel key={cur.id} v={cur} />
+          <div><Panel key={cur.id} v={cur} /><Saves /></div>
         </div>
         <h1 className="font-pixel hero">Minecraft in your browser</h1>
-        <p className="text-muted-foreground">Offline copy of Eaglercraft. Everything runs from local files, no internet needed.</p>
+        <p className="text-muted-foreground">Everything runs from local files, no internet needed.</p>
       </main>
     </div>
   );
