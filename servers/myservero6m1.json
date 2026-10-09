@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791562828557,
+ "updated": 1791562845711,
  "runId": "37952710823",
  "address": "wss://cart-revisions-ricky-belle.trycloudflare.com",
  "addresses": {
@@ -32,31 +32,15 @@
  },
  "liveUrl": "https://powell-vacancies-recommended-cruises.trycloudflare.com",
  "metrics": {
-  "cpu": 2,
-  "memUsedMb": 3509,
+  "cpu": 1,
+  "memUsedMb": 3467,
   "memTotalMb": 15990,
-  "jvmMb": 2438,
+  "jvmMb": 2388,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0,
+  "load1": 0.06,
   "hist": [
    {
-    "cpu": 1,
-    "mem": 3508
-   },
-   {
-    "cpu": 2,
-    "mem": 3509
-   },
-   {
-    "cpu": 1,
-    "mem": 3508
-   },
-   {
-    "cpu": 1,
-    "mem": 3508
-   },
-   {
     "cpu": 0,
     "mem": 3508
    },
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3509
+   },
+   {
+    "cpu": 0,
+    "mem": 3507
+   },
+   {
+    "cpu": 0,
+    "mem": 3467
+   },
+   {
+    "cpu": 0,
+    "mem": 3467
+   },
+   {
+    "cpu": 1,
+    "mem": 3467
    }
   ],
-  "ts": 1791562828404
+  "ts": 1791562845570
  },
  "playerNames": [],
  "startedAt": 1791560084575,
