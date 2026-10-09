@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791579980780,
- "runId": "37951709446",
- "address": "wss://coast-conditioning-tree-history.trycloudflare.com",
- "addresses": {
-  "stable": "wss://5a116977959781bc-20-127-247-155.serveousercontent.com",
-  "cloudflare": "wss://coast-conditioning-tree-history.trycloudflare.com"
- },
+ "updated": 1791579988190,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1791579979626
  },
  "playerNames": [],
- "liveUrl": "https://toward-salt-chassis-buys.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1791559612384,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
