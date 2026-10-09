@@ -12,7 +12,7 @@
   "cloudflare": "wss://pittsburgh-receipt-protein-integral.trycloudflare.com"
  },
  "players": 0,
- "updated": 1791536575907,
+ "updated": 1791536580357,
  "playerNames": [],
  "startedAt": 1791536337765,
  "settings": {
@@ -33,40 +33,20 @@
   "ramGb": 8
  },
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3379,
+  "cpu": 32,
+  "memUsedMb": 3313,
   "memTotalMb": 15990,
-  "jvmMb": 2369,
+  "jvmMb": 2172,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.07,
+  "load1": 0.92,
   "hist": [
    {
-    "cpu": 24,
-    "mem": 3435
-   },
-   {
-    "cpu": 7,
-    "mem": 3368
-   },
-   {
-    "cpu": 1,
-    "mem": 3374
-   },
-   {
-    "cpu": 1,
-    "mem": 3372
-   },
-   {
-    "cpu": 1,
-    "mem": 3375
-   },
-   {
-    "cpu": 1,
-    "mem": 3379
+    "cpu": 32,
+    "mem": 3313
    }
   ],
-  "ts": 1791536496100
+  "ts": 1791536580219
  },
  "note": "Restarting..."
 }
