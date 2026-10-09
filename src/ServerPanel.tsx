@@ -289,7 +289,7 @@ export default function ServerPanel({ srv, reload, guest = false }: { srv: Srv; 
                 <button className="ptb red" disabled={busy || off || srv.want === "stop"} onClick={stop}>Stop</button>
               </div>
               {srv.address && <a className="ptb join" target="_blank" rel="noopener" href={srv.version === "26.2" ? `play/26.2/?server=localhost&transport=wisp&wisp=${encodeURIComponent(srv.address)}${pn ? `&name=${pn}` : ""}` : `play/1.12.2-js/?server=${encodeURIComponent(srv.address)}`}>Join this server</a>}
-              {srv.note && <p className="small text-muted-foreground" style={{ marginTop: ".6rem" }}>{srv.note}</p>}
+              {srv.note && !run && <p className="small text-muted-foreground" style={{ marginTop: ".6rem" }}>{srv.note}</p>}
             </div>
           </div>
           <div className="pt-right"><Console srv={srv} live={lv} /></div>
