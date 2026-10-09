@@ -6,44 +6,28 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791550155442,
+ "updated": 1791550175572,
  "runId": "37913322763",
  "address": "wss://2c588b4ee923aeb9-20-171-37-172.serveousercontent.com",
  "addresses": {
   "stable": "wss://2c588b4ee923aeb9-20-171-37-172.serveousercontent.com",
   "cloudflare": "wss://rings-compaq-voted-archives.trycloudflare.com"
  },
- "players": 1,
+ "players": 2,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 4,
-  "memUsedMb": 3894,
+  "cpu": 35,
+  "memUsedMb": 3902,
   "memTotalMb": 15990,
-  "jvmMb": 2782,
+  "jvmMb": 2792,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
-  "load1": 0.03,
+  "load1": 0.02,
   "hist": [
-   {
-    "cpu": 2,
-    "mem": 3887
-   },
-   {
-    "cpu": 0,
-    "mem": 3887
-   },
-   {
-    "cpu": 0,
-    "mem": 3890
-   },
-   {
-    "cpu": 0,
-    "mem": 3891
-   },
    {
     "cpu": 2,
     "mem": 3891
@@ -147,12 +131,29 @@
    {
     "cpu": 4,
     "mem": 3894
+   },
+   {
+    "cpu": 3,
+    "mem": 3898
+   },
+   {
+    "cpu": 2,
+    "mem": 3899
+   },
+   {
+    "cpu": 5,
+    "mem": 3899
+   },
+   {
+    "cpu": 35,
+    "mem": 3902
    }
   ],
-  "ts": 1791550155271
+  "ts": 1791550175380
  },
  "playerNames": [
-  "Player8934"
+  "Player8934",
+  "jabrik"
  ],
  "liveUrl": "https://glucose-wisconsin-prep-star.trycloudflare.com",
  "importPending": null,
