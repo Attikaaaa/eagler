@@ -11,7 +11,7 @@ export default function Saves() {
     setSyncing(true);
     try {
       const a = await window.Keep.cloud.pull(), b = await window.Keep.cloud.push();
-      setMsg(b.reason === "conflict" ? "Another device saved at the same time. Your version was kept as a conflict copy in the repo (sync/conflict-*)." : b.reason === "too-big" ? "Saves are over 70 MB, too big for cloud sync." : b.reason === "shrunk" ? "Not synced: storage looks emptier than before." : b.ok ? (a.changed ? "Pulled newer saves from the cloud (reload the game page to see them). " : "") + (b.same ? "Already up to date." : `Uploaded (${b.mb} MB).`) : "Sync failed.");
+      setMsg(b.reason === "too-big" ? "Saves are over 70 MB, too big for cloud sync." : b.reason === "shrunk" ? "Not synced: storage looks emptier than before." : b.ok ? (a.changed ? "Pulled newer saves from the cloud (reload the game page to see them). " : "") + (b.same ? "Already up to date." : b.merged ? `Merged with the other device and uploaded (${b.mb} MB).` : `Uploaded (${b.mb} MB).`) : "Sync failed.");
     } catch (e) { setMsg(String(e)); }
     setSyncing(false); cloud();
   };

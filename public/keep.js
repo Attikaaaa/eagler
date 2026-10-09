@@ -107,7 +107,28 @@
     gwc = null; return "https://api.github.com";
   }
   const canWrite = async () => !!tk() || (await apiBase()).endsWith("/gh");
-  const ghx = async (p, o = {}) => fetch(`${await apiBase()}/repos/${REPO}/${p}`, { cache: "no-store", ...o, headers: { ...(tk() ? { Authorization: "Bearer " + tk() } : {}), Accept: "application/vnd.github+json", ...o.headers } });
+  // union of two snapshots; on shared keys `local` wins. The world list is merged line by line.
+  function mergeSnap(remote, local) {
+    const out = { v: 1, at: Date.now(), ls: { ...(remote.ls || {}), ...(local.ls || {}) }, idb: [] }, dbs = new Map(), td = new TextDecoder();
+    const lines = (v) => td.decode(unb64(v.data.$ab)).split("\n").map((x) => x.trim()).filter((x) => x && x !== "synctest");
+    for (const src of [remote, local]) for (const x of src.idb) {
+      let db = dbs.get(x.name); if (!db) dbs.set(x.name, (db = { name: x.name, version: x.version, stores: new Map() }));
+      db.version = Math.max(db.version, x.version);
+      for (const s of x.stores) {
+        let st = db.stores.get(s.name); if (!st) db.stores.set(s.name, (st = { name: s.name, keyPath: s.keyPath, auto: s.auto, entries: new Map() }));
+        for (const [k, v] of s.entries) {
+          const id = JSON.stringify(k), path = v && v.path;
+          if (typeof path === "string" && path.startsWith("worlds/synctest/")) continue; // leftovers of a sync test
+          let val = v;
+          if (path === "worlds_list.txt" && v.data && v.data.$ab) { const old = st.entries.get(id); const all = [...new Set([...(old ? lines(old[1]) : []), ...lines(v)])]; val = { ...v, data: { $ab: b64(new TextEncoder().encode(all.join("\n")).buffer) } }; }
+          st.entries.set(id, [k, val]);
+        }
+      }
+    }
+    for (const db of dbs.values()) out.idb.push({ name: db.name, version: db.version, stores: [...db.stores.values()].map((st) => ({ name: st.name, keyPath: st.keyPath, auto: st.auto, entries: [...st.entries.values()] })) });
+    return out;
+  }
+  const ghx = async (p, o = {}) => { for (let i = 0; ; i++) { try { return await fetch(`${await apiBase()}/repos/${REPO}/${p}`, { cache: "no-store", ...o, headers: { ...(tk() ? { Authorization: "Bearer " + tk() } : {}), Accept: "application/vnd.github+json", ...o.headers } }); } catch (e) { if (i >= 3) throw e; gwc = null; await new Promise((ok) => setTimeout(ok, 800 * (i + 1))); } } };
   const gz = async (str) => new Uint8Array(await new Response(new Blob([str]).stream().pipeThrough(new CompressionStream("gzip"))).arrayBuffer());
   const gunz = (buf) => new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream("gzip"))).text();
   const hashOf = async (d) => { const { at, ...rest } = d; const h = await crypto.subtle.digest("SHA-1", new TextEncoder().encode(JSON.stringify(rest))); return Array.from(new Uint8Array(h), (b) => b.toString(16).padStart(2, "0")).join(""); };
@@ -124,16 +145,15 @@
   // startup pull: remote snapshot is newer than what this browser last saw -> merge it in (before the game opens its storage)
   async function cloudPull() { // reading needs no token (public repo); only uploading does
     const sha = await remoteSha(), c = (await getMeta("cloud")) || {};
-    if (!sha || sha === c.sha) return { ok: true, changed: false };
+    if (!sha || (sha === c.sha && !c.needPull)) return { ok: true, changed: false };
     const here = await dump();
-    if ((await canWrite()) && size(here) > 0 && c.hash !== (await hashOf(here)) && c.sha) { // this browser has unsynced changes: keep them as a conflict copy first
-      await putFile(`sync/conflict-${Date.now()}.json.gz`, await gz(JSON.stringify(here)), null);
-    }
+    const unsynced = size(here) > 0 && !!c.sha && c.hash !== (await hashOf(here)); // this browser has changes the cloud has not seen
     const r = await ghx(`contents/${CF}?ref=data`, { headers: { Accept: "application/vnd.github.raw+json" } });
     if (!r.ok) throw new Error("cloud download " + r.status);
     const d = JSON.parse(await gunz(await r.arrayBuffer()));
-    loading = true; try { await load(d); } finally { loading = false; }
-    await setMeta("cloud", { sha, hash: await hashOf(await dump()), at: Date.now() });
+    const use = unsynced ? mergeSnap(d, here) : d; // local changes win, everything else is added
+    loading = true; try { await load(use); } finally { loading = false; }
+    await setMeta("cloud", { sha, hash: unsynced ? undefined : await hashOf(await dump()), at: Date.now() });
     return { ok: true, changed: true, n: size(d) };
   }
   async function cloudPush() {
@@ -145,9 +165,14 @@
     const bytes = await gz(JSON.stringify(d));
     if (bytes.length > 70e6) return { ok: false, reason: "too-big" };
     const sha = await remoteSha();
-    if (sha && c.sha && sha !== c.sha) { // another device saved in between: do not overwrite it, park ours as a conflict copy
-      await putFile(`sync/conflict-${Date.now()}.json.gz`, bytes, null);
-      return { ok: false, reason: "conflict" };
+    if (sha && c.sha && sha !== c.sha) { // another device saved in between: merge its saves with ours instead of overwriting
+      const r = await ghx(`contents/${CF}?ref=data`, { headers: { Accept: "application/vnd.github.raw+json" } });
+      if (!r.ok) throw new Error("cloud download " + r.status);
+      const mb = await gz(JSON.stringify(mergeSnap(JSON.parse(await gunz(await r.arrayBuffer())), d)));
+      if (mb.length > 70e6) return { ok: false, reason: "too-big" };
+      const ns = await putFile(CF, mb, sha);
+      await setMeta("cloud", { sha: ns, hash, at: Date.now(), needPull: true });
+      return { ok: true, n, mb: +(mb.length / 1e6).toFixed(1), merged: true };
     }
     const nsha = await putFile(CF, bytes, sha);
     await setMeta("cloud", { sha: nsha, hash, at: Date.now() });
@@ -225,7 +250,7 @@
     if (!(await canWrite())) { note("cloud service is starting, will retry"); pushTimer = setTimeout(pushNow, 15000); return; }
     if (!cloudReady) { pushTimer = setTimeout(pushNow, 3000); return; }
     pushing = true; note("uploading...");
-    try { const r = await cloudPush(); note(r.ok ? "saved " + new Date().toLocaleTimeString() : r.reason === "conflict" ? "conflict, kept as copy" : "not uploaded (" + r.reason + ")"); } catch (e) { note("upload failed"); console.warn("keep cloud:", e); }
+    try { const r = await cloudPush(); note(r.ok ? (r.merged ? "merged with other device " : "saved ") + new Date().toLocaleTimeString() : "not uploaded (" + r.reason + ")"); } catch (e) { note("upload failed"); console.warn("keep cloud:", e); }
     pushing = false;
   }
   const IOS = IDBObjectStore.prototype;

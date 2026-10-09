@@ -28,8 +28,12 @@ export async function apiBase(): Promise<string> {
   throw new Error("The control service is starting up (it takes about a minute). Try again shortly.");
 }
 export const gh = async (p: string, o: RequestInit = {}) => {
-  const base = await apiBase();
-  return fetch(`${base}/repos/${REPO}/${p}`, { cache: "no-store", ...o, headers: { ...(token() ? { Authorization: `Bearer ${token()}` } : {}), Accept: "application/vnd.github+json" } });
+  for (let i = 0; ; i++) {
+    try {
+      const base = await apiBase();
+      return await fetch(`${base}/repos/${REPO}/${p}`, { cache: "no-store", ...o, headers: { ...(token() ? { Authorization: `Bearer ${token()}` } : {}), Accept: "application/vnd.github+json" } });
+    } catch (e) { if (i >= 3) throw e; gw = null; await new Promise((ok) => setTimeout(ok, 800 * (i + 1))); } // network blip or the gateway moved: look it up again
+  }
 };
 const b64 = (o: unknown) => btoa(unescape(encodeURIComponent(JSON.stringify(o, null, 1))));
 const unb64 = (s: string) => JSON.parse(decodeURIComponent(escape(atob(s.replace(/\n/g, "")))));
