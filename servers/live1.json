@@ -4,22 +4,19 @@
  "version": "1.12.2",
  "created": 1791537691000,
  "want": "stop",
- "status": "stopping",
+ "status": "stopped",
  "always": true,
- "runId": "37910764843",
- "address": "wss://126bb4075132a1b0-20-169-53-44.serveousercontent.com",
- "addresses": {
-  "stable": "wss://126bb4075132a1b0-20-169-53-44.serveousercontent.com",
-  "cloudflare": "wss://chargers-meters-dale-tmp.trycloudflare.com"
- },
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
- "updated": 1791537853126,
+ "updated": 1791537860790,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 5
  },
- "liveUrl": "https://combo-solved-sheep-westminster.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 2,
   "memUsedMb": 3437,
