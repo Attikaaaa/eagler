@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791539094693,
+ "updated": 1791539102493,
  "runId": "37913170389",
  "address": "wss://231f8d11368f32e5-172-183-94-137.serveousercontent.com",
  "addresses": {
@@ -20,20 +20,28 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 19,
-  "memUsedMb": 1934,
+  "cpu": 3,
+  "memUsedMb": 3625,
   "memTotalMb": 15989,
-  "jvmMb": 876,
-  "diskUsedGb": 58.5,
+  "jvmMb": 2559,
+  "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
-  "load1": 0.45,
+  "load1": 1.44,
   "hist": [
    {
     "cpu": 19,
     "mem": 1934
+   },
+   {
+    "cpu": 50,
+    "mem": 3625
+   },
+   {
+    "cpu": 3,
+    "mem": 3625
    }
   ],
-  "ts": 1791539066420
+  "ts": 1791539102400
  },
  "playerNames": [],
  "liveUrl": "https://october-gordon-galaxy-amend.trycloudflare.com",
