@@ -1,1 +1,171 @@
-{"id": "imp262", "name": "imp262", "version": "26.2", "want": "stop", "status": "running", "always": true, "created": 1, "settings": {"ramGb": 4, "plugins": ["spark"]}, "importPending": null, "runId": "37926658906", "address": "wss://41fe036aa441fc7b-172-182-202-198.serveousercontent.com", "addresses": {"stable": "wss://41fe036aa441fc7b-172-182-202-198.serveousercontent.com", "cloudflare": "wss://lucia-motherboard-bottom-bureau.trycloudflare.com"}, "players": 0, "updated": 1791547240734, "importResult": {"ok": true, "msg": "Imported 2730 chunks and 25 data files from the 26.2 EPK. Join with the same player name as in singleplayer to get your inventory and position.", "name": "nigger2.epk", "at": 1791546907876}, "host": {"cpus": 4, "totalGb": 16, "ramGb": 4}, "liveUrl": "https://globe-ons-safari-leaf.trycloudflare.com", "metrics": {"cpu": 1, "memUsedMb": 3807, "memTotalMb": 15990, "jvmMb": 2693, "diskUsedGb": 58.6, "diskTotalGb": 144.3, "load1": 0.08, "hist": [{"cpu": 4, "mem": 3773}, {"cpu": 3, "mem": 3775}, {"cpu": 4, "mem": 3775}, {"cpu": 4, "mem": 3775}, {"cpu": 7, "mem": 3775}, {"cpu": 3, "mem": 3777}, {"cpu": 2, "mem": 3777}, {"cpu": 17, "mem": 3803}, {"cpu": 0, "mem": 3804}, {"cpu": 2, "mem": 3803}, {"cpu": 1, "mem": 3802}, {"cpu": 1, "mem": 3813}, {"cpu": 0, "mem": 3814}, {"cpu": 2, "mem": 3813}, {"cpu": 2, "mem": 3815}, {"cpu": 1, "mem": 3817}, {"cpu": 1, "mem": 3797}, {"cpu": 2, "mem": 3798}, {"cpu": 0, "mem": 3798}, {"cpu": 1, "mem": 3798}, {"cpu": 1, "mem": 3800}, {"cpu": 3, "mem": 3800}, {"cpu": 0, "mem": 3800}, {"cpu": 0, "mem": 3801}, {"cpu": 0, "mem": 3803}, {"cpu": 2, "mem": 3803}, {"cpu": 0, "mem": 3803}, {"cpu": 1, "mem": 3804}, {"cpu": 0, "mem": 3806}, {"cpu": 1, "mem": 3807}], "ts": 1791547240556}, "playerNames": [], "startedAt": 1791546964826, "note": null}
+{
+ "id": "imp262",
+ "name": "imp262",
+ "version": "26.2",
+ "want": "stop",
+ "status": "running",
+ "always": true,
+ "created": 1,
+ "settings": {
+  "ramGb": 4,
+  "plugins": [
+   "spark"
+  ]
+ },
+ "importPending": null,
+ "runId": "37926658906",
+ "address": "wss://41fe036aa441fc7b-172-182-202-198.serveousercontent.com",
+ "addresses": {
+  "stable": "wss://41fe036aa441fc7b-172-182-202-198.serveousercontent.com",
+  "cloudflare": "wss://lucia-motherboard-bottom-bureau.trycloudflare.com"
+ },
+ "players": 0,
+ "updated": 1791547258093,
+ "importResult": {
+  "ok": true,
+  "msg": "Imported 2730 chunks and 25 data files from the 26.2 EPK. Join with the same player name as in singleplayer to get your inventory and position.",
+  "name": "nigger2.epk",
+  "at": 1791546907876
+ },
+ "host": {
+  "cpus": 4,
+  "totalGb": 16,
+  "ramGb": 4
+ },
+ "liveUrl": "https://globe-ons-safari-leaf.trycloudflare.com",
+ "metrics": {
+  "cpu": 2,
+  "memUsedMb": 3807,
+  "memTotalMb": 15990,
+  "jvmMb": 2693,
+  "diskUsedGb": 58.6,
+  "diskTotalGb": 144.3,
+  "load1": 0.07,
+  "hist": [
+   {
+    "cpu": 7,
+    "mem": 3775
+   },
+   {
+    "cpu": 3,
+    "mem": 3777
+   },
+   {
+    "cpu": 2,
+    "mem": 3777
+   },
+   {
+    "cpu": 17,
+    "mem": 3803
+   },
+   {
+    "cpu": 0,
+    "mem": 3804
+   },
+   {
+    "cpu": 2,
+    "mem": 3803
+   },
+   {
+    "cpu": 1,
+    "mem": 3802
+   },
+   {
+    "cpu": 1,
+    "mem": 3813
+   },
+   {
+    "cpu": 0,
+    "mem": 3814
+   },
+   {
+    "cpu": 2,
+    "mem": 3813
+   },
+   {
+    "cpu": 2,
+    "mem": 3815
+   },
+   {
+    "cpu": 1,
+    "mem": 3817
+   },
+   {
+    "cpu": 1,
+    "mem": 3797
+   },
+   {
+    "cpu": 2,
+    "mem": 3798
+   },
+   {
+    "cpu": 0,
+    "mem": 3798
+   },
+   {
+    "cpu": 1,
+    "mem": 3798
+   },
+   {
+    "cpu": 1,
+    "mem": 3800
+   },
+   {
+    "cpu": 3,
+    "mem": 3800
+   },
+   {
+    "cpu": 0,
+    "mem": 3800
+   },
+   {
+    "cpu": 0,
+    "mem": 3801
+   },
+   {
+    "cpu": 0,
+    "mem": 3803
+   },
+   {
+    "cpu": 2,
+    "mem": 3803
+   },
+   {
+    "cpu": 0,
+    "mem": 3803
+   },
+   {
+    "cpu": 1,
+    "mem": 3804
+   },
+   {
+    "cpu": 0,
+    "mem": 3806
+   },
+   {
+    "cpu": 1,
+    "mem": 3807
+   },
+   {
+    "cpu": 0,
+    "mem": 3807
+   },
+   {
+    "cpu": 1,
+    "mem": 3806
+   },
+   {
+    "cpu": 0,
+    "mem": 3807
+   },
+   {
+    "cpu": 2,
+    "mem": 3807
+   }
+  ],
+  "ts": 1791547257919
+ },
+ "playerNames": [],
+ "startedAt": 1791546964826,
+ "note": null
+}
