@@ -320,7 +320,7 @@ getBacklog = () => consoleBuf.slice(-200);
 let exited = false; mc.on("exit", (c) => { exited = true; log("minecraft exited", c); });
 
 let addrs = {};
-tunnels(async (a) => { addrs = a; await patch({ addresses: a, address: a.stable || a.cloudflare || null }); log("address", a); }, MOD ? 25570 : 25565);
+tunnels(async (a) => { addrs = a; await patch({ addresses: a, address: a.cloudflare || a.stable || null }); log("address", a); }, MOD ? 25570 : 25565);
 liveTunnel(async (u) => { await patch({ liveUrl: u }); log("live url", u); });
 
 async function flush() {
@@ -353,7 +353,7 @@ while (true) {
     const c = (await getJson(CMD))?.data;
     for (const it of (c?.items || []).filter((x) => x.n > cmdN)) { cmdN = it.n; log("console command:", it.cmd); if (!exited) cmd(String(it.cmd).replace(/[\r\n]/g, " ").replace(/^\//, "")); }
   }
-  if (running && !runningMarked && (addrs.stable || addrs.cloudflare)) { runningMarked = true; startedAt = Date.now(); await patch({ startedAt }); await patch({ status: "running", note: null, address: addrs.stable || addrs.cloudflare, addresses: addrs }); }
+  if (running && !runningMarked && (addrs.cloudflare || addrs.stable)) { runningMarked = true; startedAt = Date.now(); await patch({ startedAt }); await patch({ status: "running", note: null, address: addrs.cloudflare || addrs.stable, addresses: addrs }); }
   if (Date.now() - lastBeat > 30e3) {
     lastBeat = Date.now();
     const s = await getState();

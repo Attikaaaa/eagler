@@ -93,7 +93,7 @@ export default function Servers({ sel }: { sel: string | null }) {
             <div className="sicon"><span className={"dot " + s.status} /></div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <b className="ell">{s.name}</b>
-              <div className="meta"><span className="chip">Minecraft {s.version}</span>{s.address && s.status === "running" && <span className="chip">{s.address.replace(/^wss?:\/\//, "")}</span>}</div>
+              <div className="meta"><span className="chip">Minecraft {s.version}</span>{(s.addresses?.cloudflare || s.address) && s.status === "running" && <span className="chip">{(s.addresses?.cloudflare || s.address)!.replace(/^wss?:\/\//, "")}</span>}</div>
             </div>
             <div className="pt-res">
               <span>{s.status === "running" && s.metrics ? `${s.metrics.cpu}%` : "—"}<small>CPU</small></span>

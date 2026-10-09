@@ -259,6 +259,7 @@ export default function ServerPanel({ srv, reload, guest = false }: { srv: Srv; 
   });
   const st = srv.status, off = st === "stopped";
   const all = Object.entries(srv.addresses ?? {});
+  const addr = srv.addresses?.cloudflare || srv.address; // the cloudflare address carries WebSockets reliably
 
   const m = lv.metrics ?? srv.metrics, run = st === "running", gib = (x: number) => (x / 1024).toFixed(2) + " GiB";
   const ram = srv.settings?.ramGb ?? 5;
@@ -275,7 +276,7 @@ export default function ServerPanel({ srv, reload, guest = false }: { srv: Srv; 
               <div className="pt-name"><span className={"pt-dot " + st} />{srv.name}</div>
               <div className={"pt-state " + st}>{label}</div>
               <dl className="pt-dl">
-                <dt>Address</dt><dd>{srv.address ? <><code>{srv.address.replace(/^wss?:\/\//, "")}</code> <Copy text={srv.address} /></> : "—"}</dd>
+                <dt>Address</dt><dd>{addr ? <><code>{addr.replace(/^wss?:\/\//, "")}</code> <Copy text={addr} /></> : "—"}</dd>
                 <dt>Version</dt><dd>Minecraft {srv.version} · Paper</dd>
                 <dt>Uptime</dt><dd>{run && srv.startedAt ? up(now - srv.startedAt) : "Offline"}</dd>
                 <dt>CPU load</dt><dd>{run && m ? `${m.cpu}%` : "—"} <small>/ {(srv.host?.cpus ?? 4) * 100}%</small></dd>
@@ -288,7 +289,7 @@ export default function ServerPanel({ srv, reload, guest = false }: { srv: Srv; 
                 <button className="ptb blue" disabled={busy || off || srv.want === "stop"} onClick={restart}>Restart</button>
                 <button className="ptb red" disabled={busy || off || srv.want === "stop"} onClick={stop}>Stop</button>
               </div>
-              {srv.address && <a className="ptb join" target="_blank" rel="noopener" href={srv.version === "26.2" ? `play/26.2/?server=localhost&transport=wisp&wisp=${encodeURIComponent(srv.address)}${pn ? `&name=${pn}` : ""}` : `play/1.12.2-js/?server=${encodeURIComponent(srv.address)}`}>Join this server</a>}
+              {addr && <a className="ptb join" target="_blank" rel="noopener" href={srv.version === "26.2" ? `play/26.2/?server=localhost&transport=wisp&wisp=${encodeURIComponent(addr)}${pn ? `&name=${pn}` : ""}` : `play/1.12.2-js/?server=${encodeURIComponent(addr)}`}>Join this server</a>}
               {srv.note && !run && <p className="small text-muted-foreground" style={{ marginTop: ".6rem" }}>{srv.note}</p>}
             </div>
           </div>
@@ -304,14 +305,14 @@ export default function ServerPanel({ srv, reload, guest = false }: { srv: Srv; 
       {tab === "network" && (
         <div className="box">
           <h3>Network</h3>
-          {srv.address ? (<>
+          {addr ? (<>
             <div className="row" style={{ marginBottom: ".6rem" }}>
               <input className="field" style={{ margin: 0, width: "11rem" }} placeholder="Your player name" value={pn} onChange={(e) => { const v = e.target.value.replace(/[^A-Za-z0-9_]/g, "").slice(0, 16); setPn(v); localStorage.setItem("eagler-name", v); }} />
-              <a className="btn primary" target="_blank" rel="noopener" href={srv.version === "26.2" ? `play/26.2/?server=localhost&transport=wisp&wisp=${encodeURIComponent(srv.address)}${pn ? `&name=${pn}` : ""}` : `play/1.12.2-js/?server=${encodeURIComponent(srv.address)}`}>Join this server</a>
+              <a className="btn primary" target="_blank" rel="noopener" href={srv.version === "26.2" ? `play/26.2/?server=localhost&transport=wisp&wisp=${encodeURIComponent(addr)}${pn ? `&name=${pn}` : ""}` : `play/1.12.2-js/?server=${encodeURIComponent(addr)}`}>Join this server</a>
               <span className="small text-muted-foreground">Opens Minecraft {srv.version} and connects automatically.</span>
             </div>
-            <div className="addr big"><code>{srv.address}</code><Copy text={srv.address} /></div>
-            {all.filter(([, v]) => v !== srv.address).map(([k, v]) => <div className="addr" key={k}><code>{v}</code><Copy text={v} /><span className="small text-muted-foreground">backup address ({k})</span></div>)}
+            <div className="addr big"><code>{addr}</code><Copy text={addr} /></div>
+            {all.filter(([, v]) => v !== addr).map(([k, v]) => <div className="addr" key={k}><code>{v}</code><Copy text={v} /><span className="small text-muted-foreground">backup address ({k})</span></div>)}
             <ol className="steps small"><li>Press <b>Join this server</b>, or</li>{srv.version !== "26.2" && <li>open Multiplayer &rarr; Direct Connect and paste the address.</li>}</ol>
           </>) : <p className="text-muted-foreground small">{off ? "Offline. Press Start on the Console page, it is online in about a minute." : "Getting a public address..."}</p>}
           {st === "running" && <p className="small text-muted-foreground">The address changes when the server restarts (about every 6 hours). Copy the new one from here.</p>}
