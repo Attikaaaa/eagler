@@ -240,7 +240,7 @@ export default function ServerPanel({ srv, reload }: { srv: Srv; reload: () => v
           <h3>Server address</h3>
           {srv.address ? (<>
             <div className="row" style={{ marginBottom: ".6rem" }}>
-              <a className="btn primary" href={`play/1.12.2-js/?server=${encodeURIComponent(srv.address)}`}>Join this server</a>
+              <a className="btn primary" target="_blank" rel="noopener" href={`play/1.12.2-js/?server=${encodeURIComponent(srv.address)}`}>Join this server</a>
               <span className="small text-muted-foreground">Opens Minecraft 1.12.2 and connects automatically.</span>
             </div>
             <div className="addr big"><code>{srv.address}</code><Copy text={srv.address} /></div>
