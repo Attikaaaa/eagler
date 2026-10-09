@@ -311,7 +311,7 @@ const onLine = (l) => {
   consoleBuf.push(clean); if (consoleBuf.length > 250) consoleBuf.shift(); consoleDirty = true; emit("log", clean);
   logTail.push(l); if (logTail.length > 60) logTail.shift();
   let m;
-  if (/Done \(/.test(l)) { running = true; }
+  if (/Done \(/.test(l)) { running = true; try { log("world dirs:", sh("find", ["world", "-maxdepth", "5", "-type", "d"], { cwd: DIR }).trim().split("\n").slice(0, 40).join(" | ")); } catch {} }
   const before = players.size;
   if ((m = l.match(/\]: (\w+) joined the game/)) || (m = l.match(/\]: (\w+)\[\/[^\]]*\] logged in with entity id/))) { players.add(m[1]); lastActive = Date.now(); }
   if ((m = l.match(/\]: (\w+) left the game/)) || (m = l.match(/\]: (\w+) lost connection/))) { players.delete(m[1]); lastActive = Date.now(); }
