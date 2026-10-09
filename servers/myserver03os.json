@@ -2,11 +2,11 @@
  "id": "myserver03os",
  "name": "My server",
  "version": "1.12.2",
- "want": "restart",
- "status": "stopped",
+ "want": "run",
+ "status": "starting",
  "always": true,
  "created": 1791538201924,
- "updated": 1791538315076,
+ "updated": 1791538328564,
  "runId": null,
  "address": null,
  "addresses": {},
@@ -91,6 +91,5 @@
   "name": "nigger2.epk",
   "kind": "epk",
   "size": 7601705
- },
- "error": "[09:31:50 INFO]: [LuckPerms] Starting shutdown process...\n[09:31:50 INFO]: [LuckPerms] Closing storage...\n[09:31:50 INFO]: [LuckPerms] Goodbye!\n[09:31:50 INFO]: Saving players\n[09:31:50 INFO]: Saving worlds\n[09:31:50 INFO]: Saving chunks for level 'world'/overworld\n[09:31:51 INFO]: Saving chunks for level 'world_nether'/the_nether\n[09:31:51 INFO]: Saving chunks for level 'world_the_end'/the_end"
+ }
 }
