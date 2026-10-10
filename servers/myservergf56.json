@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791636116132,
+ "updated": 1791636133521,
  "runId": "38048632678",
  "address": "wss://decorative-railroad-guarantees-fruit.trycloudflare.com",
  "addresses": {
@@ -20,30 +20,14 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3640,
+  "cpu": 2,
+  "memUsedMb": 3639,
   "memTotalMb": 15990,
   "jvmMb": 2546,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3641
-   },
-   {
-    "cpu": 1,
-    "mem": 3641
-   },
-   {
-    "cpu": 0,
-    "mem": 3641
-   },
-   {
-    "cpu": 0,
-    "mem": 3642
-   },
    {
     "cpu": 0,
     "mem": 3642
@@ -147,9 +131,25 @@
    {
     "cpu": 1,
     "mem": 3640
+   },
+   {
+    "cpu": 0,
+    "mem": 3640
+   },
+   {
+    "cpu": 0,
+    "mem": 3640
+   },
+   {
+    "cpu": 0,
+    "mem": 3639
+   },
+   {
+    "cpu": 2,
+    "mem": 3639
    }
   ],
-  "ts": 1791636115979
+  "ts": 1791636133348
  },
  "playerNames": [],
  "liveUrl": "https://estimated-symbol-ion-mounts.trycloudflare.com",
