@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791621448515,
+ "updated": 1791621465442,
  "runId": "38038417659",
  "address": "wss://functional-sign-organized-africa.trycloudflare.com",
  "addresses": {
@@ -33,12 +33,12 @@
  "liveUrl": "https://musician-territories-durable-bunch.trycloudflare.com",
  "metrics": {
   "cpu": 2,
-  "memUsedMb": 3327,
+  "memUsedMb": 3349,
   "memTotalMb": 15990,
-  "jvmMb": 2284,
+  "jvmMb": 2300,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.16,
+  "load1": 0.18,
   "hist": [
    {
     "cpu": 18,
@@ -115,9 +115,25 @@
    {
     "cpu": 2,
     "mem": 3327
+   },
+   {
+    "cpu": 1,
+    "mem": 3347
+   },
+   {
+    "cpu": 1,
+    "mem": 3353
+   },
+   {
+    "cpu": 1,
+    "mem": 3350
+   },
+   {
+    "cpu": 2,
+    "mem": 3349
    }
   ],
-  "ts": 1791621448370
+  "ts": 1791621465315
  },
  "playerNames": [],
  "startedAt": 1791621376601,
