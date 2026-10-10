@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791662485312,
+ "updated": 1791662502380,
  "runId": "38081778832",
  "address": "wss://kid-leon-congress-methods.trycloudflare.com",
  "addresses": {
@@ -35,27 +35,11 @@
   "cpu": 2,
   "memUsedMb": 3405,
   "memTotalMb": 15990,
-  "jvmMb": 2326,
+  "jvmMb": 2338,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.02,
+  "load1": 0.08,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3321
-   },
-   {
-    "cpu": 3,
-    "mem": 3321
-   },
-   {
-    "cpu": 0,
-    "mem": 3325
-   },
-   {
-    "cpu": 0,
-    "mem": 3327
-   },
    {
     "cpu": 1,
     "mem": 3334
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3405
+   },
+   {
+    "cpu": 1,
+    "mem": 3422
+   },
+   {
+    "cpu": 1,
+    "mem": 3424
+   },
+   {
+    "cpu": 1,
+    "mem": 3405
+   },
+   {
+    "cpu": 2,
+    "mem": 3405
    }
   ],
-  "ts": 1791662485164
+  "ts": 1791662502205
  },
  "playerNames": [],
  "startedAt": 1791662229291,
