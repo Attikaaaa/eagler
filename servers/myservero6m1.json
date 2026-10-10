@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791602716928,
+ "updated": 1791602733771,
  "runId": "38018711149",
  "address": "wss://equality-auckland-tvs-rca.trycloudflare.com",
  "addresses": {
@@ -32,30 +32,14 @@
  },
  "liveUrl": "https://pencil-transcripts-bouquet-ecommerce.trycloudflare.com",
  "metrics": {
-  "cpu": 2,
-  "memUsedMb": 3529,
+  "cpu": 3,
+  "memUsedMb": 3532,
   "memTotalMb": 15990,
   "jvmMb": 2437,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3522
-   },
-   {
-    "cpu": 2,
-    "mem": 3522
-   },
-   {
-    "cpu": 0,
-    "mem": 3524
-   },
-   {
-    "cpu": 0,
-    "mem": 3524
-   },
    {
     "cpu": 1,
     "mem": 3526
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3529
+   },
+   {
+    "cpu": 1,
+    "mem": 3530
+   },
+   {
+    "cpu": 0,
+    "mem": 3531
+   },
+   {
+    "cpu": 1,
+    "mem": 3532
+   },
+   {
+    "cpu": 3,
+    "mem": 3532
    }
   ],
-  "ts": 1791602716824
+  "ts": 1791602733621
  },
  "playerNames": [],
  "startedAt": 1791600949070,
