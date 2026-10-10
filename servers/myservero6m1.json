@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791612648801,
+ "updated": 1791612665728,
  "runId": "38018711149",
  "address": "wss://equality-auckland-tvs-rca.trycloudflare.com",
  "addresses": {
@@ -38,24 +38,8 @@
   "jvmMb": 2451,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.12,
+  "load1": 0.1,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3563
-   },
-   {
-    "cpu": 2,
-    "mem": 3563
-   },
-   {
-    "cpu": 0,
-    "mem": 3563
-   },
-   {
-    "cpu": 0,
-    "mem": 3563
-   },
    {
     "cpu": 1,
     "mem": 3567
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3574
+   },
+   {
+    "cpu": 0,
+    "mem": 3574
+   },
+   {
+    "cpu": 0,
+    "mem": 3574
+   },
+   {
+    "cpu": 0,
+    "mem": 3574
+   },
+   {
+    "cpu": 2,
+    "mem": 3574
    }
   ],
-  "ts": 1791612648703
+  "ts": 1791612665595
  },
  "playerNames": [],
  "startedAt": 1791600949070,
