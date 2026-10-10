@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791653911632,
+ "updated": 1791653928912,
  "runId": "38070661580",
  "address": "wss://yourself-trucks-instrumentation-applications.trycloudflare.com",
  "addresses": {
@@ -23,27 +23,11 @@
   "cpu": 2,
   "memUsedMb": 3661,
   "memTotalMb": 15990,
-  "jvmMb": 2574,
+  "jvmMb": 2575,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
-  "load1": 0,
+  "load1": 0.07,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3648
-   },
-   {
-    "cpu": 2,
-    "mem": 3648
-   },
-   {
-    "cpu": 0,
-    "mem": 3648
-   },
-   {
-    "cpu": 0,
-    "mem": 3649
-   },
    {
     "cpu": 0,
     "mem": 3649
@@ -147,9 +131,25 @@
    {
     "cpu": 2,
     "mem": 3661
+   },
+   {
+    "cpu": 0,
+    "mem": 3662
+   },
+   {
+    "cpu": 0,
+    "mem": 3661
+   },
+   {
+    "cpu": 0,
+    "mem": 3661
+   },
+   {
+    "cpu": 2,
+    "mem": 3661
    }
   ],
-  "ts": 1791653911480
+  "ts": 1791653928716
  },
  "playerNames": [],
  "liveUrl": "https://inspector-concerns-view-aus.trycloudflare.com",
