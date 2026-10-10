@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791652225459,
- "runId": "38048632678",
- "address": "wss://decorative-railroad-guarantees-fruit.trycloudflare.com",
- "addresses": {
-  "stable": "wss://323bc86ecd5e0edf-20-171-37-33.serveousercontent.com",
-  "cloudflare": "wss://decorative-railroad-guarantees-fruit.trycloudflare.com"
- },
+ "updated": 1791652233378,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1791652224087
  },
  "playerNames": [],
- "liveUrl": "https://estimated-symbol-ion-mounts.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1791631854345,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
