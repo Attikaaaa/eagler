@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791661176261,
+ "updated": 1791661193235,
  "runId": "38058936676",
  "address": "wss://methodology-heard-embedded-promoted.trycloudflare.com",
  "addresses": {
@@ -38,24 +38,8 @@
   "jvmMb": 2473,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.05,
+  "load1": 0.03,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3562
-   },
-   {
-    "cpu": 0,
-    "mem": 3562
-   },
-   {
-    "cpu": 2,
-    "mem": 3562
-   },
-   {
-    "cpu": 0,
-    "mem": 3562
-   },
    {
     "cpu": 0,
     "mem": 3563
@@ -159,9 +143,25 @@
    {
     "cpu": 1,
     "mem": 3565
+   },
+   {
+    "cpu": 0,
+    "mem": 3565
+   },
+   {
+    "cpu": 0,
+    "mem": 3564
+   },
+   {
+    "cpu": 1,
+    "mem": 3565
+   },
+   {
+    "cpu": 1,
+    "mem": 3565
    }
   ],
-  "ts": 1791661173582
+  "ts": 1791661193100
  },
  "playerNames": [],
  "startedAt": 1791641807501,
