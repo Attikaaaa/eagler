@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791649658346,
+ "updated": 1791649675329,
  "runId": "38058936676",
  "address": "wss://methodology-heard-embedded-promoted.trycloudflare.com",
  "addresses": {
@@ -32,30 +32,14 @@
  },
  "liveUrl": "https://bunny-sie-provinces-digit.trycloudflare.com",
  "metrics": {
-  "cpu": 3,
-  "memUsedMb": 3535,
+  "cpu": 2,
+  "memUsedMb": 3538,
   "memTotalMb": 15990,
   "jvmMb": 2471,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
   "load1": 0.01,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3554
-   },
-   {
-    "cpu": 0,
-    "mem": 3557
-   },
-   {
-    "cpu": 2,
-    "mem": 3556
-   },
-   {
-    "cpu": 0,
-    "mem": 3556
-   },
    {
     "cpu": 0,
     "mem": 3557
@@ -159,9 +143,25 @@
    {
     "cpu": 3,
     "mem": 3535
+   },
+   {
+    "cpu": 0,
+    "mem": 3536
+   },
+   {
+    "cpu": 1,
+    "mem": 3537
+   },
+   {
+    "cpu": 0,
+    "mem": 3538
+   },
+   {
+    "cpu": 2,
+    "mem": 3538
    }
   ],
-  "ts": 1791649658224
+  "ts": 1791649675200
  },
  "playerNames": [],
  "startedAt": 1791641807501,
