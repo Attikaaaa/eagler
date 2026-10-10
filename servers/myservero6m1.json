@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791668910103,
+ "updated": 1791668926870,
  "runId": "38081778832",
  "address": "wss://kid-leon-congress-methods.trycloudflare.com",
  "addresses": {
@@ -33,29 +33,13 @@
  "liveUrl": "https://methods-ranging-dans-adapters.trycloudflare.com",
  "metrics": {
   "cpu": 2,
-  "memUsedMb": 3505,
+  "memUsedMb": 3502,
   "memTotalMb": 15990,
   "jvmMb": 2402,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3508
-   },
-   {
-    "cpu": 2,
-    "mem": 3508
-   },
-   {
-    "cpu": 0,
-    "mem": 3507
-   },
-   {
-    "cpu": 0,
-    "mem": 3505
-   },
    {
     "cpu": 1,
     "mem": 3504
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3505
+   },
+   {
+    "cpu": 0,
+    "mem": 3504
+   },
+   {
+    "cpu": 0,
+    "mem": 3504
+   },
+   {
+    "cpu": 0,
+    "mem": 3502
+   },
+   {
+    "cpu": 2,
+    "mem": 3502
    }
   ],
-  "ts": 1791668909976
+  "ts": 1791668926760
  },
  "playerNames": [],
  "startedAt": 1791662229291,
