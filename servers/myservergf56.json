@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791631804703,
- "runId": "38028835806",
- "address": "wss://maple-treating-infectious-skating.trycloudflare.com",
- "addresses": {
-  "stable": "wss://80f23e6a880d6dd9-4-155-71-193.serveousercontent.com",
-  "cloudflare": "wss://maple-treating-infectious-skating.trycloudflare.com"
- },
+ "updated": 1791631812112,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1791631800888
  },
  "playerNames": [],
- "liveUrl": "https://extend-blah-substantial-groove.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1791611423490,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
