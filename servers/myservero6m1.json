@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791598439132,
+ "updated": 1791598456176,
  "runId": "37992231613",
  "address": "wss://keeps-trim-standards-limousines.trycloudflare.com",
  "addresses": {
@@ -38,24 +38,8 @@
   "jvmMb": 2453,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.01,
+  "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3551
-   },
-   {
-    "cpu": 2,
-    "mem": 3551
-   },
-   {
-    "cpu": 0,
-    "mem": 3551
-   },
-   {
-    "cpu": 0,
-    "mem": 3551
-   },
    {
     "cpu": 0,
     "mem": 3552
@@ -147,6 +131,22 @@
    {
     "cpu": 0,
     "mem": 3552
+   },
+   {
+    "cpu": 0,
+    "mem": 3551
+   },
+   {
+    "cpu": 0,
+    "mem": 3551
+   },
+   {
+    "cpu": 3,
+    "mem": 3551
+   },
+   {
+    "cpu": 0,
+    "mem": 3551
    },
    {
     "cpu": 0,
@@ -161,7 +161,7 @@
     "mem": 3551
    }
   ],
-  "ts": 1791598438989
+  "ts": 1791598456039
  },
  "playerNames": [],
  "startedAt": 1791580519019,
