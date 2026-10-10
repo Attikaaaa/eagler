@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791638763779,
+ "updated": 1791638780806,
  "runId": "38038417659",
  "address": "wss://functional-sign-organized-africa.trycloudflare.com",
  "addresses": {
@@ -35,27 +35,11 @@
   "cpu": 1,
   "memUsedMb": 3533,
   "memTotalMb": 15990,
-  "jvmMb": 2442,
+  "jvmMb": 2444,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3537
-   },
-   {
-    "cpu": 1,
-    "mem": 3537
-   },
-   {
-    "cpu": 0,
-    "mem": 3536
-   },
-   {
-    "cpu": 0,
-    "mem": 3535
-   },
    {
     "cpu": 1,
     "mem": 3535
@@ -159,9 +143,25 @@
    {
     "cpu": 1,
     "mem": 3533
+   },
+   {
+    "cpu": 0,
+    "mem": 3532
+   },
+   {
+    "cpu": 0,
+    "mem": 3532
+   },
+   {
+    "cpu": 0,
+    "mem": 3533
+   },
+   {
+    "cpu": 1,
+    "mem": 3533
    }
   ],
-  "ts": 1791638763624
+  "ts": 1791638780632
  },
  "playerNames": [],
  "startedAt": 1791621376601,
