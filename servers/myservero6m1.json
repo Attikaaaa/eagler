@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1791662185706,
- "runId": "38058936676",
- "address": "wss://methodology-heard-embedded-promoted.trycloudflare.com",
- "addresses": {
-  "stable": "wss://8b0db549dd15f5dc-172-212-164-27.serveousercontent.com",
-  "cloudflare": "wss://methodology-heard-embedded-promoted.trycloudflare.com"
- },
+ "updated": 1791662192688,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://bunny-sie-provinces-digit.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 2,
   "memUsedMb": 3561,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1791641807501,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
