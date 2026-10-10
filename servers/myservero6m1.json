@@ -14,14 +14,15 @@
   ]
  },
  "want": "run",
- "status": "starting",
+ "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791662232364,
+ "updated": 1791662233290,
  "runId": "38081778832",
- "address": "wss://86e9afa8cdf17c68-172-212-157-193.serveousercontent.com",
+ "address": "wss://kid-leon-congress-methods.trycloudflare.com",
  "addresses": {
-  "stable": "wss://86e9afa8cdf17c68-172-212-157-193.serveousercontent.com"
+  "stable": "wss://86e9afa8cdf17c68-172-212-157-193.serveousercontent.com",
+  "cloudflare": "wss://kid-leon-congress-methods.trycloudflare.com"
  },
  "players": 0,
  "host": {
@@ -48,5 +49,5 @@
  },
  "playerNames": [],
  "startedAt": 1791662229291,
- "note": "Restarting after the 6h job limit."
+ "note": null
 }
