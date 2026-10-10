@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1791641760748,
- "runId": "38038417659",
- "address": "wss://functional-sign-organized-africa.trycloudflare.com",
- "addresses": {
-  "stable": "wss://736bb070ac812736-57-151-129-50.serveousercontent.com",
-  "cloudflare": "wss://functional-sign-organized-africa.trycloudflare.com"
- },
+ "updated": 1791641767740,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://musician-territories-durable-bunch.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 2,
   "memUsedMb": 3562,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1791621376601,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
