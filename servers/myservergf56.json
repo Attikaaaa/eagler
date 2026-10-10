@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791611786427,
+ "updated": 1791611803300,
  "runId": "38028835806",
  "address": "wss://maple-treating-infectious-skating.trycloudflare.com",
  "addresses": {
@@ -21,29 +21,13 @@
  },
  "metrics": {
   "cpu": 3,
-  "memUsedMb": 3567,
+  "memUsedMb": 3571,
   "memTotalMb": 15990,
   "jvmMb": 2504,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
-  "load1": 0.04,
+  "load1": 0.03,
   "hist": [
-   {
-    "cpu": 1,
-    "mem": 3566
-   },
-   {
-    "cpu": 2,
-    "mem": 3564
-   },
-   {
-    "cpu": 1,
-    "mem": 3565
-   },
-   {
-    "cpu": 1,
-    "mem": 3564
-   },
    {
     "cpu": 1,
     "mem": 3565
@@ -147,9 +131,25 @@
    {
     "cpu": 3,
     "mem": 3567
+   },
+   {
+    "cpu": 1,
+    "mem": 3571
+   },
+   {
+    "cpu": 0,
+    "mem": 3571
+   },
+   {
+    "cpu": 1,
+    "mem": 3571
+   },
+   {
+    "cpu": 3,
+    "mem": 3571
    }
   ],
-  "ts": 1791611786305
+  "ts": 1791611803062
  },
  "playerNames": [],
  "liveUrl": "https://extend-blah-substantial-groove.trycloudflare.com",
