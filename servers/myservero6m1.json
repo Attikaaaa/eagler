@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1791621329130,
- "runId": "38018711149",
- "address": "wss://equality-auckland-tvs-rca.trycloudflare.com",
- "addresses": {
-  "stable": "wss://abd536f51a1a03c0-64-236-144-97.serveousercontent.com",
-  "cloudflare": "wss://equality-auckland-tvs-rca.trycloudflare.com"
- },
+ "updated": 1791621335525,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://pencil-transcripts-bouquet-ecommerce.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 2,
   "memUsedMb": 3528,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1791600949070,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
