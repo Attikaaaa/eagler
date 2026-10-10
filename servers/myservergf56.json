@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791672649949,
- "runId": "38070661580",
- "address": "wss://yourself-trucks-instrumentation-applications.trycloudflare.com",
- "addresses": {
-  "stable": "wss://17507abb2a528f8d-172-202-53-221.serveousercontent.com",
-  "cloudflare": "wss://yourself-trucks-instrumentation-applications.trycloudflare.com"
- },
+ "updated": 1791672659143,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1791672648617
  },
  "playerNames": [],
- "liveUrl": "https://inspector-concerns-view-aus.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1791652272423,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
