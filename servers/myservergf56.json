@@ -6,7 +6,7 @@
  "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791652262558,
+ "updated": 1791652265145,
  "runId": "38070661580",
  "address": "wss://yourself-trucks-instrumentation-applications.trycloudflare.com",
  "addresses": {
@@ -20,136 +20,20 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3686,
+  "cpu": 32,
+  "memUsedMb": 3471,
   "memTotalMb": 15990,
-  "jvmMb": 2583,
+  "jvmMb": 2195,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
-  "load1": 0.12,
+  "load1": 0.8,
   "hist": [
    {
-    "cpu": 0,
-    "mem": 3678
-   },
-   {
-    "cpu": 1,
-    "mem": 3678
-   },
-   {
-    "cpu": 0,
-    "mem": 3678
-   },
-   {
-    "cpu": 0,
-    "mem": 3678
-   },
-   {
-    "cpu": 0,
-    "mem": 3678
-   },
-   {
-    "cpu": 1,
-    "mem": 3678
-   },
-   {
-    "cpu": 0,
-    "mem": 3678
-   },
-   {
-    "cpu": 0,
-    "mem": 3679
-   },
-   {
-    "cpu": 0,
-    "mem": 3682
-   },
-   {
-    "cpu": 0,
-    "mem": 3682
-   },
-   {
-    "cpu": 1,
-    "mem": 3695
-   },
-   {
-    "cpu": 0,
-    "mem": 3685
-   },
-   {
-    "cpu": 0,
-    "mem": 3685
-   },
-   {
-    "cpu": 1,
-    "mem": 3685
-   },
-   {
-    "cpu": 0,
-    "mem": 3684
-   },
-   {
-    "cpu": 0,
-    "mem": 3683
-   },
-   {
-    "cpu": 0,
-    "mem": 3683
-   },
-   {
-    "cpu": 2,
-    "mem": 3683
-   },
-   {
-    "cpu": 0,
-    "mem": 3682
-   },
-   {
-    "cpu": 0,
-    "mem": 3682
-   },
-   {
-    "cpu": 0,
-    "mem": 3682
-   },
-   {
-    "cpu": 1,
-    "mem": 3683
-   },
-   {
-    "cpu": 0,
-    "mem": 3684
-   },
-   {
-    "cpu": 0,
-    "mem": 3685
-   },
-   {
-    "cpu": 0,
-    "mem": 3685
-   },
-   {
-    "cpu": 2,
-    "mem": 3687
-   },
-   {
-    "cpu": 0,
-    "mem": 3687
-   },
-   {
-    "cpu": 0,
-    "mem": 3686
-   },
-   {
-    "cpu": 0,
-    "mem": 3686
-   },
-   {
-    "cpu": 1,
-    "mem": 3686
+    "cpu": 32,
+    "mem": 3471
    }
   ],
-  "ts": 1791652224087
+  "ts": 1791652260289
  },
  "playerNames": [],
  "liveUrl": "https://inspector-concerns-view-aus.trycloudflare.com",
