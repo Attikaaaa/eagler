@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791693134702,
+ "updated": 1791693146055,
  "runId": "38111854964",
  "address": "wss://ability-discount-contract-expand.trycloudflare.com",
  "addresses": {
@@ -20,13 +20,13 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 13,
-  "memUsedMb": 3581,
+  "cpu": 5,
+  "memUsedMb": 3566,
   "memTotalMb": 15990,
-  "jvmMb": 2501,
+  "jvmMb": 2502,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
-  "load1": 1.23,
+  "load1": 1.04,
   "hist": [
    {
     "cpu": 20,
@@ -39,9 +39,21 @@
    {
     "cpu": 13,
     "mem": 3581
+   },
+   {
+    "cpu": 1,
+    "mem": 3566
+   },
+   {
+    "cpu": 1,
+    "mem": 3567
+   },
+   {
+    "cpu": 5,
+    "mem": 3566
    }
   ],
-  "ts": 1791693134623
+  "ts": 1791693145973
  },
  "playerNames": [],
  "liveUrl": "https://stories-lights-malpractice-increases.trycloudflare.com",
