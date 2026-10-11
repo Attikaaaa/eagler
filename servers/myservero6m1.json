@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1791723474734,
- "runId": "38120872620",
- "address": "wss://cultural-enquiry-bid-loose.trycloudflare.com",
- "addresses": {
-  "stable": "wss://f0856cf8648178e9-20-40-215-96.serveousercontent.com",
-  "cloudflare": "wss://cultural-enquiry-bid-loose.trycloudflare.com"
- },
+ "updated": 1791723481617,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://generic-biggest-lauren-association.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 1,
   "memUsedMb": 3553,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1791703084594,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
