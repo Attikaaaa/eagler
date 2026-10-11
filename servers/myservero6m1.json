@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791726884686,
+ "updated": 1791726901778,
  "runId": "38141295498",
  "address": "wss://drilling-bridge-isp-predicted.trycloudflare.com",
  "addresses": {
@@ -33,29 +33,13 @@
  "liveUrl": "https://scholar-antonio-licence-innovation.trycloudflare.com",
  "metrics": {
   "cpu": 2,
-  "memUsedMb": 3517,
+  "memUsedMb": 3518,
   "memTotalMb": 15990,
   "jvmMb": 2418,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3510
-   },
-   {
-    "cpu": 1,
-    "mem": 3510
-   },
-   {
-    "cpu": 0,
-    "mem": 3510
-   },
-   {
-    "cpu": 0,
-    "mem": 3509
-   },
    {
     "cpu": 0,
     "mem": 3509
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3517
+   },
+   {
+    "cpu": 0,
+    "mem": 3517
+   },
+   {
+    "cpu": 0,
+    "mem": 3517
+   },
+   {
+    "cpu": 0,
+    "mem": 3517
+   },
+   {
+    "cpu": 2,
+    "mem": 3518
    }
   ],
-  "ts": 1791726884519
+  "ts": 1791726901622
  },
  "playerNames": [],
  "startedAt": 1791723523083,
