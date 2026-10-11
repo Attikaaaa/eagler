@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791738974865,
+ "updated": 1791738991649,
  "runId": "38153098908",
  "address": "wss://employer-homes-lovely-prisoner.trycloudflare.com",
  "addresses": {
@@ -20,7 +20,7 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
+  "cpu": 4,
   "memUsedMb": 3676,
   "memTotalMb": 15990,
   "jvmMb": 2581,
@@ -28,22 +28,6 @@
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3664
-   },
-   {
-    "cpu": 2,
-    "mem": 3664
-   },
-   {
-    "cpu": 0,
-    "mem": 3664
-   },
-   {
-    "cpu": 0,
-    "mem": 3665
-   },
    {
     "cpu": 0,
     "mem": 3665
@@ -147,9 +131,25 @@
    {
     "cpu": 1,
     "mem": 3676
+   },
+   {
+    "cpu": 0,
+    "mem": 3676
+   },
+   {
+    "cpu": 0,
+    "mem": 3677
+   },
+   {
+    "cpu": 0,
+    "mem": 3676
+   },
+   {
+    "cpu": 4,
+    "mem": 3676
    }
   ],
-  "ts": 1791738974723
+  "ts": 1791738991534
  },
  "playerNames": [],
  "liveUrl": "https://bean-opportunities-allen-holds.trycloudflare.com",
