@@ -6,7 +6,7 @@
  "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791733968023,
+ "updated": 1791733971402,
  "runId": "38153098908",
  "address": "wss://employer-homes-lovely-prisoner.trycloudflare.com",
  "addresses": {
@@ -20,136 +20,20 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3750,
+  "cpu": 17,
+  "memUsedMb": 1868,
   "memTotalMb": 15990,
-  "jvmMb": 2630,
-  "diskUsedGb": 58.6,
+  "jvmMb": 718,
+  "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0,
+  "load1": 0.61,
   "hist": [
    {
-    "cpu": 0,
-    "mem": 3742
-   },
-   {
-    "cpu": 1,
-    "mem": 3742
-   },
-   {
-    "cpu": 0,
-    "mem": 3742
-   },
-   {
-    "cpu": 0,
-    "mem": 3742
-   },
-   {
-    "cpu": 0,
-    "mem": 3742
-   },
-   {
-    "cpu": 1,
-    "mem": 3743
-   },
-   {
-    "cpu": 0,
-    "mem": 3744
-   },
-   {
-    "cpu": 0,
-    "mem": 3744
-   },
-   {
-    "cpu": 0,
-    "mem": 3745
-   },
-   {
-    "cpu": 2,
-    "mem": 3745
-   },
-   {
-    "cpu": 0,
-    "mem": 3747
-   },
-   {
-    "cpu": 0,
-    "mem": 3747
-   },
-   {
-    "cpu": 0,
-    "mem": 3747
-   },
-   {
-    "cpu": 2,
-    "mem": 3746
-   },
-   {
-    "cpu": 0,
-    "mem": 3746
-   },
-   {
-    "cpu": 0,
-    "mem": 3746
-   },
-   {
-    "cpu": 0,
-    "mem": 3746
-   },
-   {
-    "cpu": 1,
-    "mem": 3747
-   },
-   {
-    "cpu": 0,
-    "mem": 3747
-   },
-   {
-    "cpu": 0,
-    "mem": 3751
-   },
-   {
-    "cpu": 0,
-    "mem": 3751
-   },
-   {
-    "cpu": 2,
-    "mem": 3751
-   },
-   {
-    "cpu": 0,
-    "mem": 3751
-   },
-   {
-    "cpu": 0,
-    "mem": 3751
-   },
-   {
-    "cpu": 0,
-    "mem": 3751
-   },
-   {
-    "cpu": 1,
-    "mem": 3751
-   },
-   {
-    "cpu": 0,
-    "mem": 3751
-   },
-   {
-    "cpu": 0,
-    "mem": 3751
-   },
-   {
-    "cpu": 0,
-    "mem": 3750
-   },
-   {
-    "cpu": 1,
-    "mem": 3750
+    "cpu": 17,
+    "mem": 1868
    }
   ],
-  "ts": 1791733935837
+  "ts": 1791733971231
  },
  "playerNames": [],
  "liveUrl": null,
