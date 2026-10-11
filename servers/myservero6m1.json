@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791692556513,
+ "updated": 1791692573327,
  "runId": "38102435937",
  "address": "wss://papua-millennium-superintendent-visits.trycloudflare.com",
  "addresses": {
@@ -35,27 +35,11 @@
   "cpu": 2,
   "memUsedMb": 3525,
   "memTotalMb": 15990,
-  "jvmMb": 2435,
+  "jvmMb": 2437,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.04,
+  "load1": 0.03,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3523
-   },
-   {
-    "cpu": 3,
-    "mem": 3523
-   },
-   {
-    "cpu": 0,
-    "mem": 3526
-   },
-   {
-    "cpu": 0,
-    "mem": 3526
-   },
    {
     "cpu": 0,
     "mem": 3526
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3525
+   },
+   {
+    "cpu": 0,
+    "mem": 3525
+   },
+   {
+    "cpu": 0,
+    "mem": 3525
+   },
+   {
+    "cpu": 0,
+    "mem": 3525
+   },
+   {
+    "cpu": 2,
+    "mem": 3525
    }
   ],
-  "ts": 1791692556404
+  "ts": 1791692573188
  },
  "playerNames": [],
  "startedAt": 1791682663558,
