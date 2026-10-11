@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791732998302,
+ "updated": 1791733015708,
  "runId": "38141295498",
  "address": "wss://drilling-bridge-isp-predicted.trycloudflare.com",
  "addresses": {
@@ -35,27 +35,11 @@
   "cpu": 1,
   "memUsedMb": 3527,
   "memTotalMb": 15990,
-  "jvmMb": 2427,
+  "jvmMb": 2429,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3530
-   },
-   {
-    "cpu": 1,
-    "mem": 3530
-   },
-   {
-    "cpu": 0,
-    "mem": 3530
-   },
-   {
-    "cpu": 0,
-    "mem": 3530
-   },
    {
     "cpu": 0,
     "mem": 3530
@@ -159,9 +143,25 @@
    {
     "cpu": 1,
     "mem": 3527
+   },
+   {
+    "cpu": 0,
+    "mem": 3527
+   },
+   {
+    "cpu": 0,
+    "mem": 3527
+   },
+   {
+    "cpu": 0,
+    "mem": 3527
+   },
+   {
+    "cpu": 1,
+    "mem": 3527
    }
   ],
-  "ts": 1791732998148
+  "ts": 1791733015533
  },
  "playerNames": [],
  "startedAt": 1791723523083,
