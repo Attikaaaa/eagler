@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791755900452,
+ "updated": 1791755917865,
  "runId": "38164660656",
  "address": "wss://refer-asylum-address-charms.trycloudflare.com",
  "addresses": {
@@ -33,29 +33,13 @@
  "liveUrl": "https://holmes-entity-alphabetical-investigators.trycloudflare.com",
  "metrics": {
   "cpu": 1,
-  "memUsedMb": 3646,
+  "memUsedMb": 3648,
   "memTotalMb": 15989,
   "jvmMb": 2483,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.02,
+  "load1": 0.01,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3643
-   },
-   {
-    "cpu": 0,
-    "mem": 3644
-   },
-   {
-    "cpu": 0,
-    "mem": 3643
-   },
-   {
-    "cpu": 0,
-    "mem": 3644
-   },
    {
     "cpu": 0,
     "mem": 3644
@@ -159,9 +143,25 @@
    {
     "cpu": 1,
     "mem": 3646
+   },
+   {
+    "cpu": 0,
+    "mem": 3647
+   },
+   {
+    "cpu": 0,
+    "mem": 3647
+   },
+   {
+    "cpu": 0,
+    "mem": 3648
+   },
+   {
+    "cpu": 1,
+    "mem": 3648
    }
   ],
-  "ts": 1791755900288
+  "ts": 1791755917733
  },
  "playerNames": [],
  "startedAt": 1791743947244,
