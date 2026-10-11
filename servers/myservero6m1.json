@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791716158532,
+ "updated": 1791716175402,
  "runId": "38120872620",
  "address": "wss://cultural-enquiry-bid-loose.trycloudflare.com",
  "addresses": {
@@ -32,30 +32,14 @@
  },
  "liveUrl": "https://generic-biggest-lauren-association.trycloudflare.com",
  "metrics": {
-  "cpu": 3,
-  "memUsedMb": 3515,
+  "cpu": 1,
+  "memUsedMb": 3514,
   "memTotalMb": 15990,
   "jvmMb": 2395,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3509
-   },
-   {
-    "cpu": 2,
-    "mem": 3509
-   },
-   {
-    "cpu": 0,
-    "mem": 3510
-   },
-   {
-    "cpu": 0,
-    "mem": 3510
-   },
    {
     "cpu": 0,
     "mem": 3510
@@ -159,9 +143,25 @@
    {
     "cpu": 3,
     "mem": 3515
+   },
+   {
+    "cpu": 0,
+    "mem": 3515
+   },
+   {
+    "cpu": 0,
+    "mem": 3514
+   },
+   {
+    "cpu": 0,
+    "mem": 3514
+   },
+   {
+    "cpu": 1,
+    "mem": 3514
    }
   ],
-  "ts": 1791716158373
+  "ts": 1791716175289
  },
  "playerNames": [],
  "startedAt": 1791703084594,
