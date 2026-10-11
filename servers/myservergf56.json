@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791693077076,
- "runId": "38092935484",
- "address": "wss://keys-launch-liverpool-teens.trycloudflare.com",
- "addresses": {
-  "stable": "wss://3bee4faf167d022f-52-161-180-231.serveousercontent.com",
-  "cloudflare": "wss://keys-launch-liverpool-teens.trycloudflare.com"
- },
+ "updated": 1791693084850,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1791693075730
  },
  "playerNames": [],
- "liveUrl": "https://what-guaranteed-badly-doll.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1791672710663,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
