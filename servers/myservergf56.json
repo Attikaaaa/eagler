@@ -6,10 +6,13 @@
  "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791754406200,
+ "updated": 1791754409192,
  "runId": "38176836996",
- "address": null,
- "addresses": {},
+ "address": "wss://separate-nearly-playing-metropolitan.trycloudflare.com",
+ "addresses": {
+  "stable": "wss://8aff4507506446e8-20-55-118-116.serveousercontent.com",
+  "cloudflare": "wss://separate-nearly-playing-metropolitan.trycloudflare.com"
+ },
  "players": 0,
  "host": {
   "cpus": 4,
