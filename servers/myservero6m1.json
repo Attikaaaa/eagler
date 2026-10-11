@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1791682618831,
- "runId": "38081778832",
- "address": "wss://kid-leon-congress-methods.trycloudflare.com",
- "addresses": {
-  "stable": "wss://86e9afa8cdf17c68-172-212-157-193.serveousercontent.com",
-  "cloudflare": "wss://kid-leon-congress-methods.trycloudflare.com"
- },
+ "updated": 1791682625456,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://methods-ranging-dans-adapters.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 2,
   "memUsedMb": 3516,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1791662229291,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
