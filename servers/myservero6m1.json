@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791700258111,
+ "updated": 1791700274860,
  "runId": "38102435937",
  "address": "wss://papua-millennium-superintendent-visits.trycloudflare.com",
  "addresses": {
@@ -32,30 +32,14 @@
  },
  "liveUrl": "https://cent-scores-episode-euro.trycloudflare.com",
  "metrics": {
-  "cpu": 0,
+  "cpu": 3,
   "memUsedMb": 3543,
   "memTotalMb": 15990,
   "jvmMb": 2445,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.11,
+  "load1": 0.08,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3539
-   },
-   {
-    "cpu": 3,
-    "mem": 3540
-   },
-   {
-    "cpu": 0,
-    "mem": 3540
-   },
-   {
-    "cpu": 0,
-    "mem": 3540
-   },
    {
     "cpu": 0,
     "mem": 3540
@@ -159,9 +143,25 @@
    {
     "cpu": 0,
     "mem": 3543
+   },
+   {
+    "cpu": 1,
+    "mem": 3543
+   },
+   {
+    "cpu": 0,
+    "mem": 3543
+   },
+   {
+    "cpu": 0,
+    "mem": 3543
+   },
+   {
+    "cpu": 3,
+    "mem": 3543
    }
   ],
-  "ts": 1791700256307
+  "ts": 1791700274742
  },
  "playerNames": [],
  "startedAt": 1791682663558,
