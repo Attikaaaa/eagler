@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791692572420,
+ "updated": 1791692596359,
  "runId": "38092935484",
  "address": "wss://keys-launch-liverpool-teens.trycloudflare.com",
  "addresses": {
@@ -20,8 +20,8 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3732,
+  "cpu": 0,
+  "memUsedMb": 3724,
   "memTotalMb": 15990,
   "jvmMb": 2619,
   "diskUsedGb": 58.6,
@@ -49,22 +49,6 @@
     "mem": 3733
    },
    {
-    "cpu": 2,
-    "mem": 3733
-   },
-   {
-    "cpu": 0,
-    "mem": 3733
-   },
-   {
-    "cpu": 0,
-    "mem": 3733
-   },
-   {
-    "cpu": 0,
-    "mem": 3733
-   },
-   {
     "cpu": 0,
     "mem": 3732
    },
@@ -147,9 +131,25 @@
    {
     "cpu": 1,
     "mem": 3732
+   },
+   {
+    "cpu": 0,
+    "mem": 3733
+   },
+   {
+    "cpu": 0,
+    "mem": 3733
+   },
+   {
+    "cpu": 1,
+    "mem": 3724
+   },
+   {
+    "cpu": 0,
+    "mem": 3724
    }
   ],
-  "ts": 1791692572285
+  "ts": 1791692596242
  },
  "playerNames": [],
  "liveUrl": "https://what-guaranteed-badly-doll.trycloudflare.com",
