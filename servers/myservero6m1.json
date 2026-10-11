@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791756109938,
+ "updated": 1791756127048,
  "runId": "38164660656",
  "address": "wss://refer-asylum-address-charms.trycloudflare.com",
  "addresses": {
@@ -35,29 +35,13 @@
   "cpu": 1,
   "memUsedMb": 3580,
   "memTotalMb": 15989,
-  "jvmMb": 2424,
+  "jvmMb": 2426,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
    {
     "cpu": 0,
-    "mem": 3642
-   },
-   {
-    "cpu": 0,
-    "mem": 3642
-   },
-   {
-    "cpu": 2,
-    "mem": 3642
-   },
-   {
-    "cpu": 1,
-    "mem": 3647
-   },
-   {
-    "cpu": 0,
     "mem": 3647
    },
    {
@@ -127,6 +111,22 @@
    {
     "cpu": 2,
     "mem": 3579
+   },
+   {
+    "cpu": 0,
+    "mem": 3580
+   },
+   {
+    "cpu": 0,
+    "mem": 3580
+   },
+   {
+    "cpu": 0,
+    "mem": 3580
+   },
+   {
+    "cpu": 1,
+    "mem": 3580
    },
    {
     "cpu": 0,
@@ -161,7 +161,7 @@
     "mem": 3580
    }
   ],
-  "ts": 1791756109782
+  "ts": 1791756126900
  },
  "playerNames": [],
  "startedAt": 1791743947244,
