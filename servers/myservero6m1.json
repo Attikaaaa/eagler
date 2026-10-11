@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791713158751,
+ "updated": 1791713175716,
  "runId": "38120872620",
  "address": "wss://cultural-enquiry-bid-loose.trycloudflare.com",
  "addresses": {
@@ -35,27 +35,11 @@
   "cpu": 2,
   "memUsedMb": 3527,
   "memTotalMb": 15990,
-  "jvmMb": 2423,
+  "jvmMb": 2425,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
   "load1": 0.02,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3520
-   },
-   {
-    "cpu": 2,
-    "mem": 3521
-   },
-   {
-    "cpu": 1,
-    "mem": 3519
-   },
-   {
-    "cpu": 2,
-    "mem": 3518
-   },
    {
     "cpu": 2,
     "mem": 3519
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3527
+   },
+   {
+    "cpu": 0,
+    "mem": 3527
+   },
+   {
+    "cpu": 0,
+    "mem": 3527
+   },
+   {
+    "cpu": 1,
+    "mem": 3527
+   },
+   {
+    "cpu": 2,
+    "mem": 3527
    }
   ],
-  "ts": 1791713158619
+  "ts": 1791713175521
  },
  "playerNames": [],
  "startedAt": 1791703084594,
