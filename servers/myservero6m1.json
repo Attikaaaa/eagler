@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1791743896514,
- "runId": "38141295498",
- "address": "wss://drilling-bridge-isp-predicted.trycloudflare.com",
- "addresses": {
-  "stable": "wss://e0ed21b8a584e485-128-24-161-20.serveousercontent.com",
-  "cloudflare": "wss://drilling-bridge-isp-predicted.trycloudflare.com"
- },
+ "updated": 1791743903781,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://scholar-antonio-licence-innovation.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 1,
   "memUsedMb": 3559,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1791723523083,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
