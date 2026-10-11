@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791713500830,
- "runId": "38111854964",
- "address": "wss://ability-discount-contract-expand.trycloudflare.com",
- "addresses": {
-  "stable": "wss://4ec0c24cfa040a5a-20-119-103-49.serveousercontent.com",
-  "cloudflare": "wss://ability-discount-contract-expand.trycloudflare.com"
- },
+ "updated": 1791713509444,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1791713499746
  },
  "playerNames": [],
- "liveUrl": "https://stories-lights-malpractice-increases.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1791693132679,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
