@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791726506431,
+ "updated": 1791726523594,
  "runId": "38131082287",
  "address": "wss://condo-disciplinary-trials-pamela.trycloudflare.com",
  "addresses": {
@@ -20,30 +20,14 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 2,
-  "memUsedMb": 3747,
+  "cpu": 3,
+  "memUsedMb": 3751,
   "memTotalMb": 15990,
-  "jvmMb": 2633,
+  "jvmMb": 2635,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3746
-   },
-   {
-    "cpu": 2,
-    "mem": 3744
-   },
-   {
-    "cpu": 0,
-    "mem": 3744
-   },
-   {
-    "cpu": 0,
-    "mem": 3745
-   },
    {
     "cpu": 0,
     "mem": 3749
@@ -147,9 +131,25 @@
    {
     "cpu": 2,
     "mem": 3747
+   },
+   {
+    "cpu": 0,
+    "mem": 3747
+   },
+   {
+    "cpu": 0,
+    "mem": 3751
+   },
+   {
+    "cpu": 0,
+    "mem": 3751
+   },
+   {
+    "cpu": 3,
+    "mem": 3751
    }
   ],
-  "ts": 1791726506318
+  "ts": 1791726523448
  },
  "playerNames": [],
  "liveUrl": "https://mature-minneapolis-demonstration-debian.trycloudflare.com",
