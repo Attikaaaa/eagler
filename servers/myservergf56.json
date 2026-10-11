@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791733936994,
- "runId": "38131082287",
- "address": "wss://condo-disciplinary-trials-pamela.trycloudflare.com",
- "addresses": {
-  "stable": "wss://ba649158667b1303-52-154-20-51.serveousercontent.com",
-  "cloudflare": "wss://condo-disciplinary-trials-pamela.trycloudflare.com"
- },
+ "updated": 1791733944130,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1791733935837
  },
  "playerNames": [],
- "liveUrl": "https://mature-minneapolis-demonstration-debian.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1791713556852,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
