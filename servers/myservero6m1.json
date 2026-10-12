@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791785110214,
+ "updated": 1791785127315,
  "runId": "38210396607",
  "address": "wss://maritime-shared-nato-stocks.trycloudflare.com",
  "addresses": {
@@ -32,30 +32,14 @@
  },
  "liveUrl": "https://bearing-philips-char-bicycle.trycloudflare.com",
  "metrics": {
-  "cpu": 2,
-  "memUsedMb": 3403,
+  "cpu": 1,
+  "memUsedMb": 3422,
   "memTotalMb": 15989,
-  "jvmMb": 2341,
+  "jvmMb": 2357,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.02,
+  "load1": 0.01,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3328
-   },
-   {
-    "cpu": 3,
-    "mem": 3328
-   },
-   {
-    "cpu": 0,
-    "mem": 3336
-   },
-   {
-    "cpu": 1,
-    "mem": 3350
-   },
    {
     "cpu": 0,
     "mem": 3354
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3403
+   },
+   {
+    "cpu": 0,
+    "mem": 3416
+   },
+   {
+    "cpu": 0,
+    "mem": 3417
+   },
+   {
+    "cpu": 0,
+    "mem": 3421
+   },
+   {
+    "cpu": 1,
+    "mem": 3422
    }
   ],
-  "ts": 1791785107683
+  "ts": 1791785127207
  },
  "playerNames": [],
  "startedAt": 1791784818386,
