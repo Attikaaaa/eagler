@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1791846073947,
- "runId": "38283581418",
- "address": "wss://testimonials-ending-techrepublic-peace.trycloudflare.com",
- "addresses": {
-  "stable": "wss://5604aa905389424d-20-161-70-167.serveousercontent.com",
-  "cloudflare": "wss://testimonials-ending-techrepublic-peace.trycloudflare.com"
- },
+ "updated": 1791846080967,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://timely-flour-weights-becoming.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 2,
   "memUsedMb": 3588,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1791825683131,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
