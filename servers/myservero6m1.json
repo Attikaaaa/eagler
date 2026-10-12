@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1791764325692,
- "runId": "38164660656",
- "address": "wss://refer-asylum-address-charms.trycloudflare.com",
- "addresses": {
-  "stable": "wss://08a73841569b625d-128-24-163-38.serveousercontent.com",
-  "cloudflare": "wss://refer-asylum-address-charms.trycloudflare.com"
- },
+ "updated": 1791764332757,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://holmes-entity-alphabetical-investigators.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 1,
   "memUsedMb": 3613,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1791743947244,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
