@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791802402996,
+ "updated": 1791802420104,
  "runId": "38226431131",
  "address": "wss://momentum-aircraft-restaurants-glenn.trycloudflare.com",
  "addresses": {
@@ -20,8 +20,8 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 2,
-  "memUsedMb": 3701,
+  "cpu": 4,
+  "memUsedMb": 3703,
   "memTotalMb": 15990,
   "jvmMb": 2571,
   "diskUsedGb": 59.5,
@@ -29,22 +29,6 @@
   "load1": 0,
   "hist": [
    {
-    "cpu": 1,
-    "mem": 3700
-   },
-   {
-    "cpu": 1,
-    "mem": 3700
-   },
-   {
-    "cpu": 0,
-    "mem": 3699
-   },
-   {
-    "cpu": 0,
-    "mem": 3699
-   },
-   {
     "cpu": 0,
     "mem": 3698
    },
@@ -147,9 +131,25 @@
    {
     "cpu": 2,
     "mem": 3701
+   },
+   {
+    "cpu": 0,
+    "mem": 3701
+   },
+   {
+    "cpu": 0,
+    "mem": 3701
+   },
+   {
+    "cpu": 0,
+    "mem": 3702
+   },
+   {
+    "cpu": 4,
+    "mem": 3703
    }
   ],
-  "ts": 1791802402841
+  "ts": 1791802419903
  },
  "playerNames": [],
  "liveUrl": "https://rugs-expired-cause-aurora.trycloudflare.com",
