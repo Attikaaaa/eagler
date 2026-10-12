@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791836091486,
- "runId": "38263929585",
- "address": "wss://bolt-air-luxury-prev.trycloudflare.com",
- "addresses": {
-  "stable": "wss://14be4b5c71b14660-20-127-238-80.serveousercontent.com",
-  "cloudflare": "wss://bolt-air-luxury-prev.trycloudflare.com"
- },
+ "updated": 1791836098917,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1791836090257
  },
  "playerNames": [],
- "liveUrl": "https://composite-invention-tree-pair.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1791815727869,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
