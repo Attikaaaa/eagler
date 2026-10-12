@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791791921431,
+ "updated": 1791791938848,
  "runId": "38198917236",
  "address": "wss://perform-aurora-applied-blair.trycloudflare.com",
  "addresses": {
@@ -20,35 +20,19 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 2,
-  "memUsedMb": 3753,
+  "cpu": 1,
+  "memUsedMb": 3752,
   "memTotalMb": 15990,
   "jvmMb": 2638,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
-  "load1": 0.05,
+  "load1": 0.03,
   "hist": [
    {
     "cpu": 0,
     "mem": 3753
    },
    {
-    "cpu": 2,
-    "mem": 3752
-   },
-   {
-    "cpu": 0,
-    "mem": 3752
-   },
-   {
-    "cpu": 0,
-    "mem": 3753
-   },
-   {
-    "cpu": 0,
-    "mem": 3753
-   },
-   {
     "cpu": 1,
     "mem": 3753
    },
@@ -147,9 +131,25 @@
    {
     "cpu": 2,
     "mem": 3753
+   },
+   {
+    "cpu": 0,
+    "mem": 3752
+   },
+   {
+    "cpu": 0,
+    "mem": 3752
+   },
+   {
+    "cpu": 0,
+    "mem": 3752
+   },
+   {
+    "cpu": 1,
+    "mem": 3752
    }
   ],
-  "ts": 1791791921298
+  "ts": 1791791938716
  },
  "playerNames": [],
  "liveUrl": "https://proposal-bathroom-posts-addressed.trycloudflare.com",
