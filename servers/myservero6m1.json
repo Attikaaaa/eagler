@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1791805191886,
- "runId": "38210396607",
- "address": "wss://maritime-shared-nato-stocks.trycloudflare.com",
- "addresses": {
-  "stable": "wss://6d48078224d9a679-172-212-172-241.serveousercontent.com",
-  "cloudflare": "wss://maritime-shared-nato-stocks.trycloudflare.com"
- },
+ "updated": 1791805198670,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://bearing-philips-char-bicycle.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 1,
   "memUsedMb": 3615,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1791784818386,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
