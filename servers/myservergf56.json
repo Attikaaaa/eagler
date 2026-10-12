@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791769256972,
+ "updated": 1791769273749,
  "runId": "38176836996",
  "address": "wss://separate-nearly-playing-metropolitan.trycloudflare.com",
  "addresses": {
@@ -21,7 +21,7 @@
  },
  "metrics": {
   "cpu": 3,
-  "memUsedMb": 3723,
+  "memUsedMb": 3721,
   "memTotalMb": 15990,
   "jvmMb": 2603,
   "diskUsedGb": 58.6,
@@ -30,22 +30,6 @@
   "hist": [
    {
     "cpu": 0,
-    "mem": 3705
-   },
-   {
-    "cpu": 3,
-    "mem": 3705
-   },
-   {
-    "cpu": 0,
-    "mem": 3705
-   },
-   {
-    "cpu": 1,
-    "mem": 3723
-   },
-   {
-    "cpu": 0,
     "mem": 3723
    },
    {
@@ -147,9 +131,25 @@
    {
     "cpu": 3,
     "mem": 3723
+   },
+   {
+    "cpu": 0,
+    "mem": 3723
+   },
+   {
+    "cpu": 0,
+    "mem": 3722
+   },
+   {
+    "cpu": 0,
+    "mem": 3722
+   },
+   {
+    "cpu": 3,
+    "mem": 3721
    }
   ],
-  "ts": 1791769256840
+  "ts": 1791769273570
  },
  "playerNames": [],
  "liveUrl": "https://valves-dosage-textbooks-plain.trycloudflare.com",
