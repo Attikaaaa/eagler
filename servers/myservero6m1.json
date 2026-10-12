@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791764634499,
+ "updated": 1791764651275,
  "runId": "38187527182",
  "address": "wss://contain-guides-slowly-por.trycloudflare.com",
  "addresses": {
@@ -35,27 +35,11 @@
   "cpu": 4,
   "memUsedMb": 3425,
   "memTotalMb": 15990,
-  "jvmMb": 2341,
+  "jvmMb": 2347,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.03,
+  "load1": 0.02,
   "hist": [
-   {
-    "cpu": 1,
-    "mem": 3322
-   },
-   {
-    "cpu": 2,
-    "mem": 3322
-   },
-   {
-    "cpu": 1,
-    "mem": 3330
-   },
-   {
-    "cpu": 1,
-    "mem": 3337
-   },
    {
     "cpu": 2,
     "mem": 3340
@@ -159,9 +143,25 @@
    {
     "cpu": 4,
     "mem": 3425
+   },
+   {
+    "cpu": 2,
+    "mem": 3418
+   },
+   {
+    "cpu": 1,
+    "mem": 3419
+   },
+   {
+    "cpu": 1,
+    "mem": 3424
+   },
+   {
+    "cpu": 4,
+    "mem": 3425
    }
   ],
-  "ts": 1791764634410
+  "ts": 1791764651180
  },
  "playerNames": [],
  "startedAt": 1791764377291,
