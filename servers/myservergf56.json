@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791774806876,
- "runId": "38176836996",
- "address": "wss://separate-nearly-playing-metropolitan.trycloudflare.com",
- "addresses": {
-  "stable": "wss://8aff4507506446e8-20-55-118-116.serveousercontent.com",
-  "cloudflare": "wss://separate-nearly-playing-metropolitan.trycloudflare.com"
- },
+ "updated": 1791774815372,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1791774803518
  },
  "playerNames": [],
- "liveUrl": "https://valves-dosage-textbooks-plain.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1791754425428,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
