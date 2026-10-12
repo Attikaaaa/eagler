@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791806658840,
+ "updated": 1791806672941,
  "runId": "38244115975",
  "address": "wss://terrorism-magnet-once-cakes.trycloudflare.com",
  "addresses": {
@@ -38,20 +38,8 @@
   "jvmMb": 2380,
   "diskUsedGb": 59.4,
   "diskTotalGb": 144.3,
-  "load1": 0.07,
+  "load1": 0.05,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3490
-   },
-   {
-    "cpu": 0,
-    "mem": 3489
-   },
-   {
-    "cpu": 1,
-    "mem": 3489
-   },
    {
     "cpu": 0,
     "mem": 3490
@@ -159,9 +147,21 @@
    {
     "cpu": 2,
     "mem": 3488
+   },
+   {
+    "cpu": 0,
+    "mem": 3488
+   },
+   {
+    "cpu": 0,
+    "mem": 3488
+   },
+   {
+    "cpu": 2,
+    "mem": 3488
    }
   ],
-  "ts": 1791806655786
+  "ts": 1791806672807
  },
  "playerNames": [],
  "startedAt": 1791805243792,
