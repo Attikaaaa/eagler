@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791821423344,
+ "updated": 1791821435928,
  "runId": "38244115975",
  "address": "wss://terrorism-magnet-once-cakes.trycloudflare.com",
  "addresses": {
@@ -33,26 +33,18 @@
  "liveUrl": "https://str-game-desktop-progressive.trycloudflare.com",
  "metrics": {
   "cpu": 1,
-  "memUsedMb": 3541,
+  "memUsedMb": 3542,
   "memTotalMb": 15990,
   "jvmMb": 2402,
   "diskUsedGb": 59.4,
   "diskTotalGb": 144.3,
-  "load1": 0,
+  "load1": 0.07,
   "hist": [
    {
     "cpu": 0,
     "mem": 3526
    },
    {
-    "cpu": 1,
-    "mem": 3526
-   },
-   {
-    "cpu": 0,
-    "mem": 3526
-   },
-   {
     "cpu": 0,
     "mem": 3526
    },
@@ -159,9 +151,17 @@
    {
     "cpu": 1,
     "mem": 3541
+   },
+   {
+    "cpu": 1,
+    "mem": 3541
+   },
+   {
+    "cpu": 1,
+    "mem": 3542
    }
   ],
-  "ts": 1791821409815
+  "ts": 1791821432521
  },
  "playerNames": [],
  "startedAt": 1791805243792,
