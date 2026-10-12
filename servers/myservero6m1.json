@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791764378403,
+ "updated": 1791764379598,
  "runId": "38187527182",
  "address": "wss://contain-guides-slowly-por.trycloudflare.com",
  "addresses": {
@@ -32,20 +32,28 @@
  },
  "liveUrl": "https://accounts-watch-lips-ping.trycloudflare.com",
  "metrics": {
-  "cpu": 25,
-  "memUsedMb": 2519,
+  "cpu": 15,
+  "memUsedMb": 3339,
   "memTotalMb": 15990,
-  "jvmMb": 1171,
+  "jvmMb": 2230,
   "diskUsedGb": 58.5,
   "diskTotalGb": 144.3,
-  "load1": 0.77,
+  "load1": 1.1,
   "hist": [
    {
     "cpu": 25,
     "mem": 2519
+   },
+   {
+    "cpu": 60,
+    "mem": 3358
+   },
+   {
+    "cpu": 15,
+    "mem": 3339
    }
   ],
-  "ts": 1791764365072
+  "ts": 1791764379469
  },
  "playerNames": [],
  "startedAt": 1791764377291,
