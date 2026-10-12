@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1791784767226,
- "runId": "38187527182",
- "address": "wss://contain-guides-slowly-por.trycloudflare.com",
- "addresses": {
-  "stable": "wss://c6dbb7e124e40fd4-20-57-133-116.serveousercontent.com",
-  "cloudflare": "wss://contain-guides-slowly-por.trycloudflare.com"
- },
+ "updated": 1791784774249,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://accounts-watch-lips-ping.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 2,
   "memUsedMb": 3537,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1791764377291,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
