@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791836469945,
+ "updated": 1791836487412,
  "runId": "38302969669",
  "address": "wss://concept-leasing-independently-raymond.trycloudflare.com",
  "addresses": {
@@ -21,29 +21,13 @@
  },
  "metrics": {
   "cpu": 1,
-  "memUsedMb": 3596,
+  "memUsedMb": 3598,
   "memTotalMb": 15990,
   "jvmMb": 2518,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
-  "load1": 0.09,
+  "load1": 0.07,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3590
-   },
-   {
-    "cpu": 0,
-    "mem": 3591
-   },
-   {
-    "cpu": 2,
-    "mem": 3591
-   },
-   {
-    "cpu": 1,
-    "mem": 3590
-   },
    {
     "cpu": 1,
     "mem": 3589
@@ -147,9 +131,25 @@
    {
     "cpu": 1,
     "mem": 3596
+   },
+   {
+    "cpu": 1,
+    "mem": 3597
+   },
+   {
+    "cpu": 0,
+    "mem": 3598
+   },
+   {
+    "cpu": 0,
+    "mem": 3598
+   },
+   {
+    "cpu": 1,
+    "mem": 3598
    }
   ],
-  "ts": 1791836469800
+  "ts": 1791836487272
  },
  "playerNames": [],
  "liveUrl": "https://baltimore-greetings-sister-projectors.trycloudflare.com",
