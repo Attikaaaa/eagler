@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1791825631467,
- "runId": "38244115975",
- "address": "wss://terrorism-magnet-once-cakes.trycloudflare.com",
- "addresses": {
-  "stable": "wss://1a9c28e2228744ab-52-161-178-38.serveousercontent.com",
-  "cloudflare": "wss://terrorism-magnet-once-cakes.trycloudflare.com"
- },
+ "updated": 1791825642184,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://str-game-desktop-progressive.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 2,
   "memUsedMb": 3540,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1791805243792,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
