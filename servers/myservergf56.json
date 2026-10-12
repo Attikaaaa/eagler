@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791834124071,
+ "updated": 1791834140715,
  "runId": "38263929585",
  "address": "wss://bolt-air-luxury-prev.trycloudflare.com",
  "addresses": {
@@ -20,31 +20,15 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 3,
-  "memUsedMb": 3733,
+  "cpu": 2,
+  "memUsedMb": 3731,
   "memTotalMb": 15994,
   "jvmMb": 2589,
   "diskUsedGb": 59.5,
   "diskTotalGb": 144.3,
-  "load1": 0.08,
+  "load1": 0.05,
   "hist": [
    {
-    "cpu": 0,
-    "mem": 3737
-   },
-   {
-    "cpu": 4,
-    "mem": 3736
-   },
-   {
-    "cpu": 0,
-    "mem": 3736
-   },
-   {
-    "cpu": 0,
-    "mem": 3736
-   },
-   {
     "cpu": 2,
     "mem": 3753
    },
@@ -147,9 +131,25 @@
    {
     "cpu": 3,
     "mem": 3733
+   },
+   {
+    "cpu": 0,
+    "mem": 3733
+   },
+   {
+    "cpu": 0,
+    "mem": 3732
+   },
+   {
+    "cpu": 0,
+    "mem": 3731
+   },
+   {
+    "cpu": 2,
+    "mem": 3731
    }
   ],
-  "ts": 1791834122371
+  "ts": 1791834140597
  },
  "playerNames": [],
  "liveUrl": "https://composite-invention-tree-pair.trycloudflare.com",
