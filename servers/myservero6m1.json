@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791825784084,
+ "updated": 1791825803972,
  "runId": "38283581418",
  "address": "wss://testimonials-ending-techrepublic-peace.trycloudflare.com",
  "addresses": {
@@ -32,13 +32,13 @@
  },
  "liveUrl": "https://timely-flour-weights-becoming.trycloudflare.com",
  "metrics": {
-  "cpu": 4,
-  "memUsedMb": 3310,
+  "cpu": 3,
+  "memUsedMb": 3321,
   "memTotalMb": 15990,
-  "jvmMb": 2207,
+  "jvmMb": 2219,
   "diskUsedGb": 59.4,
   "diskTotalGb": 144.3,
-  "load1": 0.23,
+  "load1": 0.17,
   "hist": [
    {
     "cpu": 40,
@@ -143,9 +143,25 @@
    {
     "cpu": 4,
     "mem": 3310
+   },
+   {
+    "cpu": 1,
+    "mem": 3314
+   },
+   {
+    "cpu": 0,
+    "mem": 3314
+   },
+   {
+    "cpu": 1,
+    "mem": 3322
+   },
+   {
+    "cpu": 3,
+    "mem": 3321
    }
   ],
-  "ts": 1791825783926
+  "ts": 1791825801038
  },
  "playerNames": [],
  "startedAt": 1791825683131,
