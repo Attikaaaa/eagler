@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791873188362,
+ "updated": 1791873206168,
  "runId": "38347687960",
  "address": "wss://expects-caution-led-cad.trycloudflare.com",
  "addresses": {
@@ -40,22 +40,6 @@
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 1,
-    "mem": 3559
-   },
-   {
-    "cpu": 1,
-    "mem": 3558
-   },
-   {
-    "cpu": 3,
-    "mem": 3558
-   },
-   {
-    "cpu": 1,
-    "mem": 3558
-   },
    {
     "cpu": 1,
     "mem": 3559
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3557
+   },
+   {
+    "cpu": 0,
+    "mem": 3557
+   },
+   {
+    "cpu": 0,
+    "mem": 3557
+   },
+   {
+    "cpu": 0,
+    "mem": 3557
+   },
+   {
+    "cpu": 2,
+    "mem": 3557
    }
   ],
-  "ts": 1791873188090
+  "ts": 1791873206017
  },
  "playerNames": [],
  "startedAt": 1791866549349,
