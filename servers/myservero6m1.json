@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1791928752016,
- "runId": "38429466933",
- "address": "wss://installing-yourself-powered-intimate.trycloudflare.com",
- "addresses": {
-  "stable": "wss://bee79b5b8859719b-57-154-218-71.serveousercontent.com",
-  "cloudflare": "wss://installing-yourself-powered-intimate.trycloudflare.com"
- },
+ "updated": 1791928761426,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://headline-inquiry-roll-warranties.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 1,
   "memUsedMb": 3551,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1791908376834,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
