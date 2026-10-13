@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791887438028,
+ "updated": 1791887455785,
  "runId": "38382913684",
  "address": "wss://topic-reverse-crawford-crew.trycloudflare.com",
  "addresses": {
@@ -33,29 +33,13 @@
  "liveUrl": "https://elements-philosophy-seat-tampa.trycloudflare.com",
  "metrics": {
   "cpu": 2,
-  "memUsedMb": 3256,
+  "memUsedMb": 3260,
   "memTotalMb": 15990,
-  "jvmMb": 2149,
+  "jvmMb": 2155,
   "diskUsedGb": 59.4,
   "diskTotalGb": 144.3,
-  "load1": 0.02,
+  "load1": 0.01,
   "hist": [
-   {
-    "cpu": 1,
-    "mem": 3247
-   },
-   {
-    "cpu": 2,
-    "mem": 3246
-   },
-   {
-    "cpu": 1,
-    "mem": 3248
-   },
-   {
-    "cpu": 1,
-    "mem": 3249
-   },
    {
     "cpu": 1,
     "mem": 3248
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3256
+   },
+   {
+    "cpu": 1,
+    "mem": 3261
+   },
+   {
+    "cpu": 1,
+    "mem": 3261
+   },
+   {
+    "cpu": 1,
+    "mem": 3260
+   },
+   {
+    "cpu": 2,
+    "mem": 3260
    }
   ],
-  "ts": 1791887437881
+  "ts": 1791887455604
  },
  "playerNames": [],
  "startedAt": 1791886995535,
