@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791910174439,
+ "updated": 1791910192881,
  "runId": "38429463886",
  "address": "wss://dairy-technique-refinance-provinces.trycloudflare.com",
  "addresses": {
@@ -20,26 +20,14 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3726,
+  "cpu": 2,
+  "memUsedMb": 3730,
   "memTotalMb": 15990,
-  "jvmMb": 2605,
+  "jvmMb": 2607,
   "diskUsedGb": 59.5,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 1,
-    "mem": 3726
-   },
-   {
-    "cpu": 1,
-    "mem": 3727
-   },
-   {
-    "cpu": 1,
-    "mem": 3728
-   },
    {
     "cpu": 0,
     "mem": 3729
@@ -147,9 +135,21 @@
    {
     "cpu": 1,
     "mem": 3726
+   },
+   {
+    "cpu": 1,
+    "mem": 3730
+   },
+   {
+    "cpu": 0,
+    "mem": 3729
+   },
+   {
+    "cpu": 2,
+    "mem": 3730
    }
   ],
-  "ts": 1791910174257
+  "ts": 1791910186917
  },
  "playerNames": [],
  "liveUrl": "https://designated-track-counsel-aviation.trycloudflare.com",
