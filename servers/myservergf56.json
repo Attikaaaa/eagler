@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791928742111,
- "runId": "38429463886",
- "address": "wss://dairy-technique-refinance-provinces.trycloudflare.com",
- "addresses": {
-  "stable": "wss://41a9f66e35d70aa1-172-182-195-181.serveousercontent.com",
-  "cloudflare": "wss://dairy-technique-refinance-provinces.trycloudflare.com"
- },
+ "updated": 1791928750151,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1791928740922
  },
  "playerNames": [],
- "liveUrl": "https://designated-track-counsel-aviation.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1791908387026,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
