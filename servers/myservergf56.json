@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791897380362,
- "runId": "38363678623",
- "address": "wss://delete-christina-toolkit-vbulletin.trycloudflare.com",
- "addresses": {
-  "stable": "wss://3f3a9ae15391598c-172-171-13-144.serveousercontent.com",
-  "cloudflare": "wss://delete-christina-toolkit-vbulletin.trycloudflare.com"
- },
+ "updated": 1791897388572,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1791897378886
  },
  "playerNames": [],
- "liveUrl": "https://parenting-pregnancy-ent-sonic.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1791877003616,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
