@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791856684372,
+ "updated": 1791856701438,
  "runId": "38334443076",
  "address": "wss://dimensions-expanding-pharmaceutical-filtering.trycloudflare.com",
  "addresses": {
@@ -20,18 +20,14 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 4,
-  "memUsedMb": 3617,
+  "cpu": 2,
+  "memUsedMb": 3620,
   "memTotalMb": 15990,
-  "jvmMb": 2534,
+  "jvmMb": 2536,
   "diskUsedGb": 59.5,
   "diskTotalGb": 144.3,
-  "load1": 0.22,
+  "load1": 0.16,
   "hist": [
-   {
-    "cpu": 19,
-    "mem": 3486
-   },
    {
     "cpu": 64,
     "mem": 3734
@@ -135,9 +131,25 @@
    {
     "cpu": 4,
     "mem": 3617
+   },
+   {
+    "cpu": 1,
+    "mem": 3619
+   },
+   {
+    "cpu": 0,
+    "mem": 3621
+   },
+   {
+    "cpu": 1,
+    "mem": 3620
+   },
+   {
+    "cpu": 2,
+    "mem": 3620
    }
   ],
-  "ts": 1791856684254
+  "ts": 1791856701267
  },
  "playerNames": [],
  "liveUrl": "https://revolutionary-mumbai-front-seat.trycloudflare.com",
