@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791876950842,
- "runId": "38334443076",
- "address": "wss://dimensions-expanding-pharmaceutical-filtering.trycloudflare.com",
- "addresses": {
-  "stable": "wss://955f8116fbb821a2-20-64-106-243.serveousercontent.com",
-  "cloudflare": "wss://dimensions-expanding-pharmaceutical-filtering.trycloudflare.com"
- },
+ "updated": 1791876959248,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1791876949402
  },
  "playerNames": [],
- "liveUrl": "https://revolutionary-mumbai-front-seat.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1791856579325,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
