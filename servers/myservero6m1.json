@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791861497237,
+ "updated": 1791861514119,
  "runId": "38319916930",
  "address": "wss://agents-cancellation-postposted-civilization.trycloudflare.com",
  "addresses": {
@@ -38,26 +38,10 @@
   "jvmMb": 2431,
   "diskUsedGb": 59.4,
   "diskTotalGb": 144.3,
-  "load1": 0.06,
+  "load1": 0.12,
   "hist": [
    {
     "cpu": 0,
-    "mem": 3555
-   },
-   {
-    "cpu": 1,
-    "mem": 3554
-   },
-   {
-    "cpu": 0,
-    "mem": 3555
-   },
-   {
-    "cpu": 0,
-    "mem": 3555
-   },
-   {
-    "cpu": 0,
     "mem": 3556
    },
    {
@@ -127,6 +111,22 @@
    {
     "cpu": 2,
     "mem": 3553
+   },
+   {
+    "cpu": 0,
+    "mem": 3554
+   },
+   {
+    "cpu": 0,
+    "mem": 3554
+   },
+   {
+    "cpu": 0,
+    "mem": 3554
+   },
+   {
+    "cpu": 2,
+    "mem": 3554
    },
    {
     "cpu": 0,
@@ -161,7 +161,7 @@
     "mem": 3554
    }
   ],
-  "ts": 1791861494620
+  "ts": 1791861513965
  },
  "playerNames": [],
  "startedAt": 1791846120563,
