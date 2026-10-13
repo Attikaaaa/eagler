@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791856521216,
- "runId": "38302969669",
- "address": "wss://concept-leasing-independently-raymond.trycloudflare.com",
- "addresses": {
-  "stable": "wss://b92c65fe4534886d-20-171-39-188.serveousercontent.com",
-  "cloudflare": "wss://concept-leasing-independently-raymond.trycloudflare.com"
- },
+ "updated": 1791856530987,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1791856518310
  },
  "playerNames": [],
- "liveUrl": "https://baltimore-greetings-sister-projectors.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1791836142819,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
