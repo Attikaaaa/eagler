@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791877069950,
+ "updated": 1791877087330,
  "runId": "38363678623",
  "address": "wss://delete-christina-toolkit-vbulletin.trycloudflare.com",
  "addresses": {
@@ -20,13 +20,13 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3565,
+  "cpu": 2,
+  "memUsedMb": 3567,
   "memTotalMb": 15990,
   "jvmMb": 2513,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
-  "load1": 0.55,
+  "load1": 0.43,
   "hist": [
    {
     "cpu": 13,
@@ -99,9 +99,25 @@
    {
     "cpu": 1,
     "mem": 3565
+   },
+   {
+    "cpu": 0,
+    "mem": 3568
+   },
+   {
+    "cpu": 0,
+    "mem": 3567
+   },
+   {
+    "cpu": 0,
+    "mem": 3567
+   },
+   {
+    "cpu": 2,
+    "mem": 3567
    }
   ],
-  "ts": 1791877069794
+  "ts": 1791877087119
  },
  "playerNames": [],
  "liveUrl": "https://parenting-pregnancy-ent-sonic.trycloudflare.com",
