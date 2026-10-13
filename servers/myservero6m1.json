@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791908444521,
+ "updated": 1791908461396,
  "runId": "38429466933",
  "address": "wss://installing-yourself-powered-intimate.trycloudflare.com",
  "addresses": {
@@ -32,13 +32,13 @@
  },
  "liveUrl": "https://headline-inquiry-roll-warranties.trycloudflare.com",
  "metrics": {
-  "cpu": 2,
-  "memUsedMb": 3283,
+  "cpu": 3,
+  "memUsedMb": 3280,
   "memTotalMb": 15990,
   "jvmMb": 2209,
   "diskUsedGb": 59.4,
   "diskTotalGb": 144.3,
-  "load1": 0.44,
+  "load1": 0.34,
   "hist": [
    {
     "cpu": 16,
@@ -95,9 +95,25 @@
    {
     "cpu": 2,
     "mem": 3283
+   },
+   {
+    "cpu": 1,
+    "mem": 3283
+   },
+   {
+    "cpu": 1,
+    "mem": 3282
+   },
+   {
+    "cpu": 1,
+    "mem": 3280
+   },
+   {
+    "cpu": 3,
+    "mem": 3280
    }
   ],
-  "ts": 1791908444381
+  "ts": 1791908461267
  },
  "playerNames": [],
  "startedAt": 1791908376834,
