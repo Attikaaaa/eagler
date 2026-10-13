@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791899403862,
+ "updated": 1791899421448,
  "runId": "38403645433",
  "address": "wss://best-differential-certainly-flags.trycloudflare.com",
  "addresses": {
@@ -20,30 +20,14 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3773,
+  "cpu": 2,
+  "memUsedMb": 3775,
   "memTotalMb": 15989,
-  "jvmMb": 2626,
+  "jvmMb": 2628,
   "diskUsedGb": 59.5,
   "diskTotalGb": 144.3,
-  "load1": 0.01,
+  "load1": 0,
   "hist": [
-   {
-    "cpu": 1,
-    "mem": 3763
-   },
-   {
-    "cpu": 2,
-    "mem": 3763
-   },
-   {
-    "cpu": 1,
-    "mem": 3763
-   },
-   {
-    "cpu": 1,
-    "mem": 3763
-   },
    {
     "cpu": 2,
     "mem": 3768
@@ -147,9 +131,25 @@
    {
     "cpu": 1,
     "mem": 3773
+   },
+   {
+    "cpu": 0,
+    "mem": 3773
+   },
+   {
+    "cpu": 0,
+    "mem": 3774
+   },
+   {
+    "cpu": 0,
+    "mem": 3774
+   },
+   {
+    "cpu": 2,
+    "mem": 3775
    }
   ],
-  "ts": 1791899403681
+  "ts": 1791899421271
  },
  "playerNames": [],
  "liveUrl": "https://asus-logging-prevent-proved.trycloudflare.com",
