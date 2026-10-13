@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791885640529,
+ "updated": 1791885657927,
  "runId": "38347687960",
  "address": "wss://expects-caution-led-cad.trycloudflare.com",
  "addresses": {
@@ -32,8 +32,8 @@
  },
  "liveUrl": "https://congratulations-vermont-calendar-bobby.trycloudflare.com",
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3579,
+  "cpu": 2,
+  "memUsedMb": 3578,
   "memTotalMb": 15990,
   "jvmMb": 2447,
   "diskUsedGb": 59.4,
@@ -42,22 +42,6 @@
   "hist": [
    {
     "cpu": 0,
-    "mem": 3576
-   },
-   {
-    "cpu": 1,
-    "mem": 3576
-   },
-   {
-    "cpu": 0,
-    "mem": 3576
-   },
-   {
-    "cpu": 0,
-    "mem": 3577
-   },
-   {
-    "cpu": 0,
     "mem": 3578
    },
    {
@@ -159,9 +143,25 @@
    {
     "cpu": 1,
     "mem": 3579
+   },
+   {
+    "cpu": 0,
+    "mem": 3579
+   },
+   {
+    "cpu": 1,
+    "mem": 3579
+   },
+   {
+    "cpu": 0,
+    "mem": 3578
+   },
+   {
+    "cpu": 2,
+    "mem": 3578
    }
   ],
-  "ts": 1791885640386
+  "ts": 1791885657731
  },
  "playerNames": [],
  "startedAt": 1791866549349,
