@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791866112087,
+ "updated": 1791866128852,
  "runId": "38319916930",
  "address": "wss://agents-cancellation-postposted-civilization.trycloudflare.com",
  "addresses": {
@@ -32,30 +32,14 @@
  },
  "liveUrl": "https://cakes-physicians-easily-belts.trycloudflare.com",
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3560,
+  "cpu": 2,
+  "memUsedMb": 3557,
   "memTotalMb": 15990,
   "jvmMb": 2431,
   "diskUsedGb": 59.4,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3559
-   },
-   {
-    "cpu": 0,
-    "mem": 3559
-   },
-   {
-    "cpu": 2,
-    "mem": 3559
-   },
-   {
-    "cpu": 1,
-    "mem": 3567
-   },
    {
     "cpu": 0,
     "mem": 3567
@@ -159,9 +143,25 @@
    {
     "cpu": 1,
     "mem": 3560
+   },
+   {
+    "cpu": 0,
+    "mem": 3559
+   },
+   {
+    "cpu": 0,
+    "mem": 3559
+   },
+   {
+    "cpu": 0,
+    "mem": 3557
+   },
+   {
+    "cpu": 2,
+    "mem": 3557
    }
   ],
-  "ts": 1791866111951
+  "ts": 1791866128684
  },
  "playerNames": [],
  "startedAt": 1791846120563,
