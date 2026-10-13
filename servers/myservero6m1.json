@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791898201102,
+ "updated": 1791898218772,
  "runId": "38382913684",
  "address": "wss://topic-reverse-crawford-crew.trycloudflare.com",
  "addresses": {
@@ -38,24 +38,8 @@
   "jvmMb": 2460,
   "diskUsedGb": 59.4,
   "diskTotalGb": 144.3,
-  "load1": 0.02,
+  "load1": 0.01,
   "hist": [
-   {
-    "cpu": 1,
-    "mem": 3599
-   },
-   {
-    "cpu": 2,
-    "mem": 3598
-   },
-   {
-    "cpu": 1,
-    "mem": 3596
-   },
-   {
-    "cpu": 1,
-    "mem": 3596
-   },
    {
     "cpu": 1,
     "mem": 3596
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3600
+   },
+   {
+    "cpu": 1,
+    "mem": 3600
+   },
+   {
+    "cpu": 1,
+    "mem": 3600
+   },
+   {
+    "cpu": 1,
+    "mem": 3600
+   },
+   {
+    "cpu": 2,
+    "mem": 3600
    }
   ],
-  "ts": 1791898200897
+  "ts": 1791898218573
  },
  "playerNames": [],
  "startedAt": 1791886995535,
