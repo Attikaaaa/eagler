@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1791886931917,
- "runId": "38347687960",
- "address": "wss://expects-caution-led-cad.trycloudflare.com",
- "addresses": {
-  "stable": "wss://b9eb475d92b0dbf9-64-236-153-84.serveousercontent.com",
-  "cloudflare": "wss://expects-caution-led-cad.trycloudflare.com"
- },
+ "updated": 1791886946312,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://congratulations-vermont-calendar-bobby.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 2,
   "memUsedMb": 3574,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1791866549349,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
