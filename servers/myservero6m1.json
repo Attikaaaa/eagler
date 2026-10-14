@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792008486394,
+ "updated": 1792008503803,
  "runId": "38589184494",
  "address": "wss://unfortunately-landing-hotels-module.trycloudflare.com",
  "addresses": {
@@ -32,8 +32,8 @@
  },
  "liveUrl": "https://planet-mirror-logged-happen.trycloudflare.com",
  "metrics": {
-  "cpu": 3,
-  "memUsedMb": 3583,
+  "cpu": 2,
+  "memUsedMb": 3584,
   "memTotalMb": 15990,
   "jvmMb": 2452,
   "diskUsedGb": 59.4,
@@ -45,22 +45,6 @@
     "mem": 3582
    },
    {
-    "cpu": 0,
-    "mem": 3583
-   },
-   {
-    "cpu": 1,
-    "mem": 3582
-   },
-   {
-    "cpu": 0,
-    "mem": 3582
-   },
-   {
-    "cpu": 0,
-    "mem": 3582
-   },
-   {
     "cpu": 1,
     "mem": 3582
    },
@@ -159,9 +143,25 @@
    {
     "cpu": 3,
     "mem": 3583
+   },
+   {
+    "cpu": 0,
+    "mem": 3584
+   },
+   {
+    "cpu": 0,
+    "mem": 3584
+   },
+   {
+    "cpu": 0,
+    "mem": 3584
+   },
+   {
+    "cpu": 2,
+    "mem": 3584
    }
   ],
-  "ts": 1792008486236
+  "ts": 1792008503644
  },
  "playerNames": [],
  "startedAt": 1791991568591,
