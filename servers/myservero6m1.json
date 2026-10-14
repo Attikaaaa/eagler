@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791949275443,
+ "updated": 1791949293318,
  "runId": "38507408349",
  "address": "wss://sudden-compete-moved-transport.trycloudflare.com",
  "addresses": {
@@ -33,12 +33,12 @@
  "liveUrl": "https://retain-mountains-cloudy-jury.trycloudflare.com",
  "metrics": {
   "cpu": 1,
-  "memUsedMb": 3303,
+  "memUsedMb": 3312,
   "memTotalMb": 15990,
-  "jvmMb": 2227,
+  "jvmMb": 2230,
   "diskUsedGb": 59.4,
   "diskTotalGb": 144.3,
-  "load1": 0.37,
+  "load1": 0.29,
   "hist": [
    {
     "cpu": 19,
@@ -95,9 +95,25 @@
    {
     "cpu": 1,
     "mem": 3303
+   },
+   {
+    "cpu": 1,
+    "mem": 3305
+   },
+   {
+    "cpu": 0,
+    "mem": 3311
+   },
+   {
+    "cpu": 0,
+    "mem": 3310
+   },
+   {
+    "cpu": 1,
+    "mem": 3312
    }
   ],
-  "ts": 1791949275279
+  "ts": 1791949293132
  },
  "playerNames": [],
  "startedAt": 1791949222303,
