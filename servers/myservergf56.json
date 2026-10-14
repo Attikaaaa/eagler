@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791950035614,
+ "updated": 1791950052633,
  "runId": "38507394017",
  "address": "wss://cite-owner-surprise-beaver.trycloudflare.com",
  "addresses": {
@@ -20,30 +20,14 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 3,
-  "memUsedMb": 3629,
+  "cpu": 2,
+  "memUsedMb": 3632,
   "memTotalMb": 15989,
   "jvmMb": 2522,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
-  "load1": 0.14,
+  "load1": 0.1,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3624
-   },
-   {
-    "cpu": 1,
-    "mem": 3625
-   },
-   {
-    "cpu": 0,
-    "mem": 3625
-   },
-   {
-    "cpu": 0,
-    "mem": 3626
-   },
    {
     "cpu": 0,
     "mem": 3626
@@ -147,9 +131,25 @@
    {
     "cpu": 3,
     "mem": 3629
+   },
+   {
+    "cpu": 0,
+    "mem": 3630
+   },
+   {
+    "cpu": 0,
+    "mem": 3631
+   },
+   {
+    "cpu": 0,
+    "mem": 3632
+   },
+   {
+    "cpu": 2,
+    "mem": 3632
    }
   ],
-  "ts": 1791950035422
+  "ts": 1791950052517
  },
  "playerNames": [],
  "liveUrl": "https://quotations-ate-cardiovascular-org.trycloudflare.com",
