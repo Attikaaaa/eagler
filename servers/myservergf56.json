@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792014553095,
+ "updated": 1792014571684,
  "runId": "38637573496",
  "address": "wss://catering-caught-fusion-helps.trycloudflare.com",
  "addresses": {
@@ -20,30 +20,14 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 2,
+  "cpu": 0,
   "memUsedMb": 3709,
   "memTotalMb": 15989,
-  "jvmMb": 2600,
+  "jvmMb": 2601,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3704
-   },
-   {
-    "cpu": 0,
-    "mem": 3704
-   },
-   {
-    "cpu": 0,
-    "mem": 3704
-   },
-   {
-    "cpu": 1,
-    "mem": 3705
-   },
    {
     "cpu": 0,
     "mem": 3705
@@ -147,9 +131,25 @@
    {
     "cpu": 2,
     "mem": 3709
+   },
+   {
+    "cpu": 0,
+    "mem": 3709
+   },
+   {
+    "cpu": 0,
+    "mem": 3709
+   },
+   {
+    "cpu": 0,
+    "mem": 3709
+   },
+   {
+    "cpu": 0,
+    "mem": 3709
    }
   ],
-  "ts": 1792014552928
+  "ts": 1792014571494
  },
  "playerNames": [],
  "liveUrl": "https://inspired-simple-ward-attitude.trycloudflare.com",
