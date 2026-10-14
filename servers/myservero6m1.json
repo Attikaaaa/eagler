@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791948654813,
+ "updated": 1791948672918,
  "runId": "38474613994",
  "address": "wss://slightly-prefer-drums-paintings.trycloudflare.com",
  "addresses": {
@@ -35,27 +35,11 @@
   "cpu": 2,
   "memUsedMb": 3604,
   "memTotalMb": 15990,
-  "jvmMb": 2458,
+  "jvmMb": 2460,
   "diskUsedGb": 59.4,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3610
-   },
-   {
-    "cpu": 3,
-    "mem": 3610
-   },
-   {
-    "cpu": 0,
-    "mem": 3610
-   },
-   {
-    "cpu": 0,
-    "mem": 3609
-   },
    {
     "cpu": 0,
     "mem": 3609
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3604
+   },
+   {
+    "cpu": 0,
+    "mem": 3604
+   },
+   {
+    "cpu": 1,
+    "mem": 3604
+   },
+   {
+    "cpu": 0,
+    "mem": 3604
+   },
+   {
+    "cpu": 2,
+    "mem": 3604
    }
   ],
-  "ts": 1791948653646
+  "ts": 1791948671763
  },
  "playerNames": [],
  "startedAt": 1791928808629,
