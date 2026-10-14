@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792006878127,
+ "updated": 1792006895552,
  "runId": "38589181241",
  "address": "wss://expectations-acceptance-avenue-approval.trycloudflare.com",
  "addresses": {
@@ -20,30 +20,14 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 2,
-  "memUsedMb": 3835,
+  "cpu": 1,
+  "memUsedMb": 3834,
   "memTotalMb": 15989,
   "jvmMb": 2642,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3838
-   },
-   {
-    "cpu": 1,
-    "mem": 3839
-   },
-   {
-    "cpu": 0,
-    "mem": 3837
-   },
-   {
-    "cpu": 0,
-    "mem": 3837
-   },
    {
     "cpu": 0,
     "mem": 3837
@@ -147,9 +131,25 @@
    {
     "cpu": 2,
     "mem": 3835
+   },
+   {
+    "cpu": 0,
+    "mem": 3835
+   },
+   {
+    "cpu": 0,
+    "mem": 3835
+   },
+   {
+    "cpu": 0,
+    "mem": 3834
+   },
+   {
+    "cpu": 1,
+    "mem": 3834
    }
   ],
-  "ts": 1792006877950
+  "ts": 1792006895410
  },
  "playerNames": [],
  "liveUrl": "https://baltimore-models-winners-large.trycloudflare.com",
