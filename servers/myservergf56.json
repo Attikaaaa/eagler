@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791938754203,
+ "updated": 1791938771109,
  "runId": "38474591972",
  "address": "wss://talks-pty-attitude-vehicles.trycloudflare.com",
  "addresses": {
@@ -20,8 +20,8 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 2,
-  "memUsedMb": 3738,
+  "cpu": 3,
+  "memUsedMb": 3736,
   "memTotalMb": 15990,
   "jvmMb": 2587,
   "diskUsedGb": 59.5,
@@ -29,22 +29,6 @@
   "load1": 0,
   "hist": [
    {
-    "cpu": 1,
-    "mem": 3739
-   },
-   {
-    "cpu": 2,
-    "mem": 3740
-   },
-   {
-    "cpu": 0,
-    "mem": 3741
-   },
-   {
-    "cpu": 0,
-    "mem": 3740
-   },
-   {
     "cpu": 0,
     "mem": 3740
    },
@@ -147,9 +131,25 @@
    {
     "cpu": 2,
     "mem": 3738
+   },
+   {
+    "cpu": 0,
+    "mem": 3736
+   },
+   {
+    "cpu": 0,
+    "mem": 3736
+   },
+   {
+    "cpu": 0,
+    "mem": 3736
+   },
+   {
+    "cpu": 3,
+    "mem": 3736
    }
   ],
-  "ts": 1791938754088
+  "ts": 1791938770970
  },
  "playerNames": [],
  "liveUrl": "https://prozac-exit-optimal-bachelor.trycloudflare.com",
