@@ -6,10 +6,13 @@
  "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791991547087,
+ "updated": 1791991558609,
  "runId": "38589181241",
- "address": null,
- "addresses": {},
+ "address": "wss://expectations-acceptance-avenue-approval.trycloudflare.com",
+ "addresses": {
+  "stable": "wss://6fd903060e1481a7-130-131-231-231.serveousercontent.com",
+  "cloudflare": "wss://expectations-acceptance-avenue-approval.trycloudflare.com"
+ },
  "players": 0,
  "host": {
   "cpus": 4,
