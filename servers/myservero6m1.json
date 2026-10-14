@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1791969600132,
- "runId": "38507408349",
- "address": "wss://sudden-compete-moved-transport.trycloudflare.com",
- "addresses": {
-  "stable": "wss://2f05451fd6aa0d70-134-33-102-89.serveousercontent.com",
-  "cloudflare": "wss://sudden-compete-moved-transport.trycloudflare.com"
- },
+ "updated": 1791969608169,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://retain-mountains-cloudy-jury.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 0,
   "memUsedMb": 3593,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1791949222303,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
