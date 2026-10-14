@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1792011951273,
- "runId": "38589181241",
- "address": "wss://expectations-acceptance-avenue-approval.trycloudflare.com",
- "addresses": {
-  "stable": "wss://6fd903060e1481a7-130-131-231-231.serveousercontent.com",
-  "cloudflare": "wss://expectations-acceptance-avenue-approval.trycloudflare.com"
- },
+ "updated": 1792011959632,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1792011949800
  },
  "playerNames": [],
- "liveUrl": "https://baltimore-models-winners-large.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1791991573349,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
