@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791945275191,
+ "updated": 1791945292279,
  "runId": "38474613994",
  "address": "wss://slightly-prefer-drums-paintings.trycloudflare.com",
  "addresses": {
@@ -32,8 +32,8 @@
  },
  "liveUrl": "https://studios-jesus-goes-arms.trycloudflare.com",
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3607,
+  "cpu": 2,
+  "memUsedMb": 3608,
   "memTotalMb": 15990,
   "jvmMb": 2458,
   "diskUsedGb": 59.4,
@@ -42,22 +42,6 @@
   "hist": [
    {
     "cpu": 0,
-    "mem": 3600
-   },
-   {
-    "cpu": 1,
-    "mem": 3600
-   },
-   {
-    "cpu": 0,
-    "mem": 3601
-   },
-   {
-    "cpu": 0,
-    "mem": 3602
-   },
-   {
-    "cpu": 0,
     "mem": 3603
    },
    {
@@ -159,9 +143,25 @@
    {
     "cpu": 1,
     "mem": 3607
+   },
+   {
+    "cpu": 0,
+    "mem": 3608
+   },
+   {
+    "cpu": 0,
+    "mem": 3608
+   },
+   {
+    "cpu": 0,
+    "mem": 3609
+   },
+   {
+    "cpu": 2,
+    "mem": 3608
    }
   ],
-  "ts": 1791945275077
+  "ts": 1791945292144
  },
  "playerNames": [],
  "startedAt": 1791928808629,
