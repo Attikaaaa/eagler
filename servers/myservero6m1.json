@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791958657864,
+ "updated": 1791958675397,
  "runId": "38507408349",
  "address": "wss://sudden-compete-moved-transport.trycloudflare.com",
  "addresses": {
@@ -38,25 +38,9 @@
   "jvmMb": 2424,
   "diskUsedGb": 59.4,
   "diskTotalGb": 144.3,
-  "load1": 0.1,
+  "load1": 0.08,
   "hist": [
    {
-    "cpu": 2,
-    "mem": 3551
-   },
-   {
-    "cpu": 4,
-    "mem": 3551
-   },
-   {
-    "cpu": 1,
-    "mem": 3550
-   },
-   {
-    "cpu": 2,
-    "mem": 3550
-   },
-   {
     "cpu": 1,
     "mem": 3549
    },
@@ -155,13 +139,29 @@
    {
     "cpu": 2,
     "mem": 3552
+   },
+   {
+    "cpu": 4,
+    "mem": 3551
+   },
+   {
+    "cpu": 2,
+    "mem": 3552
+   },
+   {
+    "cpu": 3,
+    "mem": 3551
+   },
+   {
+    "cpu": 2,
+    "mem": 3551
    },
    {
     "cpu": 4,
     "mem": 3551
    }
   ],
-  "ts": 1791958657676
+  "ts": 1791958675195
  },
  "playerNames": [],
  "startedAt": 1791949222303,
