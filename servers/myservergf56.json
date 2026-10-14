@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1791973497147,
+ "updated": 1791973514648,
  "runId": "38541579781",
  "address": "wss://incl-creating-payday-steven.trycloudflare.com",
  "addresses": {
@@ -20,30 +20,14 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 3,
-  "memUsedMb": 3786,
+  "cpu": 2,
+  "memUsedMb": 3782,
   "memTotalMb": 15989,
   "jvmMb": 2608,
   "diskUsedGb": 59.5,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3778
-   },
-   {
-    "cpu": 1,
-    "mem": 3778
-   },
-   {
-    "cpu": 0,
-    "mem": 3778
-   },
-   {
-    "cpu": 0,
-    "mem": 3778
-   },
    {
     "cpu": 0,
     "mem": 3778
@@ -147,9 +131,25 @@
    {
     "cpu": 3,
     "mem": 3786
+   },
+   {
+    "cpu": 0,
+    "mem": 3787
+   },
+   {
+    "cpu": 1,
+    "mem": 3805
+   },
+   {
+    "cpu": 1,
+    "mem": 3807
+   },
+   {
+    "cpu": 2,
+    "mem": 3782
    }
   ],
-  "ts": 1791973496980
+  "ts": 1791973514432
  },
  "playerNames": [],
  "liveUrl": "https://roads-wilderness-imperial-dealtime.trycloudflare.com",
