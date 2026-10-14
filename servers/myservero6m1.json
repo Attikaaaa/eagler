@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1791949179277,
- "runId": "38474613994",
- "address": "wss://slightly-prefer-drums-paintings.trycloudflare.com",
- "addresses": {
-  "stable": "wss://ae6a223a2e1ed182-172-184-219-213.serveousercontent.com",
-  "cloudflare": "wss://slightly-prefer-drums-paintings.trycloudflare.com"
- },
+ "updated": 1791949187237,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://studios-jesus-goes-arms.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 1,
   "memUsedMb": 3620,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1791928808629,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
