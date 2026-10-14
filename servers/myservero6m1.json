@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791996905307,
+ "updated": 1791996922456,
  "runId": "38589184494",
  "address": "wss://unfortunately-landing-hotels-module.trycloudflare.com",
  "addresses": {
@@ -38,24 +38,8 @@
   "jvmMb": 2454,
   "diskUsedGb": 59.4,
   "diskTotalGb": 144.3,
-  "load1": 0.01,
+  "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3592
-   },
-   {
-    "cpu": 0,
-    "mem": 3592
-   },
-   {
-    "cpu": 1,
-    "mem": 3592
-   },
-   {
-    "cpu": 0,
-    "mem": 3592
-   },
    {
     "cpu": 0,
     "mem": 3592
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3589
+   },
+   {
+    "cpu": 0,
+    "mem": 3589
+   },
+   {
+    "cpu": 0,
+    "mem": 3589
+   },
+   {
+    "cpu": 0,
+    "mem": 3589
+   },
+   {
+    "cpu": 2,
+    "mem": 3589
    }
   ],
-  "ts": 1791996905143
+  "ts": 1791996922324
  },
  "playerNames": [],
  "startedAt": 1791991568591,
