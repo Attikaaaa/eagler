@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1792011942507,
- "runId": "38589184494",
- "address": "wss://unfortunately-landing-hotels-module.trycloudflare.com",
- "addresses": {
-  "stable": "wss://d79b98614e164703-68-220-61-164.serveousercontent.com",
-  "cloudflare": "wss://unfortunately-landing-hotels-module.trycloudflare.com"
- },
+ "updated": 1792011955069,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://planet-mirror-logged-happen.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 2,
   "memUsedMb": 3598,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1791991568591,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
