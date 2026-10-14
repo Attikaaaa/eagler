@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1791969593583,
- "runId": "38507394017",
- "address": "wss://cite-owner-surprise-beaver.trycloudflare.com",
- "addresses": {
-  "stable": "wss://3516888684736c84-20-118-28-213.serveousercontent.com",
-  "cloudflare": "wss://cite-owner-surprise-beaver.trycloudflare.com"
- },
+ "updated": 1791969604065,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1791969592171
  },
  "playerNames": [],
- "liveUrl": "https://quotations-ate-cardiovascular-org.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1791949217905,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
