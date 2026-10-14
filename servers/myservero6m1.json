@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1791979287427,
+ "updated": 1791979303447,
  "runId": "38541588980",
  "address": "wss://demographic-guys-bachelor-regulations.trycloudflare.com",
  "addresses": {
@@ -33,25 +33,13 @@
  "liveUrl": null,
  "metrics": {
   "cpu": 2,
-  "memUsedMb": 3563,
+  "memUsedMb": 3559,
   "memTotalMb": 15990,
   "jvmMb": 2424,
   "diskUsedGb": 59.4,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3567
-   },
-   {
-    "cpu": 1,
-    "mem": 3567
-   },
-   {
-    "cpu": 0,
-    "mem": 3566
-   },
    {
     "cpu": 0,
     "mem": 3566
@@ -159,9 +147,21 @@
    {
     "cpu": 2,
     "mem": 3563
+   },
+   {
+    "cpu": 1,
+    "mem": 3560
+   },
+   {
+    "cpu": 0,
+    "mem": 3560
+   },
+   {
+    "cpu": 2,
+    "mem": 3559
    }
   ],
-  "ts": 1791979286291
+  "ts": 1791979303293
  },
  "playerNames": [],
  "startedAt": 1791969652422,
