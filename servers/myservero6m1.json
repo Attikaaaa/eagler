@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792012157842,
+ "updated": 1792012174901,
  "runId": "38637560441",
  "address": "wss://vacations-gasoline-vendors-church.trycloudflare.com",
  "addresses": {
@@ -33,29 +33,13 @@
  "liveUrl": "https://chemicals-stan-owns-hope.trycloudflare.com",
  "metrics": {
   "cpu": 2,
-  "memUsedMb": 3221,
+  "memUsedMb": 3223,
   "memTotalMb": 15990,
-  "jvmMb": 2126,
+  "jvmMb": 2128,
   "diskUsedGb": 59.4,
   "diskTotalGb": 144.3,
-  "load1": 0.06,
+  "load1": 0.05,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3213
-   },
-   {
-    "cpu": 0,
-    "mem": 3213
-   },
-   {
-    "cpu": 3,
-    "mem": 3213
-   },
-   {
-    "cpu": 0,
-    "mem": 3212
-   },
    {
     "cpu": 1,
     "mem": 3217
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3221
+   },
+   {
+    "cpu": 0,
+    "mem": 3225
+   },
+   {
+    "cpu": 1,
+    "mem": 3224
+   },
+   {
+    "cpu": 0,
+    "mem": 3223
+   },
+   {
+    "cpu": 2,
+    "mem": 3223
    }
   ],
-  "ts": 1792012157681
+  "ts": 1792012174741
  },
  "playerNames": [],
  "startedAt": 1792012001803,
