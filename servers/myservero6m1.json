@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1792032375515,
- "runId": "38637560441",
- "address": "wss://vacations-gasoline-vendors-church.trycloudflare.com",
- "addresses": {
-  "stable": "wss://9559c60aa65c244b-13-86-110-151.serveousercontent.com",
-  "cloudflare": "wss://vacations-gasoline-vendors-church.trycloudflare.com"
- },
+ "updated": 1792032382391,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://chemicals-stan-owns-hope.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 1,
   "memUsedMb": 3576,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1792012001803,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
