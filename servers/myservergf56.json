@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792098554011,
+ "updated": 1792098571488,
  "runId": "38796798557",
  "address": "wss://display-killing-station-proprietary.trycloudflare.com",
  "addresses": {
@@ -21,29 +21,13 @@
  },
  "metrics": {
   "cpu": 1,
-  "memUsedMb": 3797,
+  "memUsedMb": 3794,
   "memTotalMb": 15989,
   "jvmMb": 2629,
   "diskUsedGb": 58.8,
   "diskTotalGb": 144.3,
-  "load1": 0.03,
+  "load1": 0.02,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3777
-   },
-   {
-    "cpu": 0,
-    "mem": 3777
-   },
-   {
-    "cpu": 1,
-    "mem": 3777
-   },
-   {
-    "cpu": 0,
-    "mem": 3777
-   },
    {
     "cpu": 0,
     "mem": 3777
@@ -147,9 +131,25 @@
    {
     "cpu": 1,
     "mem": 3797
+   },
+   {
+    "cpu": 0,
+    "mem": 3795
+   },
+   {
+    "cpu": 0,
+    "mem": 3795
+   },
+   {
+    "cpu": 0,
+    "mem": 3794
+   },
+   {
+    "cpu": 1,
+    "mem": 3794
    }
   ],
-  "ts": 1792098553869
+  "ts": 1792098571313
  },
  "playerNames": [],
  "liveUrl": "https://former-premises-water-versions.trycloudflare.com",
