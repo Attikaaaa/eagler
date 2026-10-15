@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1792073237675,
- "runId": "38705719535",
- "address": "wss://applicants-regime-weight-chest.trycloudflare.com",
- "addresses": {
-  "stable": "wss://0bc185d92a78e89f-128-203-191-204.serveousercontent.com",
-  "cloudflare": "wss://applicants-regime-weight-chest.trycloudflare.com"
- },
+ "updated": 1792073245525,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://hitting-tucson-extend-horizontal.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 0,
   "memUsedMb": 3566,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1792052854513,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
