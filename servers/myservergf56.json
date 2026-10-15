@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792093728432,
+ "updated": 1792093732350,
  "runId": "38796798557",
  "address": "wss://display-killing-station-proprietary.trycloudflare.com",
  "addresses": {
@@ -20,136 +20,28 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3733,
-  "memTotalMb": 15990,
-  "jvmMb": 2586,
-  "diskUsedGb": 58.6,
+  "cpu": 21,
+  "memUsedMb": 3619,
+  "memTotalMb": 15989,
+  "jvmMb": 2536,
+  "diskUsedGb": 58.8,
   "diskTotalGb": 144.3,
-  "load1": 0,
+  "load1": 1.24,
   "hist": [
    {
-    "cpu": 0,
-    "mem": 3724
+    "cpu": 8,
+    "mem": 1886
    },
    {
-    "cpu": 1,
-    "mem": 3724
+    "cpu": 66,
+    "mem": 3630
    },
    {
-    "cpu": 0,
-    "mem": 3723
-   },
-   {
-    "cpu": 0,
-    "mem": 3723
-   },
-   {
-    "cpu": 0,
-    "mem": 3724
-   },
-   {
-    "cpu": 2,
-    "mem": 3724
-   },
-   {
-    "cpu": 0,
-    "mem": 3724
-   },
-   {
-    "cpu": 0,
-    "mem": 3725
-   },
-   {
-    "cpu": 1,
-    "mem": 3726
-   },
-   {
-    "cpu": 2,
-    "mem": 3725
-   },
-   {
-    "cpu": 0,
-    "mem": 3724
-   },
-   {
-    "cpu": 0,
-    "mem": 3723
-   },
-   {
-    "cpu": 0,
-    "mem": 3723
-   },
-   {
-    "cpu": 2,
-    "mem": 3723
-   },
-   {
-    "cpu": 0,
-    "mem": 3723
-   },
-   {
-    "cpu": 0,
-    "mem": 3724
-   },
-   {
-    "cpu": 0,
-    "mem": 3725
-   },
-   {
-    "cpu": 2,
-    "mem": 3725
-   },
-   {
-    "cpu": 0,
-    "mem": 3726
-   },
-   {
-    "cpu": 0,
-    "mem": 3725
-   },
-   {
-    "cpu": 0,
-    "mem": 3725
-   },
-   {
-    "cpu": 2,
-    "mem": 3725
-   },
-   {
-    "cpu": 1,
-    "mem": 3729
-   },
-   {
-    "cpu": 0,
-    "mem": 3729
-   },
-   {
-    "cpu": 0,
-    "mem": 3730
-   },
-   {
-    "cpu": 2,
-    "mem": 3731
-   },
-   {
-    "cpu": 0,
-    "mem": 3731
-   },
-   {
-    "cpu": 0,
-    "mem": 3732
-   },
-   {
-    "cpu": 0,
-    "mem": 3732
-   },
-   {
-    "cpu": 1,
-    "mem": 3733
+    "cpu": 21,
+    "mem": 3619
    }
   ],
-  "ts": 1792093662516
+  "ts": 1792093729726
  },
  "playerNames": [],
  "liveUrl": "https://former-premises-water-versions.trycloudflare.com",
