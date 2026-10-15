@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792036184272,
+ "updated": 1792036201141,
  "runId": "38672761011",
  "address": "wss://contractor-give-warning-flat.trycloudflare.com",
  "addresses": {
@@ -20,136 +20,136 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3736,
+  "cpu": 2,
+  "memUsedMb": 3741,
   "memTotalMb": 15990,
   "jvmMb": 2600,
   "diskUsedGb": 59.5,
   "diskTotalGb": 144.3,
-  "load1": 0.06,
+  "load1": 0.04,
   "hist": [
    {
+    "cpu": 0,
+    "mem": 3733
+   },
+   {
+    "cpu": 3,
+    "mem": 3733
+   },
+   {
     "cpu": 1,
-    "mem": 3734
+    "mem": 3737
+   },
+   {
+    "cpu": 3,
+    "mem": 3737
+   },
+   {
+    "cpu": 3,
+    "mem": 3737
+   },
+   {
+    "cpu": 3,
+    "mem": 3737
+   },
+   {
+    "cpu": 3,
+    "mem": 3737
+   },
+   {
+    "cpu": 3,
+    "mem": 3737
+   },
+   {
+    "cpu": 3,
+    "mem": 3737
+   },
+   {
+    "cpu": 4,
+    "mem": 3738
+   },
+   {
+    "cpu": 3,
+    "mem": 3738
+   },
+   {
+    "cpu": 3,
+    "mem": 3738
+   },
+   {
+    "cpu": 3,
+    "mem": 3738
+   },
+   {
+    "cpu": 4,
+    "mem": 3738
+   },
+   {
+    "cpu": 3,
+    "mem": 3738
+   },
+   {
+    "cpu": 3,
+    "mem": 3738
+   },
+   {
+    "cpu": 1,
+    "mem": 3738
+   },
+   {
+    "cpu": 3,
+    "mem": 3738
+   },
+   {
+    "cpu": 0,
+    "mem": 3738
+   },
+   {
+    "cpu": 0,
+    "mem": 3738
+   },
+   {
+    "cpu": 0,
+    "mem": 3738
+   },
+   {
+    "cpu": 1,
+    "mem": 3738
+   },
+   {
+    "cpu": 0,
+    "mem": 3738
+   },
+   {
+    "cpu": 0,
+    "mem": 3737
+   },
+   {
+    "cpu": 0,
+    "mem": 3736
+   },
+   {
+    "cpu": 1,
+    "mem": 3736
+   },
+   {
+    "cpu": 0,
+    "mem": 3740
+   },
+   {
+    "cpu": 0,
+    "mem": 3740
+   },
+   {
+    "cpu": 0,
+    "mem": 3741
    },
    {
     "cpu": 2,
-    "mem": 3734
-   },
-   {
-    "cpu": 0,
-    "mem": 3734
-   },
-   {
-    "cpu": 0,
-    "mem": 3734
-   },
-   {
-    "cpu": 0,
-    "mem": 3733
-   },
-   {
-    "cpu": 3,
-    "mem": 3733
-   },
-   {
-    "cpu": 1,
-    "mem": 3737
-   },
-   {
-    "cpu": 3,
-    "mem": 3737
-   },
-   {
-    "cpu": 3,
-    "mem": 3737
-   },
-   {
-    "cpu": 3,
-    "mem": 3737
-   },
-   {
-    "cpu": 3,
-    "mem": 3737
-   },
-   {
-    "cpu": 3,
-    "mem": 3737
-   },
-   {
-    "cpu": 3,
-    "mem": 3737
-   },
-   {
-    "cpu": 4,
-    "mem": 3738
-   },
-   {
-    "cpu": 3,
-    "mem": 3738
-   },
-   {
-    "cpu": 3,
-    "mem": 3738
-   },
-   {
-    "cpu": 3,
-    "mem": 3738
-   },
-   {
-    "cpu": 4,
-    "mem": 3738
-   },
-   {
-    "cpu": 3,
-    "mem": 3738
-   },
-   {
-    "cpu": 3,
-    "mem": 3738
-   },
-   {
-    "cpu": 1,
-    "mem": 3738
-   },
-   {
-    "cpu": 3,
-    "mem": 3738
-   },
-   {
-    "cpu": 0,
-    "mem": 3738
-   },
-   {
-    "cpu": 0,
-    "mem": 3738
-   },
-   {
-    "cpu": 0,
-    "mem": 3738
-   },
-   {
-    "cpu": 1,
-    "mem": 3738
-   },
-   {
-    "cpu": 0,
-    "mem": 3738
-   },
-   {
-    "cpu": 0,
-    "mem": 3737
-   },
-   {
-    "cpu": 0,
-    "mem": 3736
-   },
-   {
-    "cpu": 1,
-    "mem": 3736
+    "mem": 3741
    }
   ],
-  "ts": 1792036184099
+  "ts": 1792036200963
  },
  "playerNames": [],
  "liveUrl": "https://pic-productive-facilities-aberdeen.trycloudflare.com",
