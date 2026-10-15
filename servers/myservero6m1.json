@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792105732257,
+ "updated": 1792105744201,
  "runId": "38796838774",
  "address": "wss://physics-expiration-informal-interstate.trycloudflare.com",
  "addresses": {
@@ -33,30 +33,18 @@
  "liveUrl": "https://inserted-increasingly-charms-speak.trycloudflare.com",
  "metrics": {
   "cpu": 2,
-  "memUsedMb": 3564,
+  "memUsedMb": 3572,
   "memTotalMb": 15990,
   "jvmMb": 2467,
   "diskUsedGb": 58.7,
   "diskTotalGb": 144.3,
-  "load1": 0.01,
+  "load1": 0.07,
   "hist": [
    {
     "cpu": 0,
     "mem": 3565
    },
    {
-    "cpu": 2,
-    "mem": 3565
-   },
-   {
-    "cpu": 0,
-    "mem": 3565
-   },
-   {
-    "cpu": 0,
-    "mem": 3565
-   },
-   {
     "cpu": 0,
     "mem": 3565
    },
@@ -159,9 +147,21 @@
    {
     "cpu": 2,
     "mem": 3564
+   },
+   {
+    "cpu": 1,
+    "mem": 3564
+   },
+   {
+    "cpu": 1,
+    "mem": 3573
+   },
+   {
+    "cpu": 2,
+    "mem": 3572
    }
   ],
-  "ts": 1792105724403
+  "ts": 1792105744085
  },
  "playerNames": [],
  "startedAt": 1792093742125,
