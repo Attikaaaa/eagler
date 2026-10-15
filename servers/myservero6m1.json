@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1792093682337,
- "runId": "38748597935",
- "address": "wss://explorer-timber-slots-ministry.trycloudflare.com",
- "addresses": {
-  "stable": "wss://d945bf4a771c9c7f-9-234-149-84.serveousercontent.com",
-  "cloudflare": "wss://explorer-timber-slots-ministry.trycloudflare.com"
- },
+ "updated": 1792093691609,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://art-composer-upon-promise.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 1,
   "memUsedMb": 3571,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1792073299180,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
