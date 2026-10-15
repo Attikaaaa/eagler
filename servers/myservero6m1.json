@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792044756094,
+ "updated": 1792044773614,
  "runId": "38672754282",
  "address": "wss://faced-truth-parameter-slope.trycloudflare.com",
  "addresses": {
@@ -35,27 +35,11 @@
   "cpu": 1,
   "memUsedMb": 3500,
   "memTotalMb": 15990,
-  "jvmMb": 2422,
+  "jvmMb": 2424,
   "diskUsedGb": 58.7,
   "diskTotalGb": 144.3,
-  "load1": 0.02,
+  "load1": 0.01,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3496
-   },
-   {
-    "cpu": 1,
-    "mem": 3495
-   },
-   {
-    "cpu": 0,
-    "mem": 3495
-   },
-   {
-    "cpu": 0,
-    "mem": 3496
-   },
    {
     "cpu": 0,
     "mem": 3496
@@ -159,9 +143,25 @@
    {
     "cpu": 1,
     "mem": 3500
+   },
+   {
+    "cpu": 0,
+    "mem": 3500
+   },
+   {
+    "cpu": 0,
+    "mem": 3500
+   },
+   {
+    "cpu": 1,
+    "mem": 3500
+   },
+   {
+    "cpu": 1,
+    "mem": 3500
    }
   ],
-  "ts": 1792044755949
+  "ts": 1792044773445
  },
  "playerNames": [],
  "startedAt": 1792032415231,
