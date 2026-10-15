@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792073947895,
+ "updated": 1792073966042,
  "runId": "38748597935",
  "address": "wss://explorer-timber-slots-ministry.trycloudflare.com",
  "addresses": {
@@ -32,30 +32,14 @@
  },
  "liveUrl": "https://art-composer-upon-promise.trycloudflare.com",
  "metrics": {
-  "cpu": 4,
-  "memUsedMb": 3313,
+  "cpu": 1,
+  "memUsedMb": 3327,
   "memTotalMb": 15990,
-  "jvmMb": 2241,
+  "jvmMb": 2251,
   "diskUsedGb": 58.7,
   "diskTotalGb": 144.3,
   "load1": 0.02,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3225
-   },
-   {
-    "cpu": 0,
-    "mem": 3225
-   },
-   {
-    "cpu": 3,
-    "mem": 3225
-   },
-   {
-    "cpu": 0,
-    "mem": 3228
-   },
    {
     "cpu": 0,
     "mem": 3234
@@ -159,9 +143,25 @@
    {
     "cpu": 4,
     "mem": 3313
+   },
+   {
+    "cpu": 0,
+    "mem": 3320
+   },
+   {
+    "cpu": 0,
+    "mem": 3321
+   },
+   {
+    "cpu": 0,
+    "mem": 3326
+   },
+   {
+    "cpu": 1,
+    "mem": 3327
    }
   ],
-  "ts": 1792073947737
+  "ts": 1792073965877
  },
  "playerNames": [],
  "startedAt": 1792073299180,
