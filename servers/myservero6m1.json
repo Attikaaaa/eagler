@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792056146260,
+ "updated": 1792056163727,
  "runId": "38705719535",
  "address": "wss://applicants-regime-weight-chest.trycloudflare.com",
  "addresses": {
@@ -35,27 +35,11 @@
   "cpu": 2,
   "memUsedMb": 3486,
   "memTotalMb": 15990,
-  "jvmMb": 2390,
+  "jvmMb": 2392,
   "diskUsedGb": 59.4,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3482
-   },
-   {
-    "cpu": 0,
-    "mem": 3481
-   },
-   {
-    "cpu": 0,
-    "mem": 3482
-   },
-   {
-    "cpu": 1,
-    "mem": 3482
-   },
    {
     "cpu": 0,
     "mem": 3484
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3486
+   },
+   {
+    "cpu": 0,
+    "mem": 3485
+   },
+   {
+    "cpu": 0,
+    "mem": 3486
+   },
+   {
+    "cpu": 0,
+    "mem": 3486
+   },
+   {
+    "cpu": 2,
+    "mem": 3486
    }
   ],
-  "ts": 1792056146068
+  "ts": 1792056163566
  },
  "playerNames": [],
  "startedAt": 1792052854513,
