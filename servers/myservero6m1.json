@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1792052802267,
- "runId": "38672754282",
- "address": "wss://faced-truth-parameter-slope.trycloudflare.com",
- "addresses": {
-  "stable": "wss://7b7388ff77d69afe-20-163-63-245.serveousercontent.com",
-  "cloudflare": "wss://faced-truth-parameter-slope.trycloudflare.com"
- },
+ "updated": 1792052811810,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://athletic-vision-amd-kits.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 1,
   "memUsedMb": 3497,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1792032415231,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
