@@ -6,10 +6,13 @@
  "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1792032404625,
+ "updated": 1792032409336,
  "runId": "38672761011",
- "address": null,
- "addresses": {},
+ "address": "wss://contractor-give-warning-flat.trycloudflare.com",
+ "addresses": {
+  "stable": "wss://4dcaa44a5c69ac75-172-214-155-120.serveousercontent.com",
+  "cloudflare": "wss://contractor-give-warning-flat.trycloudflare.com"
+ },
  "players": 0,
  "host": {
   "cpus": 4,
