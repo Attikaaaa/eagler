@@ -3,10 +3,10 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "starting",
+ "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792032428599,
+ "updated": 1792032429567,
  "runId": "38672761011",
  "address": "wss://contractor-give-warning-flat.trycloudflare.com",
  "addresses": {
@@ -39,7 +39,7 @@
  "liveUrl": "https://pic-productive-facilities-aberdeen.trycloudflare.com",
  "importPending": null,
  "startedAt": 1792032428398,
- "note": "Restarting after the 6h job limit.",
+ "note": null,
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
