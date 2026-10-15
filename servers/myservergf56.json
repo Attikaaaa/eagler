@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792040210026,
+ "updated": 1792040228777,
  "runId": "38672761011",
  "address": "wss://contractor-give-warning-flat.trycloudflare.com",
  "addresses": {
@@ -20,30 +20,14 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3696,
+  "cpu": 2,
+  "memUsedMb": 3694,
   "memTotalMb": 15990,
-  "jvmMb": 2547,
+  "jvmMb": 2549,
   "diskUsedGb": 59.5,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 1,
-    "mem": 3758
-   },
-   {
-    "cpu": 2,
-    "mem": 3758
-   },
-   {
-    "cpu": 1,
-    "mem": 3758
-   },
-   {
-    "cpu": 0,
-    "mem": 3757
-   },
    {
     "cpu": 1,
     "mem": 3758
@@ -147,9 +131,25 @@
    {
     "cpu": 1,
     "mem": 3696
+   },
+   {
+    "cpu": 0,
+    "mem": 3695
+   },
+   {
+    "cpu": 0,
+    "mem": 3695
+   },
+   {
+    "cpu": 0,
+    "mem": 3695
+   },
+   {
+    "cpu": 2,
+    "mem": 3694
    }
   ],
-  "ts": 1792040209886
+  "ts": 1792040226950
  },
  "playerNames": [],
  "liveUrl": "https://pic-productive-facilities-aberdeen.trycloudflare.com",
