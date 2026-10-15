@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792031132047,
+ "updated": 1792031149032,
  "runId": "38637560441",
  "address": "wss://vacations-gasoline-vendors-church.trycloudflare.com",
  "addresses": {
@@ -38,24 +38,8 @@
   "jvmMb": 2409,
   "diskUsedGb": 59.4,
   "diskTotalGb": 144.3,
-  "load1": 0.04,
+  "load1": 0.03,
   "hist": [
-   {
-    "cpu": 1,
-    "mem": 3536
-   },
-   {
-    "cpu": 2,
-    "mem": 3536
-   },
-   {
-    "cpu": 0,
-    "mem": 3537
-   },
-   {
-    "cpu": 0,
-    "mem": 3537
-   },
    {
     "cpu": 0,
     "mem": 3538
@@ -154,6 +138,22 @@
    },
    {
     "cpu": 1,
+    "mem": 3543
+   },
+   {
+    "cpu": 2,
+    "mem": 3543
+   },
+   {
+    "cpu": 1,
+    "mem": 3543
+   },
+   {
+    "cpu": 1,
+    "mem": 3542
+   },
+   {
+    "cpu": 0,
     "mem": 3543
    },
    {
@@ -161,7 +161,7 @@
     "mem": 3543
    }
   ],
-  "ts": 1792031131883
+  "ts": 1792031148860
  },
  "playerNames": [],
  "startedAt": 1792012001803,
