@@ -3,10 +3,10 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "starting",
+ "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792093727292,
+ "updated": 1792093728432,
  "runId": "38796798557",
  "address": "wss://display-killing-station-proprietary.trycloudflare.com",
  "addresses": {
@@ -155,7 +155,7 @@
  "liveUrl": "https://former-premises-water-versions.trycloudflare.com",
  "importPending": null,
  "startedAt": 1792093727149,
- "note": "Restarting after the 6h job limit.",
+ "note": null,
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
