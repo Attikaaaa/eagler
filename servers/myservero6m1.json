@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792055902676,
+ "updated": 1792055919904,
  "runId": "38705719535",
  "address": "wss://applicants-regime-weight-chest.trycloudflare.com",
  "addresses": {
@@ -32,32 +32,16 @@
  },
  "liveUrl": "https://hitting-tucson-extend-horizontal.trycloudflare.com",
  "metrics": {
-  "cpu": 0,
-  "memUsedMb": 3480,
+  "cpu": 1,
+  "memUsedMb": 3479,
   "memTotalMb": 15990,
-  "jvmMb": 2382,
+  "jvmMb": 2384,
   "diskUsedGb": 59.4,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
    {
     "cpu": 0,
-    "mem": 3477
-   },
-   {
-    "cpu": 0,
-    "mem": 3478
-   },
-   {
-    "cpu": 2,
-    "mem": 3478
-   },
-   {
-    "cpu": 0,
-    "mem": 3478
-   },
-   {
-    "cpu": 0,
     "mem": 3478
    },
    {
@@ -159,9 +143,25 @@
    {
     "cpu": 0,
     "mem": 3480
+   },
+   {
+    "cpu": 0,
+    "mem": 3479
+   },
+   {
+    "cpu": 0,
+    "mem": 3479
+   },
+   {
+    "cpu": 0,
+    "mem": 3479
+   },
+   {
+    "cpu": 1,
+    "mem": 3479
    }
   ],
-  "ts": 1792055902554
+  "ts": 1792055919740
  },
  "playerNames": [],
  "startedAt": 1792052854513,
