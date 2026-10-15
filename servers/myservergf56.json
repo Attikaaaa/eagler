@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792081563202,
+ "updated": 1792081580632,
  "runId": "38748588373",
  "address": "wss://started-dryer-tools-persons.trycloudflare.com",
  "addresses": {
@@ -20,31 +20,15 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 2,
+  "cpu": 1,
   "memUsedMb": 3684,
   "memTotalMb": 15990,
-  "jvmMb": 2558,
+  "jvmMb": 2560,
   "diskUsedGb": 58.6,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
    {
-    "cpu": 0,
-    "mem": 3679
-   },
-   {
-    "cpu": 2,
-    "mem": 3680
-   },
-   {
-    "cpu": 0,
-    "mem": 3679
-   },
-   {
-    "cpu": 0,
-    "mem": 3684
-   },
-   {
     "cpu": 1,
     "mem": 3683
    },
@@ -146,10 +130,26 @@
    },
    {
     "cpu": 2,
+    "mem": 3684
+   },
+   {
+    "cpu": 0,
+    "mem": 3684
+   },
+   {
+    "cpu": 1,
+    "mem": 3684
+   },
+   {
+    "cpu": 0,
+    "mem": 3684
+   },
+   {
+    "cpu": 1,
     "mem": 3684
    }
   ],
-  "ts": 1792081563024
+  "ts": 1792081580468
  },
  "playerNames": [],
  "liveUrl": "https://mysimon-furniture-delivered-plenty.trycloudflare.com",
