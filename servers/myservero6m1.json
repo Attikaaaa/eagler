@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792073371335,
+ "updated": 1792073388534,
  "runId": "38748597935",
  "address": "wss://explorer-timber-slots-ministry.trycloudflare.com",
  "addresses": {
@@ -38,7 +38,7 @@
   "jvmMb": 2142,
   "diskUsedGb": 58.7,
   "diskTotalGb": 144.3,
-  "load1": 0.3,
+  "load1": 0.21,
   "hist": [
    {
     "cpu": 15,
@@ -107,9 +107,25 @@
    {
     "cpu": 2,
     "mem": 3201
+   },
+   {
+    "cpu": 0,
+    "mem": 3201
+   },
+   {
+    "cpu": 1,
+    "mem": 3201
+   },
+   {
+    "cpu": 0,
+    "mem": 3200
+   },
+   {
+    "cpu": 2,
+    "mem": 3201
    }
   ],
-  "ts": 1792073370210
+  "ts": 1792073388385
  },
  "playerNames": [],
  "startedAt": 1792073299180,
