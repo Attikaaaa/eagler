@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792063364735,
+ "updated": 1792063381687,
  "runId": "38705728288",
  "address": "wss://won-search-crest-planning.trycloudflare.com",
  "addresses": {
@@ -20,7 +20,7 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 3,
+  "cpu": 2,
   "memUsedMb": 3711,
   "memTotalMb": 15990,
   "jvmMb": 2586,
@@ -30,22 +30,6 @@
   "hist": [
    {
     "cpu": 0,
-    "mem": 3709
-   },
-   {
-    "cpu": 2,
-    "mem": 3709
-   },
-   {
-    "cpu": 0,
-    "mem": 3710
-   },
-   {
-    "cpu": 0,
-    "mem": 3711
-   },
-   {
-    "cpu": 0,
     "mem": 3710
    },
    {
@@ -146,10 +130,26 @@
    },
    {
     "cpu": 3,
+    "mem": 3711
+   },
+   {
+    "cpu": 0,
+    "mem": 3711
+   },
+   {
+    "cpu": 0,
+    "mem": 3711
+   },
+   {
+    "cpu": 0,
+    "mem": 3711
+   },
+   {
+    "cpu": 2,
     "mem": 3711
    }
   ],
-  "ts": 1792063364569
+  "ts": 1792063381566
  },
  "playerNames": [],
  "liveUrl": "https://condo-investigate-dec-angel.trycloudflare.com",
