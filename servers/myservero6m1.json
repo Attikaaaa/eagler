@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792033443845,
+ "updated": 1792033461480,
  "runId": "38672754282",
  "address": "wss://faced-truth-parameter-slope.trycloudflare.com",
  "addresses": {
@@ -33,29 +33,13 @@
  "liveUrl": "https://athletic-vision-amd-kits.trycloudflare.com",
  "metrics": {
   "cpu": 1,
-  "memUsedMb": 3424,
+  "memUsedMb": 3429,
   "memTotalMb": 15990,
-  "jvmMb": 2378,
+  "jvmMb": 2384,
   "diskUsedGb": 58.7,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3401
-   },
-   {
-    "cpu": 0,
-    "mem": 3401
-   },
-   {
-    "cpu": 0,
-    "mem": 3404
-   },
-   {
-    "cpu": 0,
-    "mem": 3404
-   },
    {
     "cpu": 0,
     "mem": 3405
@@ -159,9 +143,25 @@
    {
     "cpu": 1,
     "mem": 3424
+   },
+   {
+    "cpu": 1,
+    "mem": 3432
+   },
+   {
+    "cpu": 0,
+    "mem": 3431
+   },
+   {
+    "cpu": 0,
+    "mem": 3430
+   },
+   {
+    "cpu": 1,
+    "mem": 3429
    }
   ],
-  "ts": 1792033443622
+  "ts": 1792033461313
  },
  "playerNames": [],
  "startedAt": 1792032415231,
