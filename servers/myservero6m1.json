@@ -14,14 +14,15 @@
   ]
  },
  "want": "run",
- "status": "starting",
+ "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792175457329,
+ "updated": 1792175458385,
  "runId": "38947817014",
- "address": "wss://4d75b3df45a930a3-20-51-199-50.serveousercontent.com",
+ "address": "wss://answering-silk-arena-catalogue.trycloudflare.com",
  "addresses": {
-  "stable": "wss://4d75b3df45a930a3-20-51-199-50.serveousercontent.com"
+  "stable": "wss://4d75b3df45a930a3-20-51-199-50.serveousercontent.com",
+  "cloudflare": "wss://answering-silk-arena-catalogue.trycloudflare.com"
  },
  "players": 0,
  "host": {
@@ -48,5 +49,5 @@
  },
  "playerNames": [],
  "startedAt": 1792175457172,
- "note": "Restarting after the 6h job limit."
+ "note": null
 }
