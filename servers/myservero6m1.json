@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792134660773,
+ "updated": 1792134677779,
  "runId": "38865386375",
  "address": "wss://difficulty-authentic-bringing-contribute.trycloudflare.com",
  "addresses": {
@@ -33,12 +33,12 @@
  "liveUrl": null,
  "metrics": {
   "cpu": 2,
-  "memUsedMb": 3278,
+  "memUsedMb": 3296,
   "memTotalMb": 15990,
-  "jvmMb": 2224,
+  "jvmMb": 2238,
   "diskUsedGb": 58.7,
   "diskTotalGb": 144.3,
-  "load1": 0.48,
+  "load1": 0.34,
   "hist": [
    {
     "cpu": 21,
@@ -123,9 +123,25 @@
    {
     "cpu": 2,
     "mem": 3278
+   },
+   {
+    "cpu": 1,
+    "mem": 3285
+   },
+   {
+    "cpu": 1,
+    "mem": 3296
+   },
+   {
+    "cpu": 0,
+    "mem": 3297
+   },
+   {
+    "cpu": 2,
+    "mem": 3296
    }
   ],
-  "ts": 1792134660643
+  "ts": 1792134677681
  },
  "playerNames": [],
  "startedAt": 1792134576277,
