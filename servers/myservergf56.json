@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792156374844,
+ "updated": 1792156392454,
  "runId": "38903262073",
  "address": "wss://forever-convinced-functions-cite.trycloudflare.com",
  "addresses": {
@@ -20,30 +20,14 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3635,
+  "cpu": 2,
+  "memUsedMb": 3633,
   "memTotalMb": 15990,
   "jvmMb": 2571,
   "diskUsedGb": 58.8,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3628
-   },
-   {
-    "cpu": 1,
-    "mem": 3628
-   },
-   {
-    "cpu": 0,
-    "mem": 3628
-   },
-   {
-    "cpu": 0,
-    "mem": 3628
-   },
    {
     "cpu": 0,
     "mem": 3628
@@ -147,9 +131,25 @@
    {
     "cpu": 1,
     "mem": 3635
+   },
+   {
+    "cpu": 0,
+    "mem": 3635
+   },
+   {
+    "cpu": 0,
+    "mem": 3635
+   },
+   {
+    "cpu": 0,
+    "mem": 3635
+   },
+   {
+    "cpu": 2,
+    "mem": 3633
    }
   ],
-  "ts": 1792156374669
+  "ts": 1792156392277
  },
  "playerNames": [],
  "liveUrl": "https://geographic-phentermine-milton-lounge.trycloudflare.com",
