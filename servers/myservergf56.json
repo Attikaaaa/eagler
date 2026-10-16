@@ -6,10 +6,13 @@
  "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1792175441375,
+ "updated": 1792175442373,
  "runId": "38947822481",
- "address": null,
- "addresses": {},
+ "address": "wss://probably-subsection-supplemental-athens.trycloudflare.com",
+ "addresses": {
+  "stable": "wss://afbcff8c47caab5c-4-236-92-178.serveousercontent.com",
+  "cloudflare": "wss://probably-subsection-supplemental-athens.trycloudflare.com"
+ },
  "players": 0,
  "host": {
   "cpus": 4,
