@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792176024782,
+ "updated": 1792176040452,
  "runId": "38947817014",
  "address": "wss://answering-silk-arena-catalogue.trycloudflare.com",
  "addresses": {
@@ -32,26 +32,14 @@
  },
  "liveUrl": "https://mental-shaft-operation-asking.trycloudflare.com",
  "metrics": {
-  "cpu": 3,
-  "memUsedMb": 3274,
+  "cpu": 0,
+  "memUsedMb": 3281,
   "memTotalMb": 15990,
-  "jvmMb": 2202,
+  "jvmMb": 2211,
   "diskUsedGb": 58.7,
   "diskTotalGb": 144.3,
-  "load1": 0.15,
+  "load1": 0.11,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3219
-   },
-   {
-    "cpu": 1,
-    "mem": 3220
-   },
-   {
-    "cpu": 0,
-    "mem": 3220
-   },
    {
     "cpu": 0,
     "mem": 3224
@@ -159,9 +147,21 @@
    {
     "cpu": 3,
     "mem": 3274
+   },
+   {
+    "cpu": 0,
+    "mem": 3278
+   },
+   {
+    "cpu": 1,
+    "mem": 3281
+   },
+   {
+    "cpu": 0,
+    "mem": 3281
    }
   ],
-  "ts": 1792176022353
+  "ts": 1792176040368
  },
  "playerNames": [],
  "startedAt": 1792175457172,
