@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1792134533083,
- "runId": "38835311063",
- "address": "wss://uploaded-samba-copyrights-get.trycloudflare.com",
- "addresses": {
-  "stable": "wss://02870ebbe3773d11-20-168-137-6.serveousercontent.com",
-  "cloudflare": "wss://uploaded-samba-copyrights-get.trycloudflare.com"
- },
+ "updated": 1792134540136,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://duplicate-acknowledged-downloaded-boston.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 2,
   "memUsedMb": 3563,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1792114166961,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
