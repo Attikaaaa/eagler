@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792187762669,
+ "updated": 1792187780836,
  "runId": "38947817014",
  "address": "wss://answering-silk-arena-catalogue.trycloudflare.com",
  "addresses": {
@@ -38,24 +38,8 @@
   "jvmMb": 2461,
   "diskUsedGb": 58.7,
   "diskTotalGb": 144.3,
-  "load1": 0.08,
+  "load1": 0.06,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3564
-   },
-   {
-    "cpu": 3,
-    "mem": 3565
-   },
-   {
-    "cpu": 0,
-    "mem": 3565
-   },
-   {
-    "cpu": 0,
-    "mem": 3564
-   },
    {
     "cpu": 0,
     "mem": 3564
@@ -159,9 +143,25 @@
    {
     "cpu": 3,
     "mem": 3566
+   },
+   {
+    "cpu": 1,
+    "mem": 3566
+   },
+   {
+    "cpu": 1,
+    "mem": 3566
+   },
+   {
+    "cpu": 1,
+    "mem": 3566
+   },
+   {
+    "cpu": 3,
+    "mem": 3566
    }
   ],
-  "ts": 1792187762537
+  "ts": 1792187779169
  },
  "playerNames": [],
  "startedAt": 1792175457172,
