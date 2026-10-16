@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792172600944,
+ "updated": 1792172618087,
  "runId": "38903260671",
  "address": "wss://legislation-scale-focuses-website.trycloudflare.com",
  "addresses": {
@@ -32,30 +32,14 @@
  },
  "liveUrl": "https://brunette-rachel-governmental-jpeg.trycloudflare.com",
  "metrics": {
-  "cpu": 2,
-  "memUsedMb": 3631,
+  "cpu": 1,
+  "memUsedMb": 3630,
   "memTotalMb": 15989,
   "jvmMb": 2453,
   "diskUsedGb": 58.7,
   "diskTotalGb": 144.3,
-  "load1": 0,
+  "load1": 0.06,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3633
-   },
-   {
-    "cpu": 0,
-    "mem": 3632
-   },
-   {
-    "cpu": 1,
-    "mem": 3632
-   },
-   {
-    "cpu": 1,
-    "mem": 3638
-   },
    {
     "cpu": 0,
     "mem": 3639
@@ -159,9 +143,25 @@
    {
     "cpu": 2,
     "mem": 3631
+   },
+   {
+    "cpu": 0,
+    "mem": 3630
+   },
+   {
+    "cpu": 0,
+    "mem": 3629
+   },
+   {
+    "cpu": 0,
+    "mem": 3630
+   },
+   {
+    "cpu": 1,
+    "mem": 3630
    }
   ],
-  "ts": 1792172600772
+  "ts": 1792172617925
  },
  "playerNames": [],
  "startedAt": 1792155012712,
