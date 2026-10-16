@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792155510279,
+ "updated": 1792155530280,
  "runId": "38903260671",
  "address": "wss://legislation-scale-focuses-website.trycloudflare.com",
  "addresses": {
@@ -35,27 +35,11 @@
   "cpu": 3,
   "memUsedMb": 3248,
   "memTotalMb": 15989,
-  "jvmMb": 2166,
+  "jvmMb": 2168,
   "diskUsedGb": 58.7,
   "diskTotalGb": 144.3,
-  "load1": 0.07,
+  "load1": 0.05,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3242
-   },
-   {
-    "cpu": 2,
-    "mem": 3242
-   },
-   {
-    "cpu": 0,
-    "mem": 3243
-   },
-   {
-    "cpu": 1,
-    "mem": 3242
-   },
    {
     "cpu": 0,
     "mem": 3242
@@ -154,6 +138,22 @@
    },
    {
     "cpu": 1,
+    "mem": 3248
+   },
+   {
+    "cpu": 3,
+    "mem": 3248
+   },
+   {
+    "cpu": 0,
+    "mem": 3248
+   },
+   {
+    "cpu": 0,
+    "mem": 3248
+   },
+   {
+    "cpu": 0,
     "mem": 3248
    },
    {
@@ -161,7 +161,7 @@
     "mem": 3248
    }
   ],
-  "ts": 1792155510152
+  "ts": 1792155527090
  },
  "playerNames": [],
  "startedAt": 1792155012712,
