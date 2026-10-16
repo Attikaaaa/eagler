@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792114732144,
+ "updated": 1792114749298,
  "runId": "38835311063",
  "address": "wss://uploaded-samba-copyrights-get.trycloudflare.com",
  "addresses": {
@@ -33,25 +33,13 @@
  "liveUrl": "https://duplicate-acknowledged-downloaded-boston.trycloudflare.com",
  "metrics": {
   "cpu": 1,
-  "memUsedMb": 3239,
+  "memUsedMb": 3240,
   "memTotalMb": 15990,
-  "jvmMb": 2167,
+  "jvmMb": 2175,
   "diskUsedGb": 58.7,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3229
-   },
-   {
-    "cpu": 3,
-    "mem": 3229
-   },
-   {
-    "cpu": 0,
-    "mem": 3229
-   },
    {
     "cpu": 0,
     "mem": 3230
@@ -159,9 +147,21 @@
    {
     "cpu": 1,
     "mem": 3239
+   },
+   {
+    "cpu": 2,
+    "mem": 3250
+   },
+   {
+    "cpu": 0,
+    "mem": 3239
+   },
+   {
+    "cpu": 1,
+    "mem": 3240
    }
   ],
-  "ts": 1792114732036
+  "ts": 1792114749151
  },
  "playerNames": [],
  "startedAt": 1792114166961,
