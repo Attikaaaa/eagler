@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792194777010,
+ "updated": 1792194794168,
  "runId": "38947822481",
  "address": "wss://probably-subsection-supplemental-athens.trycloudflare.com",
  "addresses": {
@@ -20,30 +20,14 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3680,
+  "cpu": 2,
+  "memUsedMb": 3679,
   "memTotalMb": 15990,
   "jvmMb": 2563,
   "diskUsedGb": 58.8,
   "diskTotalGb": 144.3,
-  "load1": 0.04,
+  "load1": 0.03,
   "hist": [
-   {
-    "cpu": 1,
-    "mem": 3667
-   },
-   {
-    "cpu": 3,
-    "mem": 3667
-   },
-   {
-    "cpu": 0,
-    "mem": 3667
-   },
-   {
-    "cpu": 0,
-    "mem": 3671
-   },
    {
     "cpu": 0,
     "mem": 3671
@@ -147,9 +131,25 @@
    {
     "cpu": 1,
     "mem": 3680
+   },
+   {
+    "cpu": 0,
+    "mem": 3679
+   },
+   {
+    "cpu": 0,
+    "mem": 3679
+   },
+   {
+    "cpu": 0,
+    "mem": 3679
+   },
+   {
+    "cpu": 2,
+    "mem": 3679
    }
   ],
-  "ts": 1792194774436
+  "ts": 1792194794001
  },
  "playerNames": [],
  "liveUrl": "https://repair-paid-vegas-manufacturers.trycloudflare.com",
