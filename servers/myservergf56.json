@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792147033300,
+ "updated": 1792147050551,
  "runId": "38865391123",
  "address": "wss://symphony-mesa-panels-thousands.trycloudflare.com",
  "addresses": {
@@ -20,32 +20,16 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3765,
+  "cpu": 3,
+  "memUsedMb": 3763,
   "memTotalMb": 15989,
   "jvmMb": 2585,
   "diskUsedGb": 58.8,
   "diskTotalGb": 144.3,
-  "load1": 0.08,
+  "load1": 0.05,
   "hist": [
    {
     "cpu": 0,
-    "mem": 3764
-   },
-   {
-    "cpu": 1,
-    "mem": 3764
-   },
-   {
-    "cpu": 0,
-    "mem": 3765
-   },
-   {
-    "cpu": 0,
-    "mem": 3765
-   },
-   {
-    "cpu": 0,
     "mem": 3766
    },
    {
@@ -147,9 +131,25 @@
    {
     "cpu": 1,
     "mem": 3765
+   },
+   {
+    "cpu": 1,
+    "mem": 3765
+   },
+   {
+    "cpu": 1,
+    "mem": 3765
+   },
+   {
+    "cpu": 1,
+    "mem": 3763
+   },
+   {
+    "cpu": 3,
+    "mem": 3763
    }
   ],
-  "ts": 1792147033178
+  "ts": 1792147050404
  },
  "playerNames": [],
  "liveUrl": "https://starter-supporters-gtk-harvard.trycloudflare.com",
