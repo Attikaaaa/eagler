@@ -3,14 +3,15 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "starting",
+ "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792114164010,
+ "updated": 1792114165063,
  "runId": "38835316177",
- "address": "wss://3319380f0223d2a8-172-174-191-5.serveousercontent.com",
+ "address": "wss://quit-crystal-diving-spell.trycloudflare.com",
  "addresses": {
-  "stable": "wss://3319380f0223d2a8-172-174-191-5.serveousercontent.com"
+  "stable": "wss://3319380f0223d2a8-172-174-191-5.serveousercontent.com",
+  "cloudflare": "wss://quit-crystal-diving-spell.trycloudflare.com"
  },
  "players": 0,
  "host": {
@@ -38,7 +39,7 @@
  "liveUrl": "https://recovery-eternal-accepting-arctic.trycloudflare.com",
  "importPending": null,
  "startedAt": 1792114163915,
- "note": "Restarting after the 6h job limit.",
+ "note": null,
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
