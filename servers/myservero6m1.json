@@ -17,10 +17,13 @@
  "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1792175427140,
+ "updated": 1792175431776,
  "runId": "38947817014",
- "address": null,
- "addresses": {},
+ "address": "wss://answering-silk-arena-catalogue.trycloudflare.com",
+ "addresses": {
+  "stable": "wss://4d75b3df45a930a3-20-51-199-50.serveousercontent.com",
+  "cloudflare": "wss://answering-silk-arena-catalogue.trycloudflare.com"
+ },
  "players": 0,
  "host": {
   "cpus": 4,
