@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792130396597,
+ "updated": 1792130418038,
  "runId": "38835316177",
  "address": "wss://quit-crystal-diving-spell.trycloudflare.com",
  "addresses": {
@@ -20,30 +20,14 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 3,
-  "memUsedMb": 3719,
+  "cpu": 1,
+  "memUsedMb": 3717,
   "memTotalMb": 15990,
   "jvmMb": 2622,
   "diskUsedGb": 58.8,
   "diskTotalGb": 144.3,
-  "load1": 0.04,
+  "load1": 0.02,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3720
-   },
-   {
-    "cpu": 1,
-    "mem": 3720
-   },
-   {
-    "cpu": 0,
-    "mem": 3720
-   },
-   {
-    "cpu": 0,
-    "mem": 3721
-   },
    {
     "cpu": 0,
     "mem": 3720
@@ -147,9 +131,25 @@
    {
     "cpu": 3,
     "mem": 3719
+   },
+   {
+    "cpu": 0,
+    "mem": 3719
+   },
+   {
+    "cpu": 0,
+    "mem": 3719
+   },
+   {
+    "cpu": 2,
+    "mem": 3717
+   },
+   {
+    "cpu": 1,
+    "mem": 3717
    }
   ],
-  "ts": 1792130396465
+  "ts": 1792130417967
  },
  "playerNames": [],
  "liveUrl": "https://recovery-eternal-accepting-arctic.trycloudflare.com",
