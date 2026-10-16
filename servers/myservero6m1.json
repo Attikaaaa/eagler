@@ -14,16 +14,13 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1792154963397,
- "runId": "38865386375",
- "address": "wss://difficulty-authentic-bringing-contribute.trycloudflare.com",
- "addresses": {
-  "stable": "wss://52728883ba1b1c6e-4-155-63-149.serveousercontent.com",
-  "cloudflare": "wss://difficulty-authentic-bringing-contribute.trycloudflare.com"
- },
+ "updated": 1792154970452,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1792134576277,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
