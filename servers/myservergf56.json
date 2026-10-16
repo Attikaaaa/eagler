@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1792154961459,
- "runId": "38865391123",
- "address": "wss://symphony-mesa-panels-thousands.trycloudflare.com",
- "addresses": {
-  "stable": "wss://ace66ffabc718f9a-20-84-247-81.serveousercontent.com",
-  "cloudflare": "wss://symphony-mesa-panels-thousands.trycloudflare.com"
- },
+ "updated": 1792154972175,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1792154960085
  },
  "playerNames": [],
- "liveUrl": "https://starter-supporters-gtk-harvard.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1792134596651,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
