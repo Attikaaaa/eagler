@@ -17,10 +17,13 @@
  "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1792195853549,
+ "updated": 1792195857649,
  "runId": "38985139877",
- "address": null,
- "addresses": {},
+ "address": "wss://musical-contacted-jpeg-modify.trycloudflare.com",
+ "addresses": {
+  "stable": "wss://be677442da5ad9ec-57-151-128-212.serveousercontent.com",
+  "cloudflare": "wss://musical-contacted-jpeg-modify.trycloudflare.com"
+ },
  "players": 0,
  "host": {
   "cpus": 4,
