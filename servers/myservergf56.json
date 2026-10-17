@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1792195824400,
- "runId": "38947822481",
- "address": "wss://probably-subsection-supplemental-athens.trycloudflare.com",
- "addresses": {
-  "stable": "wss://afbcff8c47caab5c-4-236-92-178.serveousercontent.com",
-  "cloudflare": "wss://probably-subsection-supplemental-athens.trycloudflare.com"
- },
+ "updated": 1792195832526,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1792195823005
  },
  "playerNames": [],
- "liveUrl": "https://repair-paid-vegas-manufacturers.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1792175462397,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
