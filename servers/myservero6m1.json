@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1792216258997,
- "runId": "38985139877",
- "address": "wss://musical-contacted-jpeg-modify.trycloudflare.com",
- "addresses": {
-  "stable": "wss://be677442da5ad9ec-57-151-128-212.serveousercontent.com",
-  "cloudflare": "wss://musical-contacted-jpeg-modify.trycloudflare.com"
- },
+ "updated": 1792216266196,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://particular-theme-micro-robots.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 2,
   "memUsedMb": 3559,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1792195878348,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
