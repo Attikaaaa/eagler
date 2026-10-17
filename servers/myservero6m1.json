@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1792257122873,
- "runId": "39029037352",
- "address": "wss://confidential-olympic-producing-raleigh.trycloudflare.com",
- "addresses": {
-  "stable": "wss://e9ec927ea561938a-4-154-55-42.serveousercontent.com",
-  "cloudflare": "wss://confidential-olympic-producing-raleigh.trycloudflare.com"
- },
+ "updated": 1792257130203,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://preceding-cancelled-jar-committed.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 2,
   "memUsedMb": 3544,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1792236733536,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
