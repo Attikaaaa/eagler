@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792264595568,
+ "updated": 1792264612810,
  "runId": "39052691423",
  "address": "wss://flower-trends-accommodation-appeals.trycloudflare.com",
  "addresses": {
@@ -20,30 +20,14 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 2,
-  "memUsedMb": 3713,
+  "cpu": 1,
+  "memUsedMb": 3716,
   "memTotalMb": 15990,
-  "jvmMb": 2612,
+  "jvmMb": 2614,
   "diskUsedGb": 58.8,
   "diskTotalGb": 144.3,
   "load1": 0.01,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3705
-   },
-   {
-    "cpu": 1,
-    "mem": 3705
-   },
-   {
-    "cpu": 0,
-    "mem": 3706
-   },
-   {
-    "cpu": 1,
-    "mem": 3706
-   },
    {
     "cpu": 1,
     "mem": 3705
@@ -147,9 +131,25 @@
    {
     "cpu": 2,
     "mem": 3713
+   },
+   {
+    "cpu": 0,
+    "mem": 3715
+   },
+   {
+    "cpu": 0,
+    "mem": 3716
+   },
+   {
+    "cpu": 0,
+    "mem": 3716
+   },
+   {
+    "cpu": 1,
+    "mem": 3716
    }
   ],
-  "ts": 1792264595407
+  "ts": 1792264612671
  },
  "playerNames": [],
  "liveUrl": "https://lover-houston-focal-domain.trycloudflare.com",
