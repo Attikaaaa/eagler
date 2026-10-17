@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792257178142,
+ "updated": 1792257194884,
  "runId": "39052714467",
  "address": "wss://constitutional-wallpaper-incidents-literacy.trycloudflare.com",
  "addresses": {
@@ -32,13 +32,13 @@
  },
  "liveUrl": "https://beneficial-inf-easily-sees.trycloudflare.com",
  "metrics": {
-  "cpu": 2,
-  "memUsedMb": 3184,
+  "cpu": 5,
+  "memUsedMb": 3182,
   "memTotalMb": 15990,
   "jvmMb": 2114,
   "diskUsedGb": 58.7,
   "diskTotalGb": 144.3,
-  "load1": 0.65,
+  "load1": 0.51,
   "hist": [
    {
     "cpu": 30,
@@ -51,9 +51,25 @@
    {
     "cpu": 2,
     "mem": 3184
+   },
+   {
+    "cpu": 1,
+    "mem": 3183
+   },
+   {
+    "cpu": 1,
+    "mem": 3184
+   },
+   {
+    "cpu": 1,
+    "mem": 3184
+   },
+   {
+    "cpu": 5,
+    "mem": 3182
    }
   ],
-  "ts": 1792257178079
+  "ts": 1792257194774
  },
  "playerNames": [],
  "startedAt": 1792257163281,
