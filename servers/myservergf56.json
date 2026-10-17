@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792234199371,
+ "updated": 1792234219280,
  "runId": "39007761766",
  "address": "wss://utility-shore-optical-packages.trycloudflare.com",
  "addresses": {
@@ -20,7 +20,7 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
+  "cpu": 2,
   "memUsedMb": 3797,
   "memTotalMb": 15989,
   "jvmMb": 2602,
@@ -46,22 +46,6 @@
    },
    {
     "cpu": 0,
-    "mem": 3798
-   },
-   {
-    "cpu": 1,
-    "mem": 3799
-   },
-   {
-    "cpu": 0,
-    "mem": 3799
-   },
-   {
-    "cpu": 0,
-    "mem": 3799
-   },
-   {
-    "cpu": 0,
     "mem": 3799
    },
    {
@@ -146,10 +130,26 @@
    },
    {
     "cpu": 1,
+    "mem": 3797
+   },
+   {
+    "cpu": 0,
+    "mem": 3797
+   },
+   {
+    "cpu": 0,
+    "mem": 3797
+   },
+   {
+    "cpu": 0,
+    "mem": 3797
+   },
+   {
+    "cpu": 2,
     "mem": 3797
    }
   ],
-  "ts": 1792234199230
+  "ts": 1792234216354
  },
  "playerNames": [],
  "liveUrl": "https://ranging-supplement-minimum-experimental.trycloudflare.com",
