@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792236999610,
+ "updated": 1792237016668,
  "runId": "39029037352",
  "address": "wss://confidential-olympic-producing-raleigh.trycloudflare.com",
  "addresses": {
@@ -32,30 +32,14 @@
  },
  "liveUrl": "https://preceding-cancelled-jar-committed.trycloudflare.com",
  "metrics": {
-  "cpu": 4,
-  "memUsedMb": 3406,
+  "cpu": 3,
+  "memUsedMb": 3400,
   "memTotalMb": 15990,
   "jvmMb": 2355,
   "diskUsedGb": 58.7,
   "diskTotalGb": 144.3,
   "load1": 0.01,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3341
-   },
-   {
-    "cpu": 3,
-    "mem": 3342
-   },
-   {
-    "cpu": 1,
-    "mem": 3346
-   },
-   {
-    "cpu": 0,
-    "mem": 3347
-   },
    {
     "cpu": 0,
     "mem": 3348
@@ -159,9 +143,25 @@
    {
     "cpu": 4,
     "mem": 3406
+   },
+   {
+    "cpu": 1,
+    "mem": 3406
+   },
+   {
+    "cpu": 1,
+    "mem": 3400
+   },
+   {
+    "cpu": 0,
+    "mem": 3400
+   },
+   {
+    "cpu": 3,
+    "mem": 3400
    }
   ],
-  "ts": 1792236999527
+  "ts": 1792237016537
  },
  "playerNames": [],
  "startedAt": 1792236733536,
