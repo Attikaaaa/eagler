@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792245387850,
+ "updated": 1792245405026,
  "runId": "39029027068",
  "address": "wss://download-thrown-irrigation-regression.trycloudflare.com",
  "addresses": {
@@ -20,7 +20,7 @@
   "ramGb": 5
  },
  "metrics": {
-  "cpu": 1,
+  "cpu": 0,
   "memUsedMb": 3730,
   "memTotalMb": 15990,
   "jvmMb": 2615,
@@ -29,22 +29,6 @@
   "load1": 0,
   "hist": [
    {
-    "cpu": 0,
-    "mem": 3727
-   },
-   {
-    "cpu": 2,
-    "mem": 3727
-   },
-   {
-    "cpu": 0,
-    "mem": 3727
-   },
-   {
-    "cpu": 0,
-    "mem": 3727
-   },
-   {
     "cpu": 1,
     "mem": 3727
    },
@@ -146,10 +130,26 @@
    },
    {
     "cpu": 1,
+    "mem": 3730
+   },
+   {
+    "cpu": 0,
+    "mem": 3730
+   },
+   {
+    "cpu": 0,
+    "mem": 3730
+   },
+   {
+    "cpu": 0,
+    "mem": 3730
+   },
+   {
+    "cpu": 0,
     "mem": 3730
    }
   ],
-  "ts": 1792245387709
+  "ts": 1792245404753
  },
  "playerNames": [],
  "liveUrl": "https://displays-sources-meet-intermediate.trycloudflare.com",
