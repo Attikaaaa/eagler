@@ -6,7 +6,7 @@
  "status": "running",
  "always": true,
  "created": 1791539040266,
- "updated": 1792214961086,
+ "updated": 1792214977562,
  "runId": "38985136119",
  "address": "wss://assigned-europe-seasonal-gordon.trycloudflare.com",
  "addresses": {
@@ -21,29 +21,13 @@
  },
  "metrics": {
   "cpu": 3,
-  "memUsedMb": 3732,
+  "memUsedMb": 3733,
   "memTotalMb": 15990,
   "jvmMb": 2618,
   "diskUsedGb": 58.8,
   "diskTotalGb": 144.3,
   "load1": 0,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3726
-   },
-   {
-    "cpu": 3,
-    "mem": 3726
-   },
-   {
-    "cpu": 0,
-    "mem": 3726
-   },
-   {
-    "cpu": 0,
-    "mem": 3726
-   },
    {
     "cpu": 1,
     "mem": 3725
@@ -147,9 +131,25 @@
    {
     "cpu": 3,
     "mem": 3732
+   },
+   {
+    "cpu": 0,
+    "mem": 3732
+   },
+   {
+    "cpu": 0,
+    "mem": 3732
+   },
+   {
+    "cpu": 0,
+    "mem": 3733
+   },
+   {
+    "cpu": 3,
+    "mem": 3733
    }
   ],
-  "ts": 1792214960998
+  "ts": 1792214977453
  },
  "playerNames": [],
  "liveUrl": "https://problems-marsh-laura-americas.trycloudflare.com",
