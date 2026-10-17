@@ -14,23 +14,20 @@
   ]
  },
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791548736161,
- "updated": 1792195826989,
- "runId": "38947817014",
- "address": "wss://answering-silk-arena-catalogue.trycloudflare.com",
- "addresses": {
-  "stable": "wss://4d75b3df45a930a3-20-51-199-50.serveousercontent.com",
-  "cloudflare": "wss://answering-silk-arena-catalogue.trycloudflare.com"
- },
+ "updated": 1792195836164,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
   "totalGb": 16,
   "ramGb": 12
  },
- "liveUrl": "https://mental-shaft-operation-asking.trycloudflare.com",
+ "liveUrl": null,
  "metrics": {
   "cpu": 2,
   "memUsedMb": 3586,
@@ -165,5 +162,5 @@
  },
  "playerNames": [],
  "startedAt": 1792175457172,
- "note": null
+ "note": "Restarting after the 6h job limit."
 }
