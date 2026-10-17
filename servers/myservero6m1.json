@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792223813744,
+ "updated": 1792223830250,
  "runId": "39007766201",
  "address": "wss://rna-advancement-jacob-district.trycloudflare.com",
  "addresses": {
@@ -35,27 +35,11 @@
   "cpu": 3,
   "memUsedMb": 3541,
   "memTotalMb": 15990,
-  "jvmMb": 2442,
+  "jvmMb": 2443,
   "diskUsedGb": 58.7,
   "diskTotalGb": 144.3,
-  "load1": 0.03,
+  "load1": 0.18,
   "hist": [
-   {
-    "cpu": 0,
-    "mem": 3536
-   },
-   {
-    "cpu": 3,
-    "mem": 3537
-   },
-   {
-    "cpu": 0,
-    "mem": 3538
-   },
-   {
-    "cpu": 0,
-    "mem": 3538
-   },
    {
     "cpu": 0,
     "mem": 3538
@@ -159,9 +143,25 @@
    {
     "cpu": 3,
     "mem": 3541
+   },
+   {
+    "cpu": 0,
+    "mem": 3541
+   },
+   {
+    "cpu": 0,
+    "mem": 3541
+   },
+   {
+    "cpu": 0,
+    "mem": 3541
+   },
+   {
+    "cpu": 3,
+    "mem": 3541
    }
   ],
-  "ts": 1792223811620
+  "ts": 1792223830126
  },
  "playerNames": [],
  "startedAt": 1792216303654,
