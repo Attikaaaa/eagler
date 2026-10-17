@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792195946402,
+ "updated": 1792195964280,
  "runId": "38985139877",
  "address": "wss://musical-contacted-jpeg-modify.trycloudflare.com",
  "addresses": {
@@ -32,13 +32,13 @@
  },
  "liveUrl": "https://particular-theme-micro-robots.trycloudflare.com",
  "metrics": {
-  "cpu": 2,
-  "memUsedMb": 3284,
+  "cpu": 3,
+  "memUsedMb": 3287,
   "memTotalMb": 15990,
   "jvmMb": 2225,
   "diskUsedGb": 58.7,
   "diskTotalGb": 144.3,
-  "load1": 0.35,
+  "load1": 0.25,
   "hist": [
    {
     "cpu": 16,
@@ -111,9 +111,25 @@
    {
     "cpu": 2,
     "mem": 3284
+   },
+   {
+    "cpu": 0,
+    "mem": 3284
+   },
+   {
+    "cpu": 0,
+    "mem": 3284
+   },
+   {
+    "cpu": 1,
+    "mem": 3285
+   },
+   {
+    "cpu": 3,
+    "mem": 3287
    }
   ],
-  "ts": 1792195946243
+  "ts": 1792195964109
  },
  "playerNames": [],
  "startedAt": 1792195878348,
