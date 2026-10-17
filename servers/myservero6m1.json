@@ -17,7 +17,7 @@
  "status": "running",
  "always": true,
  "created": 1791548736161,
- "updated": 1792230762189,
+ "updated": 1792230779360,
  "runId": "39007766201",
  "address": "wss://rna-advancement-jacob-district.trycloudflare.com",
  "addresses": {
@@ -32,26 +32,14 @@
  },
  "liveUrl": "https://colleagues-achieving-politics-vocal.trycloudflare.com",
  "metrics": {
-  "cpu": 1,
-  "memUsedMb": 3535,
+  "cpu": 3,
+  "memUsedMb": 3531,
   "memTotalMb": 15990,
   "jvmMb": 2444,
   "diskUsedGb": 58.7,
   "diskTotalGb": 144.3,
-  "load1": 0.08,
+  "load1": 0.06,
   "hist": [
-   {
-    "cpu": 1,
-    "mem": 3547
-   },
-   {
-    "cpu": 3,
-    "mem": 3547
-   },
-   {
-    "cpu": 2,
-    "mem": 3547
-   },
    {
     "cpu": 0,
     "mem": 3532
@@ -159,9 +147,21 @@
    {
     "cpu": 1,
     "mem": 3535
+   },
+   {
+    "cpu": 1,
+    "mem": 3531
+   },
+   {
+    "cpu": 0,
+    "mem": 3531
+   },
+   {
+    "cpu": 3,
+    "mem": 3531
    }
   ],
-  "ts": 1792230762080
+  "ts": 1792230777157
  },
  "playerNames": [],
  "startedAt": 1792216303654,
