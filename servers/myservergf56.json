@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1792236679097,
- "runId": "39007761766",
- "address": "wss://utility-shore-optical-packages.trycloudflare.com",
- "addresses": {
-  "stable": "wss://e9210aba04038c0b-74-249-180-161.serveousercontent.com",
-  "cloudflare": "wss://utility-shore-optical-packages.trycloudflare.com"
- },
+ "updated": 1792236686598,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1792236677894
  },
  "playerNames": [],
- "liveUrl": "https://ranging-supplement-minimum-experimental.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1792216302779,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
