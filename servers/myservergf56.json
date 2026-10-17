@@ -3,16 +3,13 @@
  "name": "My server",
  "version": "26.2",
  "want": "run",
- "status": "stopping",
+ "status": "starting",
  "always": true,
  "created": 1791539040266,
- "updated": 1792257102611,
- "runId": "39029027068",
- "address": "wss://download-thrown-irrigation-regression.trycloudflare.com",
- "addresses": {
-  "stable": "wss://4797eb3afc7fd371-74-159-123-178.serveousercontent.com",
-  "cloudflare": "wss://download-thrown-irrigation-regression.trycloudflare.com"
- },
+ "updated": 1792257110806,
+ "runId": null,
+ "address": null,
+ "addresses": {},
  "players": 0,
  "host": {
   "cpus": 4,
@@ -152,10 +149,10 @@
   "ts": 1792257101462
  },
  "playerNames": [],
- "liveUrl": "https://displays-sources-meet-intermediate.trycloudflare.com",
+ "liveUrl": null,
  "importPending": null,
  "startedAt": 1792236741197,
- "note": null,
+ "note": "Restarting after the 6h job limit.",
  "importResult": {
   "ok": false,
   "msg": "This EPK is not a singleplayer world export.",
